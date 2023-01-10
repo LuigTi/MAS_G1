@@ -1,0 +1,24 @@
+use 'sic-eis-connector.jar'  
+	with server='127.0.0.1',
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%TASK ALERT: CONNECT YOUR AGENT
+	%HERE IS WHERE YOU CAN FIND OUT HOW
+	% https://socialrobotics.atlassian.net/wiki/spaces/MAS23/pages/2049081593/Dialogflow+Connecting+Dialogflow+Agent+to+Our+Agent
+		flowkey = 'ADD YOUR FLOW KEY HERE.json', 
+		flowagent = 'ADD GOOGLE Project ID HERE',
+		flowlang='en-US'.
+		
+define dialogmngr {
+	use dialog_init for init.
+	use dialog_update for updates.
+	use dialog_generation for decisions.
+	
+	replace answer/1.
+	replace event/1.
+	replace intent/5.
+	replace transcript/1.
+}
+
+launchpolicy{
+	when * launch dialogmngr.
+}

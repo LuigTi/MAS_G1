@@ -1,0 +1,47 @@
+% generic agent files (do not include domain specific references)
+use dialog.
+use updateSession. % module
+use utils.
+
+% generic agent files (include domain specific references)
+use dialogflow.
+use html.
+use patterns.
+use responses.
+
+% domain specific data and logic
+use ingredient_hierarchies.
+use recipe_database.
+use recipe_selection.
+
+
+% This is the agent's decision module where it decides on which dialog moves to generate.
+% This module also updates the display (page shown to user).
+module dialog_generation {
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%% SAY SOMETHING AND/OR UPDATE WHAT IS DISPLAYED TO USER (PAGE)					%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	% Rule for making bot say something
+	if expectedIntent(agent, Intent),
+		text_generator(Intent, Txt), page(Name, Txt, Html), not(waiting),
+		log_info("agent says: ", Txt, Info)
+	then insert(pageUpToDate(Name), waitingForEvent('TextDone')) 
+		+ log(Info) + log("waiting for: TextDone")
+		+ say(Txt)
+		+ renderPage(Html)
+		+ updateSession(agent, Intent, [], Txt).
+	
+	% Rule to make bot wait until mic button has been pressed when it's the user's turn.
+	if expectedIntent(user, _), not(waiting),
+		page(Name, _, Html)
+	then insert(pageUpToDate(Name), waitingForEvent('Mic'))
+		+ log("waiting for: Mic")
+		+ renderPage(Html).
+		
+	% If nothing else should be done but something happened, make sure to (re)render the 
+	% page again to display any updates, if any, and we are not waiting.
+	if not(pageUpToDate(_)), page(Name, '', Html)
+		then insert(pageUpToDate(Name)) + renderPage(Html).
+}

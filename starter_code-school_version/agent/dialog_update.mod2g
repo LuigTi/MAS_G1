@@ -1,0 +1,290 @@
+use dialog.
+use dialogflow.
+use html.
+use ingredient_hierarchies.
+use patterns.
+use recipe_database.
+use recipe_selection.
+use responses.
+use updateSession.
+use utils.
+
+% This module is used for handling events and user related input.
+module dialog_update {
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%% Session updating																%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	% Before processing any intents, check for sequence completion, and, if so, add the
+	% empty sequence.
+	if session(List), List = [Sequence | _], completedPattern(Sequence), 
+		append([[]], List, NewList)
+	then delete(session(List)) + insert(session(NewList)). % start a new sequence
+	
+	% If there is nothing more to do, delete the session and log 'The END'
+	if not(agenda(_)), session([[] | S]) then log('The END') + delete(session([[] | S])).
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%% Log all events before processing them and make a note if any event was received	%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	% Log all events, answers (button results), transcripts and intents to a log file.
+	forall event(E), log_info("event: ", E, Info) do log(Info).
+	forall answer(E), log_info("button: ", E, Info) do log(Info).
+	forall transcript(Txt), log_info("transcript: ", Txt, Info) do log(Info).
+	forall intent(Intent, Params, Conf, Txt, Source),
+		log_info("intent: ", [Intent, Params, Conf, Txt, Source], Info)
+	do log(Info).
+	% Log the current session to a log file (before we update it below at end of file).
+	if session(S), log_info("session: ", S, Info) then log(Info).
+	
+	% Make note of any events; delete it first and (re)insert if event happened.
+	if true then delete(eventHappened).
+	if answer(_) ; event(_) ; intent(_,_,_,_,_) ; transcript(_) 
+		then insert(eventHappened).
+	
+	% If an event has happened a page may need to be updated.
+	forall eventHappened, pageUpToDate(Page) do delete(pageUpToDate(Page)).
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%% Event processing                												%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	% Handling of listening events
+	if event('ListeningStarted;1;48000') then insert(listening).
+	if event('ListeningDone') then delete(listening).
+	
+	if event('TextStarted'), event('TextDone') then delete(event('TextDone')). % workaround
+	if event('TextStarted') then  insert(talking).
+	if event('TextDone') then delete(talking).
+	
+	% Before deleting statements to wait for an event, first delete all flags to enable
+	% buttons again when:
+	% - a button that the bot was waiting for is pressed, or
+	% - the bot is done talking.
+	forall ((answer(Button), waitingForEvent(Button)) ; waitingForEvent('TextDone')), 
+		flag(Flag)
+	do delete(flag(Flag)).
+
+	%%% Handling of event waiting logic.
+	% Delete any waiting for events related to events such as 'ListeningDone'
+	forall event(E), waitingForEvent(E) do delete(waitingForEvent(E)).
+	% Delete any waiting for events related to pressing/touching a button
+	forall answer(E), waitingForEvent(E) do delete(waitingForEvent(E)).
+	% If some button was used instead of the mic, make sure we won't wait for the user to 
+	% press the mic button.
+	if answer(Button), not(Button='Mic') then delete(waitingForEvent('Mic')).
+
+
+	%%% Handling of buttons.
+	
+	% Flag a button if we receive a button event but it is disabled; see dialog.pl for
+	% disabled logic.
+	if answer(Button), disabled(Button) then insert(flag(Button)).
+ 
+	% If mic button is pressed and button is enabled, then start listening for 15 seconds.
+	% We'll be waiting for the results of intention detection, not just that listening has
+	% finished, as this may take slightly longer. Assumption here is that intent results
+	% are delivered at the same time as the event 'IntentionDetectionDone' so that we
+	% process the results and update the session accordingly.
+	if answer('Mic'),
+		not(disabled('Mic'))
+	then insert(waitingForEvent('IntentDetectionDone'))
+		+ log("waiting for: IntentDetectionDone") 
+		+ startListening(15, '').
+	
+	% Handling of recipe choice via button as a recipeRequest
+	if answer(Button), recipeName(_, Button),
+		log_info("intent: ", [recipeRequest, [recipe=Button], 100, '', touch], Info)
+	then insert(intent(recipeRequest, [recipe=Button], 100, '', touch)) + log(Info).
+		
+	% Start button: nothing to do as this is handled by event waiting logic above.
+
+	% Treat all other buttons as if they are 'button' intents
+	if answer(Button), not(Button='Mic'), not(recipeName(_, Button)),
+		log_info("intent: ", [button, [button=Button], 100, '', touch], Info)
+	then insert(intent(button, [button=Button], 100, '', touch)) + log(Info).
+
+	% After processing button(s), remove button events.
+	forall answer(Button) do delete(answer(Button)).
+
+	%%% Handling of recognized intents.
+	
+	% Step 1: Stop listening if intent has been recognized.
+	% If an intent has been perceived, somebody must have been talking. Because we only
+	% want to process one intent at each turn, if the mic is still open we close it and
+	% stop listening.
+	if intent(_, _, _, _, _) then stopListening.
+	
+	% Step 2: Check for issues with intent.
+	% If no intent was recognized (but there is a transcript), treat the intent as a
+	% default fallback intent
+	% (see https://cloud.google.com/dialogflow/es/docs/intents-default#fallback).
+	if intent('', Params, Conf, Txt, Source)
+	then delete(intent('', Params, Conf, Txt, Source))
+		+ insert(intent(defaultFallback, Params, Conf, Txt, Source)).
+	
+	% If there is a parameter list but they all have an empty value, then something is 
+	% wrong.
+	% TODO: Replace with special intent missingParams(Intent)? To be able to give more
+	% targeted response to the problem?
+	if intent(Intent, Params, Conf, Txt, Source),
+		not(Params=[]), cleanParams(Params, [])
+	then delete(intent(Intent, Params, Conf, Txt, Source))
+		+ insert(intent(defaultFallback, Params, Conf, Txt, Source)).
+
+	% Step 3: Pre-process parameters of intent.
+	% Unravel list values and remove empty parameters, i.e. parameters without a value.
+	if intent(Intent, Params, Conf, Txt, Source), 
+		cleanParams(Params, Cleaned)
+	then delete(intent(Intent, Params, Conf, Txt, Source))
+		+ insert(intent(Intent, Cleaned, Conf, Txt, Source)).
+
+
+	% AD HOC way of handling issues in opening dialog.	
+	% In greeting context (assuming we use c11 here) accept whatever the user says as a greeting 
+	% (to avoid getting stuck).
+	if currentTopLevel(c10), 
+		intent(Intent, Params, Conf, Txt, Source), not(Intent=greeting)
+	then delete(intent(Intent, Params, Conf, Txt, Source))
+		+ insert(intent(greeting, [], Conf, Txt, Source)).
+
+	% Update the agent's memory (recording parameters provided as user input).
+	% We take a simple approach for now, not taking context into account, where:
+	% - all new parameters are added to the memory;
+	% Parameters that already are in memory can be overwritten or not (see dialog.pl)
+	if intent(Intent, Params, _, _, _),
+		not(Intent = defaultFallback),
+		updateMemory(Params, OldMemory, NewMemory),
+		log_info("memory: ", NewMemory, Info)
+	then delete(memory(OldMemory)) + insert(memory(NewMemory)) + log(Info).
+		
+	% Check if intent can be used in a (currently active) pattern (otherwise, we cannot
+	% handle it). If this is not the case, then print message to the console as a warning.
+	if intent(Intent, _, _, _, _), 
+		retrieveIntentsfromPatterns(user, Intents),
+		not(member(Intent, Intents)),
+		atom_concat(Intent, ' does not occur in any active pattern!', Atom) 
+	then print(Atom).
+
+	% Update session with a new intent and parameters (ignoring confidence and source).
+	if intent(Intent, Params, Conf, Txt, Source)
+	then updateSession(user, Intent, Params, Txt)
+		+ delete(intent(Intent, Params, Conf, Txt, Source)). % delete to avoid handling it twice
+			
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%% CHECK FOR NEED TO FILL SLOTS 													%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% If last (user-initiated) added intent has missing slots, and a matching slotfilling 
+	% pattern is available, then add this pattern to generate slot filling requests.
+	if lastAddedIntentTriple([user, Intent, Params]), missingSlots(Params, Missing), 
+		length(Missing, NrOfSlotsMissing), NrOfSlotsMissing>0, slotFill(Intent, SlotFillPattern),
+		stepCounter(Cnt), totalSteps(Target), missingSlots(Slots), session([H | T]),
+		add(H, [slotFill(SlotFillPattern)], NewH) % expand session with slotFill(SlotFillPattern)
+	then delete(stepCounter(Cnt), totalSteps(Target), missingSlots(Slots))
+		+ insert(stepCounter(0), totalSteps(NrOfSlotsMissing), missingSlots(Missing))
+		+ delete(session([H | T])) + insert(session([NewH | T])).
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%% HANDLE CONVERSATION MANAGING ACTIONS											%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	if expectedIntent(Actor, Intent), Actor = agent then {
+	
+		%%% Actions for managing the dialogue structure:
+		% Handle instruction 'expand(Pattern)' which inserts Pattern as a sub-pattern.
+		if Intent = expand(SubPatternId), 
+			session([H | T]), add(H, [SubPatternId], NewH)
+		then delete(session([H | T])) + insert(session([NewH | T])).
+		
+		% Handle instruction 'insert(Pattern)' which inserts Pattern as a top level pattern.
+		% TODO: this does not close the pattern inserting the new Pattern nicely... 
+		if Intent = insert(PatternId), 
+			session(List), append([[PatternId]], List, NewList)
+		then delete(session(List)) + insert(session(NewList)).
+	
+		% Handle instruction 'repeat(Pattern)' (to repeat a sub-pattern)
+		if Intent = repeat(SubPatternId), 
+			stepCounter(Cnt), totalSteps(Target) 
+		then {
+			% Case Cnt = -1: counter is not used; initialize stepCounter and totalSteps.
+			if Cnt = -1, steps(SubPatternId, NewTarget)
+				then delete(stepCounter(Cnt), totalSteps(Target)) + 
+					insert(stepCounter(0), totalSteps(NewTarget)).
+					
+			% Case Cnt < Target: there are still steps to do, therefore, add SubPattern as
+			% subpattern to sequence at head of session history (expand session with SubPatternId),
+			% and increase Cnt.
+			if Cnt < Target, NewCnt is Cnt + 1, session([H | T]), add(H, [SubPatternId], NewH)
+				then delete(stepCounter(Cnt)) + insert(stepCounter(NewCnt)) +
+					delete(session([H | T])) + insert(session([NewH | T])).
+			
+			% Case Cnt = Target: all steps have been done; set to -1 again to indicate counter is 
+			% no longer used and add repeat instruction to sequence in session history.
+			if Cnt = Target
+				then delete(stepCounter(Cnt)) + insert(stepCounter(-1))
+					+ updateSession(agent, repeat(SubPatternId), [], '').
+		}
+
+		%%% Actions for managing the conversation memory:
+		% Domain specific instruction for removing conflicting filters.
+		if Intent = removeConflicts(Params),
+			filters_from_memory(Filters),
+			conflicts(Params, Filters, Conflicts),
+			memory(OldMemory), remove(Conflicts, OldMemory, NewMemory),
+			log_info("memory: ", NewMemory, Info)
+		then updateSession(agent, removeConflicts(Params), [], '')
+			+ delete(memory(OldMemory)) + insert(memory(NewMemory))
+			+ log(Info).
+			
+		% Instruction for removing all filters with Param as parameter name
+		if Intent = removeParam(Param),
+			memory(OldMemory), removeParam(Param, OldMemory, NewMemory),
+			log_info("memory: ", NewMemory, Info)
+		then updateSession(agent, removeParam(Param), [], '')
+			+ delete(memory(OldMemory)) + insert(memory(NewMemory))
+			+ log(Info).
+			
+		% Instruction for removing all filters with Param as parameter name
+		if Intent = removeValue(Value),
+			memory(OldMemory), removeValue(Value, OldMemory, NewMemory),
+			log_info("memory: ", NewMemory, Info)
+		then updateSession(agent, removeValue(Value), [], '')
+			+ delete(memory(OldMemory)) + insert(memory(NewMemory))
+			+ log(Info).
+
+		% Instruction for updating memory with filters in Params
+		if Intent = update(Params),
+			updateMemory(Params, OldMemory, NewMemory),
+			log_info("memory: ", NewMemory, Info)
+		then updateSession(agent, update(Params), [], '')
+			+ delete(memory(OldMemory)) + insert(memory(NewMemory)) + log(Info).
+		
+		%%% Actions for managing the agenda
+		% Handle instruction 'restart' (which reinitializes the agent's agenda and clears
+		% the agent's memory).
+		if Intent = restart, 
+			agenda(Agenda), initialAgenda(InitAgenda), memory(Params),
+			session(List), append([ [] ], List, NewList) % start a new sequence
+		then updateSession(agent, restart, [], '')
+			+ delete(agenda(Agenda)) + insert(agenda(InitAgenda))
+			+ delete(memory(Params)) + insert(memory([])) 
+			+ delete(session(List)) + insert(session(NewList)).
+				
+		% Handle instruction 'terminate' (which clears the agent's agenda)
+		if Intent = terminate,
+			agenda(Agenda)
+		then updateSession(agent, terminate, [], '')
+			+ delete(agenda(Agenda)) + insert(agenda([])).
+	}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%% CHECK FOR NEXT PATTERN ON THE AGENDA											%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% If current sequence is empty, check if agent can do something to continue dialog by
+	% checking the agenda and adding the next pattern on the agenda (first one) to session.
+	if session([ [] | T ]), agenda([PatternId | Patterns])
+		then delete(agenda([PatternId | Patterns])) + insert(agenda(Patterns))
+			+ delete(session([ [] | T])) + insert(session([ [PatternId] | T])).
+}

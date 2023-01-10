@@ -1,0 +1,112 @@
+{
+  "isRegexp": false,
+  "isEnum": false,
+  "allowFuzzyExtraction": false,
+  "name": "ingredientType",
+  "automatedExpansion": false,
+  "entries": [
+    {
+      "value": "pork",
+      "synonyms": [
+        "pork"
+      ]
+    },
+    {
+      "value": "beef",
+      "synonyms": [
+        "beef"
+      ]
+    },
+    {
+      "value": "lamb",
+      "synonyms": [
+        "lamb"
+      ]
+    },
+    {
+      "value": "turkey",
+      "synonyms": [
+        "turkey"
+      ]
+    },
+    {
+      "value": "duck",
+      "synonyms": [
+        "duck"
+      ]
+    },
+    {
+      "value": "poultry",
+      "synonyms": [
+        "poultry"
+      ]
+    },
+    {
+      "value": "meat",
+      "synonyms": [
+        "meat"
+      ]
+    },
+    {
+      "value": "salmon",
+      "synonyms": [
+        "salmon"
+      ]
+    },
+    {
+      "value": "fish",
+      "synonyms": [
+        "fish"
+      ]
+    },
+    {
+      "value": "nonVegetarian",
+      "synonyms": [
+        "nonVegetarian",
+        "non vegetarian",
+        "not vegetarian"
+      ]
+    },
+    {
+      "value": "egg",
+      "synonyms": [
+        "egg",
+        "eggs"
+      ]
+    },
+    {
+      "value": "cheese",
+      "synonyms": [
+        "cheese"
+      ]
+    },
+    {
+      "value": "dairy",
+      "synonyms": [
+        "dairy"
+      ]
+    },
+    {
+      "value": "nonVegan",
+      "synonyms": [
+        "nonVegan",
+        "non vegan",
+        "not vegan"
+      ]
+    },
+    {
+      "value": "pasta",
+      "synonyms": [
+        "pasta"
+      ]
+    },
+    {
+      "value": "chicken",
+      "synonyms": [
+        "chicken"
+      ]
+    }
+  ],
+  "id": "2929bb52-ed9d-4ed7-8d2b-d681c80cdec6",
+  "isOverridable": false
+}
