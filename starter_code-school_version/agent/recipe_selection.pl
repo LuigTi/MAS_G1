@@ -128,13 +128,13 @@ ingredientsMeetDiet([ Ingredient | Rest ], DietaryRestriction) :- typeIngredient
 
 % Predicate to filter recipes on max amount of time
 applyFilter('duration', Minutes, RecipeIDsIn, RecipeIDsOut) :- findall(Recipe,check_time_from_list(Recipe, RecipeIDsIn, Minutes),RecipeIDsOut).
-check_time_from_list(Recipe, RecipeIDsIn, Value):- member(Recipe,RecipeList), time(Recipe, Time), Time =< Value.
+check_time_from_list(Recipe, RecipeList, Value):- member(Recipe,RecipeList), time(Recipe, Time), Time =< Value.
 
 %%%
 % Predicate to filter on easy recipes
 % 
 applyFilter('easykeyword', _, RecipeIDsIn, RecipeIDsOut) :-findall(Recipe,check_easy_from_list(Recipe, RecipeIDsIn, _),RecipeIDsOut)..
-check_easy_from_list(Recipe, RecipeIDsIn, _):- member(Recipe,RecipeList), easyRecipe(Recipe).
+check_easy_from_list(Recipe, RecipeList, _):- member(Recipe,RecipeList), easyRecipe(Recipe).
 % A recipe is easy when:
 % - they can be made within 45 minutes, 
 % - have less than 18 steps, and
@@ -147,36 +147,54 @@ easyRecipe(RecipeID) :-	time(RecipeID, Time), Time =< 45, nrSteps(RecipeID, N1),
 % Predicate to filter recipes on the exclusion of a specific ingredient 
 % Use example: the user wants to filter recipes NOT including "tahini" (where tahini is an
 % ingredient)
-%applyFilter('excludeingredient', Ingredient, RecipeIDsIn, RecipeIDsOut) :-	.
+applyFilter('excludeingredient', Ingredient, RecipeIDsIn, RecipeIDsOut) :- findall(Recipe,check_noingredient_from_list(Recipe, RecipeIDsIn, Ingredient),RecipeIDsOut).
+check_noingredient_from_list(Recipe, RecipeList, Ingredient):- member(Recipe,RecipeList), ingredients(Recipe, IngredientList), not(member(Ingredient,IngredientList)).
 
-%applyFilter('excludeingredienttype', Ingredient, RecipeIDsIn, RecipeIDsOut) :-	. 
+
+%% TODO: check it, is pretty long
+applyFilter('excludeingredienttype', Ingredient, RecipeIDsIn, RecipeIDsOut) :-findall(Recipe,check_noType_from_list(Recipe, RecipeIDsIn, Ingredient),RecipeIDsOut).
+check_noType_from_list(Recipe, RecipeList, Ingredient):- member(Recipe,RecipeList), ingredients(Recipe, IngredientList),from_ingredientList_to_typeList(IngredientList, TypeList), not(member(Ingredient,TypeList) .
+
+from_ingredientList_to_typeList([], List).
+from_ingredientList_to_typeList([Ing|List], TypeList):- typeIngredient(Ing,Ty), append(TypeList,[Ty], FinalTypeList),from_ingredientList_to_typeList(List,FinalTypeList)   
+ 
+
 
 %%%
 % Predicates to filter recipes on a specific ingredient 
 % Use example: the user wants to filter recipes including "tahini" (where tahini is an 
 % ingredient)
-%applyFilter('ingredient', Ingredient, RecipeIDsIn, RecipeIDsOut) :-	.
+applyFilter('ingredient', Ingredient, RecipeIDsIn, RecipeIDsOut) :- findall(Recipe,check_ingredient_from_list(Recipe, RecipeIDsIn, Ingredient),RecipeIDsOut)	.
+check_ingredient_from_list(Recipe, RecipeList, Ingredient):- member(Recipe,RecipeList), ingredients(Recipe, IngredientList),from_ingredientList_to_typeList(IngredientList, TypeList), member(Ingredient,TypeList .
 
-%applyFilter('ingredienttype', Ingredient, RecipeIDsIn, RecipeIDsOut) :-	.
+applyFilter('ingredienttype', Ingredient, RecipeIDsIn, RecipeIDsOut) :-findall(Recipe,check_Type_from_list(Recipe, RecipeIDsIn, Ingredient),RecipeIDsOut).	
+check_Type_from_list(Recipe, RecipeList, Ingredient):- member(Recipe,RecipeList), ingredients(Recipe, IngredientList),from_ingredientList_to_typeList(IngredientList, TypeList), member(Ingredient,TypeList) .
 
 %%%
 % Predicate to filter recipes on meal type (breakfast e.g.)
-%applyFilter('mealType', Value, RecipeIDsIn, RecipeIDsOut) :-	.
-		
+applyFilter('mealType', Value, RecipeIDsIn, RecipeIDsOut) :-findall(Recipe,check_mealType_from_list(Recipe, RecipeIDsIn, Value),RecipeIDsOut).
+check_mealType_from_list(Recipe, RecipeList,Value):-member(Recipe,RecipeList), mealType(Recipe, Value).
+
 %%% 
 % Predicate to filter recipes on maximum number of ingredients, recipe steps, or time.
-%applyFilter('nrOfIngredients', Value, RecipeIDsIn, RecipeIDsOut) :-	.
+applyFilter('nrOfIngredients', Value, RecipeIDsIn, RecipeIDsOut) :-findall(Recipe,check_nrOfIngredients_from_list(Recipe, RecipeIDsIn, Value),RecipeIDsOut).
+check_nrOfIngredients_from_list(Recipe, RecipeList,Value):-member(Recipe,RecipeList), nrOfIngredients(Recipe, N), N=<Value.
 
-%applyFilter('nrSteps', Value, RecipeIDsIn, RecipeIDsOut) :-	.
+applyFilter('nrSteps', Value, RecipeIDsIn, RecipeIDsOut) :-findall(Recipe,check_nrsteps_from_list(Recipe, RecipeIDsIn, Value),RecipeIDsOut).
+check_nrsteps_fromlist(Recipe, RecipeList,Value):-member(Recipe,RecipeList), nrSteps(Recipe, N), N=<Value.
 
 % Predicate to filter recipes on max amount of time of fast (under 30 minutes) recipes
-%applyFilter('shorttimekeyword', _, RecipeIDsIn, RecipeIDsOut) :-	.
+applyFilter('shorttimekeyword',_ , RecipeIDsIn, RecipeIDsOut) :-findall(Recipe,check_fast_from_list(Recipe, RecipeIDsIn),RecipeIDsOut).
+check_fast_from_list(Recipe, RecipeList):-member(Recipe,RecipeList), time(Recipe, Time), Time =< 30.
 
 %%%
 % Predicate to filter on number of servings 
-%applyFilter('servings', Value, RecipeIDsIn, RecipeIDsOut) :-	.
+applyFilter('servings', Value, RecipeIDsIn, RecipeIDsOut) :- findall(Recipe,check_serving_from_list(Recipe, RecipeIDsIn, Value),RecipeIDsOut).
+check_serving_from_list(Recipe, RecipeList,Value):- member(Recipe,RecipeList), serving(Recipe, N), N = Value.
 
 %%%
 % Predicate to filter recipes on tag
 % Use example: the user wants to filter on "pizza" dishes (recipes that have the "pizza" tag)
-%applyFilter('tag', Value, RecipeIDsIn, RecipeIDsOut) :-	.
+%
+applyFilter('tag', Value, RecipeIDsIn, RecipeIDsOut) :- findall(Recipe,check_tag_from_list(Recipe, RecipeIDsIn, Value),RecipeIDsOut).
+check_tag_from_list(Recipe, RecipeList,Value):-member(Recipe,RecipeList), tag(Recipe, Value).
