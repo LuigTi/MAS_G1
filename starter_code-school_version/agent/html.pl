@@ -126,7 +126,7 @@ page(a50recipeSelect, _, Html) :-
 %%% OR display a statement that there are no recipes left			      %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%page(a50recipeSelect, _, Html) :-
+page(a50recipeSelect, _, Html) :-
 	% Conditions for when to show this page
 	currentTopLevel(a50),
 	recipeIDs(Recipes),
@@ -136,21 +136,21 @@ page(a50recipeSelect, _, Html) :-
 	% Constructing HTML page
 	
 	% First row: Either you have found recipes or no recipe statement
-%	(N > 0 ->
-%		FirstRow = "<center><h3>I have found the following recipes that you might like:</h3></center>" ;
-%		FirstRow = "<center><h3>There are no recipes that meet all of your preferences:</h3></center>"
-%	),
+	(N > 0 ->
+		FirstRow = "<center><h3>I have found the following recipes that you might like:</h3></center>" ;
+		FirstRow = "<center><h3>There are no recipes that meet all of your preferences:</h3></center>"
+	),
 	% Second row: display the filters stored in memory and show them as list on screen.
-%	filters_to_strings(FilterStrings),
-%	itemsList(FilterStrings, SR),
-%	atomic_list_concat(['<center>', SR, '</center>'], SecondRow),
+	filters_to_strings(FilterStrings),
+	itemsList(FilterStrings, SR),
+	atomic_list_concat(['<center>', SR, '</center>'], SecondRow),
 	% Third row: list of recipes with pictures
-%	buttonPictureList(Recipes, L),
-%	applyTemplate('<div class="row justify-content-center">~a</div>', L, ThirdRow),
+	buttonPictureList(Recipes, L),
+	applyTemplate('<div class="row justify-content-center">~a</div>', L, ThirdRow),
 	% Putting everything together
-%	atomic_list_concat([FirstRow, SecondRow, ThirdRow], Body),
+	atomic_list_concat([FirstRow, SecondRow, ThirdRow], Body),
 	% Create the HTML page
-%	html(Body, Html).
+	html(Body, Html).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -169,7 +169,7 @@ page(a50recipeSelect, _, Html) :-
 page(a50recipeConfirm, _, Html) :-
 	% Condition for when to show this page
 	currentTopLevel(a50),
-	chosenRecipe(Recipe),
+	%chosenRecipe(Recipe),
 	recipeName(Recipe, Name),
 	time(Recipe, Minutes),
 	servings(Recipe, Persons), 
@@ -183,46 +183,47 @@ page(a50recipeConfirm, _, Html) :-
 	%Here you should retrieve the chosen recipe and its name
 
 	
-%	to_upper_case(Name, TxtUp),
+	to_upper_case(Name, TxtUp),
  	applyTemplate('<div class="card-body"><center><h3 class="card-title">~a</h3></center>', TxtUp, IT),
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%% Duration
 	%%Here you should retrieve the time it takes to do each recipe
 
 
-%	atomic_list_concat(['Takes ', Minutes, ' minutes'], Time),
-%	applyTemplate('<h6 class="text-center"><span class="badge badge-light">~a</span></h6>', Time, D), %%%
+	atomic_list_concat(['Takes ', Minutes, ' minutes'], Time),
+	applyTemplate('<h6 class="text-center"><span class="badge badge-light">~a</span></h6>', Time, D), %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 	%Servings
 	%%Here you should retrieve the number of servings the recipe has
 	
 	
-%	string_concat("Serves ", Persons, Servings),
-%	applyTemplate('<h6 class="text-center"><span class="badge badge-light">~a</span></h6>', Servings, S), %%%
-% 	atom_concat(D, S, DS),
-%	atom_concat(IT, DS, TIDS),
-%	applyTemplate('<div class="card mb-3">~a</div></div>', TIDS, Row1Html), 
+	string_concat("Serves ", Persons, Servings),
+	applyTemplate('<h6 class="text-center"><span class="badge badge-light">~a</span></h6>', Servings, S), %%%
+	atom_concat(D, S, DS),
+	atom_concat(IT, DS, TIDS),
+	applyTemplate('<div class="card mb-3">~a</div></div>', TIDS, Row1Html), 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 	%Steps
 	%%Here you should retrieve a list of the recipe steps
-
+	bagof(Step, getStepString(Recipe, Step), Steps),
 	
-%	append(["<h4>Recipe instructions:</h4>"], Steps, RI),
-%	itemsList(RI, Row2Col1Html),
+	append(["<h4>Recipe instructions:</h4>"], Steps, RI),
+	itemsList(RI, Row2Col1Html),
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 	%Ingredients
 	%%Here you should retrieve the list of ingredients
+	bagof(Ingredient, ingredient(Recipe, Ingredient), Ingredients),
 
-%	bulletList(Ingredients, I),
-%	atom_concat("<h4>Ingredients:</h4>", I, Row2Col2Html),
-%	atom_concat(Row2Col2Html, Row2Col1Html, Row2ColHtml), 
-%	applyTemplate('<div class="card mx-auto" style="width:90vw, height:100vw">~a</div>', Row2ColHtml, Row2Html),
+	bulletList(Ingredients, I),
+	atom_concat("<h4>Ingredients:</h4>", I, Row2Col2Html),
+	atom_concat(Row2Col2Html, Row2Col1Html, Row2ColHtml), 
+	applyTemplate('<div class="card mx-auto" style="width:90vw, height:100vw">~a</div>', Row2ColHtml, Row2Html),
 	% Putting everything together
-%	atomic_list_concat([Row1Html, Row2Html], Body),
+	atomic_list_concat([Row1Html, Row2Html], Body),
 	% Create the HTML page
-%	html(Body, Html).
+	html(Body, Html).
 
-	
+	% ADD THE PICTURE
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Page layout for closing/goodbye (pattern 40)            %%%
