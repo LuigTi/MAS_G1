@@ -152,7 +152,7 @@ text(noRecipesLeft, Txt) :-
 
 
 % Intent: recipe choice receipt
-text(recipeChoiceReceipt, Txt) :- 	.
+%text(recipeChoiceReceipt, Txt) :- 	.
 
 % Intent: recipeCheck
 text(recipeCheck, "").
