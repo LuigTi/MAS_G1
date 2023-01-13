@@ -113,11 +113,13 @@ recipes_filtered(RecipeIDs, [], RecipeIDs).
 
 %%%
 % Predicate to filter recipes on cuisines (e.g., Italian recipes)
-%applyFilter('cuisine', Value, RecipeIDsIn, RecipeIDsOut) :- .
-		
+applyFilter('cuisine', Value, RecipeIDsIn, RecipeIDsOut) :- findall(Recipe,check_cuisine_from_list(Recipe, RecipeIDsIn, Value),RecipeIDsOut).
+check_cuisine_from_list(Recipe, RecipeList,TypeOfCusine):- member(Recipe,RecipeList), cuisine(Recipe, TypeOfCusine).		
 %%%
 % Predicate to filter recipes that meet dietary restriction (vegetarian etc).
-%applyFilter('dietaryrestriction', Value, RecipeIDsIn, RecipeIDsOut) :-	.
+applyFilter('dietaryrestriction', Value, RecipeIDsIn, RecipeIDsOut) :-	findall(Recipe,check_dietary_from_list(Recipe, RecipeIDsIn, Value),RecipeIDsOut).
+check_dietary_from_list(Recipe, RecipeList,DietaryRestriction):-member(Recipe,RecipeList), diet(Recipe, DietaryRestriction).
+
 
 diet(RecipeID, DietaryRestriction) :- ingredients(RecipeID, IngredientList), ingredientsMeetDiet(IngredientList, DietaryRestriction)	.
 	
@@ -125,13 +127,14 @@ ingredientsMeetDiet([], _). % the empty list of ingredients meets any dietary re
 ingredientsMeetDiet([ Ingredient | Rest ], DietaryRestriction) :- typeIngredient(Ingredient,DietaryRestriction), ingredientsMeetDiet(Rest,DietaryRestriction)	.
 
 % Predicate to filter recipes on max amount of time
-%applyFilter('duration', Minutes, RecipeIDsIn, RecipeIDsOut) :-	.
+applyFilter('duration', Minutes, RecipeIDsIn, RecipeIDsOut) :- findall(Recipe,check_time_from_list(Recipe, RecipeIDsIn, Minutes),RecipeIDsOut).
+check_time_from_list(Recipe, RecipeIDsIn, Value):- member(Recipe,RecipeList), time(Recipe, Time), Time =< Value.
 
 %%%
 % Predicate to filter on easy recipes
 % 
-%applyFilter('easykeyword', _, RecipeIDsIn, RecipeIDsOut) :-	.
-
+applyFilter('easykeyword', _, RecipeIDsIn, RecipeIDsOut) :-findall(Recipe,check_easy_from_list(Recipe, RecipeIDsIn, _),RecipeIDsOut)..
+check_easy_from_list(Recipe, RecipeIDsIn, _):- member(Recipe,RecipeList), easyRecipe(Recipe).
 % A recipe is easy when:
 % - they can be made within 45 minutes, 
 % - have less than 18 steps, and
