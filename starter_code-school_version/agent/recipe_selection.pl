@@ -25,12 +25,13 @@ currentRecipe(RecipeID) :- memoryKeyValue("recipe", RecipeName), recipeName(Reci
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %For Visual Support to-do 
 
-%ingredients(RecipeID, IngredientList) :-	.
+ingredients(RecipeID, IngredientList) :- findall(IngredientNeeded,ingredient(RecipeID, IngredientNeeded), IngredientListNotFinal), list_to_set(IngredientListNotFinal,IngredientList ).
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
-%nrOfIngredients(RecipeID, N) :-.
+nrOfIngredients(RecipeID, N) :- ingredients(RecipeID,ListIng), length(ListIng,N).
 
 /**
  * steps(-IngredientList)
