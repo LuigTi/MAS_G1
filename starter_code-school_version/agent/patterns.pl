@@ -219,7 +219,7 @@ pattern([a21removeKeyFromMemory,
 %	U: hi
 
 
-%Put Pattern Here 
+pattern([c10, [agent, greeting], [user, greeting]]) :- not(agentName(_)). 
 
 
 % Pattern C10.1: Opening Self-Identification (Agent)
@@ -228,7 +228,7 @@ pattern([a21removeKeyFromMemory,
 %	A: I'm  BellaBot
 %	U: hi
 
-%Put Pattern Here 
+pattern([c10, [user, greeting], [user, greeting], [agent, greeting]]) :- agentName(_). 
 
 %%% C30 Patterns: Capabilities
 % Pattern C30.0: General Capability Check

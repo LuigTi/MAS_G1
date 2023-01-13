@@ -61,7 +61,7 @@ text(describeCapability, "").
 text(farewell, "").
 
 % Intent: greeting
-text(greeting, "").
+text(greeting, "Hola"). 
 
 
 % Intent: negative welfare receipt
@@ -78,7 +78,7 @@ text(positiveReceipt, "").
 	
 
 % Intent: self identification
-%text(selfIdentification, Txt) :- 
+text(selfIdentification, Txt) :- agentName(Bot_name), string_concat("I'm", Bot_name, Txt).
 
 % Intent: specify goal
 text(specifyGoal, '.').
