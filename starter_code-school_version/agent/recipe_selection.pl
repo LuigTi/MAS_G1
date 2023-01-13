@@ -45,7 +45,7 @@ nrOfIngredients(RecipeID, N) :- ingredients(RecipeID,ListIng), length(ListIng,N)
 **/
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %For Visual Support to-do 
-%recipeSteps(RecipeID, StepsList) :-	.
+recipeSteps(RecipeID, StepsList) :- findall(StepNeeded,step(RecipeID, _, StepNeeded), StepsList). % TODO: JIIPPPPPPP may be problematic with the visual, check it!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 
 
@@ -53,7 +53,7 @@ getStepString(RecipeID, String) :-
 	step(RecipeID, NrStep, StepSentence), 
 	atomic_list_concat(['Step ', NrStep, ': ', StepSentence, '.'], String).
 
-%nrSteps(RecipeID, N) :-  .
+nrSteps(RecipeID, N) :-  recipeSteps(RecipeID, StepsList), length(StepsList,N).
 	
 
 
@@ -119,10 +119,10 @@ recipes_filtered(RecipeIDs, [], RecipeIDs).
 % Predicate to filter recipes that meet dietary restriction (vegetarian etc).
 %applyFilter('dietaryrestriction', Value, RecipeIDsIn, RecipeIDsOut) :-	.
 
-%diet(RecipeID, DietaryRestriction) :-	.
+diet(RecipeID, DietaryRestriction) :- ingredients(RecipeID, IngredientList), ingredientsMeetDiet(IngredientList, DietaryRestriction)	.
 	
 ingredientsMeetDiet([], _). % the empty list of ingredients meets any dietary restriction!
-%ingredientsMeetDiet([ Ingredient | Rest ], DietaryRestriction) :-	.
+ingredientsMeetDiet([ Ingredient | Rest ], DietaryRestriction) :- typeIngredient(Ingredient,DietaryRestriction), ingredientsMeetDiet(Rest,DietaryRestriction)	.
 
 % Predicate to filter recipes on max amount of time
 %applyFilter('duration', Minutes, RecipeIDsIn, RecipeIDsOut) :-	.
@@ -136,7 +136,7 @@ ingredientsMeetDiet([], _). % the empty list of ingredients meets any dietary re
 % - they can be made within 45 minutes, 
 % - have less than 18 steps, and
 % - less than 15 ingredients
-%easyRecipe(RecipeID) :-	.
+easyRecipe(RecipeID) :-	time(RecipeID, Time), Time =< 45, nrSteps(RecipeID, N1), N1 < 18, nrOfIngredients(RecipeID, N2), N2< 15.
 		
 
 
