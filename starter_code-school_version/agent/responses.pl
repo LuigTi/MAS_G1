@@ -84,7 +84,7 @@ text(selfIdentification, Txt) :- agentName(Bot_name), string_concat("I'm", Bot_n
 text(specifyGoal, '.').
 
 % Intent: session closer
-text(sessionCloser, "Bye bye").
+text(sessionCloser, "").
 
 % Intent: sequence closer
 text(sequenceCloser, "").
@@ -152,7 +152,7 @@ text(noRecipesLeft, Txt) :-
 
 
 % Intent: recipe choice receipt
-%text(recipeChoiceReceipt, Txt) :- 	.
+%text(recipeChoiceReceipt, Txt) :- recipeName(recipeChoiceReceipt). %TODO
 
 % Intent: recipeCheck
 text(recipeCheck, "").

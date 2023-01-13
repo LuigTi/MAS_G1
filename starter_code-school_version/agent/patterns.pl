@@ -53,22 +53,19 @@ pattern(_) :- parent(a21featureRequest, a50recipeConfirm),
 %A variant for when a user wants to add a specific filter while already checking a recipe 
 % but there are no recipes left that satisfy all feature requests.
 
-pattern(_)
-:- parent(a21featureRequest, a50recipeConfirm),
+pattern(_):- parent(a21featureRequest, a50recipeConfirm),
 	getParamsPatternInitiatingIntent(user, addFilter, Params).
 	
 %Variant 3: a21featureRequest
 % A variant for when there are recipes that satisfy all feature requests; automatically 
 % remove all feature requests that are conflicting with the new request(s).
 
-pattern(_)
-:- getParamsPatternInitiatingIntent(user, addFilter, Params).
+pattern(_):- getParamsPatternInitiatingIntent(user, addFilter, Params).
 
 
 %Variant 4: a21featureRequest
 %A variant for the case where by adding filters there is no recipe left that satisfies all filters.
-pattern(_)
-:- getParamsPatternInitiatingIntent(user, addFilter, Params).
+pattern(_):- getParamsPatternInitiatingIntent(user, addFilter, Params).
 
 
 
@@ -181,7 +178,7 @@ pattern([a21removeKeyFromMemory,
 %	A: pasta is a great choice!
 
 
-%pattern([a50recipeSelect, [agent, specifyGoal], [agent,recipeInquiry], [user, recipeRequest], insert(recipeRequest), [agent, recipeChoiceReceipt]]).
+pattern([a50recipeSelect, [agent, specifyGoal], [agent,recipeInquiry], [user, recipeRequest], [agent, insert(recipeRequest)], [agent, recipeChoiceReceipt]]).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -202,7 +199,8 @@ pattern(b12, [user, defaultFallback], [agent, paraphraseRequest]).
 %	U: goodbye
 %	A: not sure what that means in this context.
 
-pattern(b13, [user, _], [agent, contextMismatch]).			%TOCHECK
+pattern(b13, [user, not(Intent)], [agent, contextMismatch]):- expectedIntent(user, Intent).%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%TOCHECK
+%pattern(b13, [user, _], [agent, contextMismatch]).
 
 %Pattern B42: Appreciation Receipt
 
