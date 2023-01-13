@@ -89,26 +89,31 @@ page(c10, _, Html) :-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%page(a50recipeSelect, _, Html) :-
+page(a50recipeSelect, _, Html) :-
 
 	% Conditions for when to show this page
+	currentTopLevel(a50),
+	recipeIDs(Recipes),
+	length(Recipes, N),
+	N > 15,
 	
+	 
 	% Constructing HTML page
-%	not(memoryKeyValue('show', 'true')),
-%	(memoryKeyValue(Key, _), is_filter_param(Key) -> 
-%		atomic_list_concat(['There are ', N, ' recipes available to choose from.'], RecipesLeftStr)
-%	),
-%	applyTemplate('<div class="alert alert-light"></br></br><center><h1>~a</h1></center></br></br></br></div>', RecipesLeftStr, FirstRow),
-%	% Second row: display the filters stored in memory and show them as list on screen.
-%	filters_to_strings(FilterStrings),
-%	itemsList(FilterStrings, TR),
+	not(memoryKeyValue('show', 'true')),
+	(memoryKeyValue(Key, _), is_filter_param(Key) -> 
+		atomic_list_concat(['There are ', N, ' recipes available to choose from.'], RecipesLeftStr)
+	),
+	applyTemplate('<div class="alert alert-light"></br></br><center><h1>~a</h1></center></br></br></br></div>', RecipesLeftStr, FirstRow),
+	% Second row: display the filters stored in memory and show them as list on screen.
+	filters_to_strings(FilterStrings),
+	itemsList(FilterStrings, TR),
 	% Third row: display text
-%	SecondRow = '</br><center><h4>What kind of recipe are you looking for?</h4></center></br>',
-%	atomic_list_concat(['<center>', TR, '</center>'], ThirdRow),
+	SecondRow = '</br><center><h4>What kind of recipe are you looking for?</h4></center></br>',
+	atomic_list_concat(['<center>', TR, '</center>'], ThirdRow),
 	% Putting everything together
-%	atomic_list_concat([FirstRow, SecondRow, ThirdRow], Body),
+	atomic_list_concat([FirstRow, SecondRow, ThirdRow], Body),
 	% Create the HTML page
-%	html(Body, Html).
+	html(Body, Html).
 	
 	
 
