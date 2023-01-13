@@ -133,7 +133,7 @@ check_time_from_list(Recipe, RecipeIDsIn, Value):- member(Recipe,RecipeList), ti
 %%%
 % Predicate to filter on easy recipes
 % 
-applyFilter('easykeyword', _, RecipeIDsIn, RecipeIDsOut) :-findall(Recipe,check_easy_from_list(Recipe, RecipeIDsIn, _),RecipeIDsOut)..
+applyFilter('easykeyword', _, RecipeIDsIn, RecipeIDsOut) :-findall(Recipe,check_easy_from_list(Recipe, RecipeIDsIn, _),RecipeIDsOut).
 check_easy_from_list(Recipe, RecipeIDsIn, _):- member(Recipe,RecipeList), easyRecipe(Recipe).
 % A recipe is easy when:
 % - they can be made within 45 minutes, 
