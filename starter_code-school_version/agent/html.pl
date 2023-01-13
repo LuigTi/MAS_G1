@@ -166,10 +166,16 @@ page(a50recipeSelect, _, Html) :-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%page(a50recipeConfirm, _, Html) :-
+page(a50recipeConfirm, _, Html) :-
 	% Condition for when to show this page
+	currentTopLevel(a50),
+	chosenRecipe(Recipe),
+	recipeName(Recipe, Name),
+	time(Recipe, Minutes),
+	servings(Recipe, Persons), 
+	 
 	
-	
+
 	% Constructing HTML page
 
 	% Name
@@ -178,7 +184,7 @@ page(a50recipeSelect, _, Html) :-
 
 	
 %	to_upper_case(Name, TxtUp),
- %	applyTemplate('<div class="card-body"><center><h3 class="card-title">~a</h3></center>', TxtUp, IT),
+ 	applyTemplate('<div class="card-body"><center><h3 class="card-title">~a</h3></center>', TxtUp, IT),
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%% Duration
 	%%Here you should retrieve the time it takes to do each recipe
