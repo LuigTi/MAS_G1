@@ -58,11 +58,25 @@ page(c10, _, Html) :-
 	% Condition for when to show this page
 	currentTopLevel(c10), 
 	% Constructing HTML page
-	atomic_list_concat(['<div class="alert alert-light"><center></br><h1>Hello!</br></br>','I am ~a</h1></br></br></center></div>'], Template),
+	atomic_list_concat(['<div class="card"><div class="card-body">This is ~a.</div></div>'], Template),
 	% Get the bot's name if it has one; other call it 'your assistant'
 	(agentName(Name) -> N = Name ; N = 'your recipe selection assistant'), applyTemplate(Template, N, Body),
 	% Create the HTML page
 	html(Body, Html).
+	
+	
+	
+	
+	
+	
+	
+	% Constructing HTML page
+	%atomic_list_concat(['<div class="alert alert-light"><center></br><h1>Hello!</br></br>','I am ~a</h1></br></br></center></div>'], Template),
+	%atomic_list_concat(['<div class="alert alert-light"><center></br><h1>Hello!</br></br>','I am ~a</h1></br></br></center></div>'], Template),
+	% Get the bot's name if it has one; other call it 'your assistant'
+	%(agentName(Name) -> N = Name ; N = 'your recipe selection assistant'), applyTemplate(Template, N, Body),
+	% Create the HTML page
+	%html(Body, Html).
 
 
 
