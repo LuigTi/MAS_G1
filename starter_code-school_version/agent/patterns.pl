@@ -181,7 +181,7 @@ pattern([a21removeKeyFromMemory,
 %	A: pasta is a great choice!
 
 
-%Put Pattern Here 
+%pattern([a50recipeSelect, [agent, specifyGoal], [agent,recipeInquiry], [user, recipeRequest], insert(recipeRequest), [agent, recipeChoiceReceipt]]).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -202,11 +202,11 @@ pattern(b12, [user, defaultFallback], [agent, paraphraseRequest]).
 %	U: goodbye
 %	A: not sure what that means in this context.
 
-%Put Pattern Here 
+pattern(b13, [user, _], [agent, contextMismatch]).			%TOCHECK
 
 %Pattern B42: Appreciation Receipt
 
-%Put Pattern Here 
+pattern(b42, [user, appreciation], [agent, appreciationReceipt]).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

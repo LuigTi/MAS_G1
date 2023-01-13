@@ -45,14 +45,14 @@ text_generator(Intent, SelectedText) :-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Intent: appreciation receipt
-text(appreciationReceipt, "").
+text(appreciationReceipt, "You're welcome, my dude.").
 
 
 % Intent: context mismatch
-text(c10, contextMismatch, ""). % we don't care exactly what user said. we got some response.
-text(a50recipeSelect, contextMismatch, "").
-text(a50recipeConfirm, contextMismatch, "").
-text(c40, contextMismatch, "").
+text(c10, contextMismatch, "not sure what that means in this context. c10"). % we don't care exactly what user said. we got some response.
+text(a50recipeSelect, contextMismatch, "not sure what that means in this context. a50recipeSelect").
+text(a50recipeConfirm, contextMismatch, "not sure what that means in this context. a50recipeConfirm").
+text(c40, contextMismatch, "not sure what that means in this context. c40").
 
 % Intent: describeCapability
 text(describeCapability, "I'm an Artificial Intelligence that will help you select a recipe").
@@ -68,10 +68,10 @@ text(greeting, "Hola").
 text(negativeWelfareReceipt, "").
 
 % Intent: paraphrase request
-text(c10, paraphraseRequest, ""). % we don't care exactly what user said. we got some response.
+text(c10, paraphraseRequest, "I did not understand. c10"). % we don't care exactly what user said. we got some response.
 text(a50recipeSelect, paraphraseRequest, "what do you mean? a50recipeSelect").			%%%%%%%%%%%TODO
 text(a50recipeConfirm, paraphraseRequest, "Is this right? a50recipeConfirm").
-text(c40, paraphraseRequest, ""). % we don't care exactly what user said. we got some response.
+text(c40, paraphraseRequest, "I did not understand. c40"). % we don't care exactly what user said. we got some response.
 
 % Intent: positive receipt
 text(positiveReceipt, "").
@@ -152,7 +152,7 @@ text(noRecipesLeft, Txt) :-
 
 
 % Intent: recipe choice receipt
-%text(recipeChoiceReceipt, Txt) :- 	.
+text(recipeChoiceReceipt, Txt) :- 	.
 
 % Intent: recipeCheck
 text(recipeCheck, "").
