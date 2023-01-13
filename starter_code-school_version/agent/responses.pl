@@ -58,7 +58,7 @@ text(c40, contextMismatch, "").
 text(describeCapability, "I'm an Artificial Intelligence that will help you select a recipe").
 	
 % Intent: farewell
-text(farewell, "").
+text(farewell, "Bye bye").
 
 % Intent: greeting
 text(greeting, "Hola"). 
@@ -69,8 +69,8 @@ text(negativeWelfareReceipt, "").
 
 % Intent: paraphrase request
 text(c10, paraphraseRequest, ""). % we don't care exactly what user said. we got some response.
-text(a50recipeSelect, paraphraseRequest, "").
-text(a50recipeConfirm, paraphraseRequest, "").
+text(a50recipeSelect, paraphraseRequest, "what do you mean? a50recipeSelect").			%%%%%%%%%%%TODO
+text(a50recipeConfirm, paraphraseRequest, "Is this right? a50recipeConfirm").
 text(c40, paraphraseRequest, ""). % we don't care exactly what user said. we got some response.
 
 % Intent: positive receipt

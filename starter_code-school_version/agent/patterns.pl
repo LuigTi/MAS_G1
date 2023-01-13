@@ -193,7 +193,7 @@ pattern([a21removeKeyFromMemory,
 %	U: chicken soup
 %	A: what do you mean?
 
-%pattern(b12, [user, fallback], [])
+pattern(b12, [user, defaultFallback], [agent, paraphraseRequest]).
 
 % Pattern B13: Out of context dialog move
 % For handling intents that are recognized but not expected nor first intent of a pattern.
