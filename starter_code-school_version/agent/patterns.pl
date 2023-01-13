@@ -228,7 +228,7 @@ pattern([c10, [agent, greeting], [user, greeting]]) :- not(agentName(_)).
 %	A: I'm  BellaBot
 %	U: hi
 
-pattern([c10, [user, greeting], [user, greeting], [agent, greeting]]) :- agentName(_). 
+pattern([c10, [user, greeting], [user, selfidentification], [agent, greeting]]) :- agentName(_). 
 
 %%% C30 Patterns: Capabilities
 % Pattern C30.0: General Capability Check
@@ -236,11 +236,11 @@ pattern([c10, [user, greeting], [user, greeting], [agent, greeting]]) :- agentNa
 %	U: what can you do?
 %	A: At the moment I can ....
 
-%Put Pattern Here
+pattern([c30, [user, checkCapability], [agent, describeCapability]]).
 
 %%% C40 Patterns: Closing
 
-%Put Pattern Here
+pattern([c40, [user, closing], [agent, sessionCloser]]).
 
 
 

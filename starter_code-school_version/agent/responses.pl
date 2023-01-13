@@ -55,7 +55,7 @@ text(a50recipeConfirm, contextMismatch, "").
 text(c40, contextMismatch, "").
 
 % Intent: describeCapability
-text(describeCapability, "").
+text(describeCapability, "I'm an Artificial Intelligence that will help you select a recipe").
 	
 % Intent: farewell
 text(farewell, "").
@@ -84,7 +84,7 @@ text(selfIdentification, Txt) :- agentName(Bot_name), string_concat("I'm", Bot_n
 text(specifyGoal, '.').
 
 % Intent: session closer
-text(sessionCloser, "").
+text(sessionCloser, "Bye bye").
 
 % Intent: sequence closer
 text(sequenceCloser, "").
