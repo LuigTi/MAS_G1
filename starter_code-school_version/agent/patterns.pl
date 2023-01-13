@@ -193,7 +193,7 @@ pattern([a21removeKeyFromMemory,
 %	U: chicken soup
 %	A: what do you mean?
 
-%Put Pattern Here 
+%pattern(b12, [user, fallback], [])
 
 % Pattern B13: Out of context dialog move
 % For handling intents that are recognized but not expected nor first intent of a pattern.
@@ -236,7 +236,7 @@ pattern([c10, [agent, greeting], [agent, selfidentification], [user, greeting]])
 %	U: what can you do?
 %	A: At the moment I can ....
 
-pattern([c30, [user, checkCapability], [agent, describeCapability]]).
+%pattern([c30, [user, checkCapability], [agent, describeCapability]]).
 
 %%% C40 Patterns: Closing
 
