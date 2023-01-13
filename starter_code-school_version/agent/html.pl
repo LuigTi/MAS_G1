@@ -128,8 +128,11 @@ page(a50recipeSelect, _, Html) :-
 
 %page(a50recipeSelect, _, Html) :-
 	% Conditions for when to show this page
-
-
+	currentTopLevel(a50),
+	recipeIDs(Recipes),
+	length(Recipes, N),
+	N =< 15;
+	memoryKeyValue('show', 'true'),
 	% Constructing HTML page
 	
 	% First row: Either you have found recipes or no recipe statement
