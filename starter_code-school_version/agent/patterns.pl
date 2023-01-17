@@ -178,7 +178,7 @@ pattern([a21removeKeyFromMemory,
 %	A: pasta is a great choice!
 
 
-pattern([a50recipeSelect, [agent, specifyGoal], [agent,recipeInquiry], [user, recipeRequest], [agent, insert(recipeRequest)], [agent, recipeChoiceReceipt]]).
+pattern([a50recipeSelect, [agent, specifyGoal], [agent,recipeInquiry], [user, recipeRequest], [agent, recipeChoiceReceipt], [agent, insert(a50recipeConfirm)]]).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -190,7 +190,7 @@ pattern([a50recipeSelect, [agent, specifyGoal], [agent,recipeInquiry], [user, re
 %	U: chicken soup
 %	A: what do you mean?
 
-pattern(b12, [user, defaultFallback], [agent, paraphraseRequest]).
+pattern([b12, [user, defaultFallback], [agent, paraphraseRequest]]).
 
 % Pattern B13: Out of context dialog move
 % For handling intents that are recognized but not expected nor first intent of a pattern.
@@ -199,12 +199,12 @@ pattern(b12, [user, defaultFallback], [agent, paraphraseRequest]).
 %	U: goodbye
 %	A: not sure what that means in this context.
 
-pattern(b13, [user, not(Intent)], [agent, contextMismatch]):- expectedIntent(user, Intent).%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%TOCHECK
+pattern([b13, [user, not(Intent)], [agent, contextMismatch]]):- expectedIntent(user, Intent).%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%TOCHECK
 %pattern(b13, [user, _], [agent, contextMismatch]).
 
 %Pattern B42: Appreciation Receipt
 
-pattern(b42, [user, appreciation], [agent, appreciationReceipt]).
+pattern([b42, [user, appreciation], [agent, appreciationReceipt]]).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
