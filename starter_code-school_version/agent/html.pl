@@ -10,6 +10,7 @@
 :- dynamic
 	% predicate to keep track of whether page is up to date
 	pageUpToDate/1.
+	chosenRecipe/1.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Page layouts									%%%
@@ -168,8 +169,8 @@ page(a50recipeSelect, _, Html) :-
 
 page(a50recipeConfirm, _, Html) :-
 	% Condition for when to show this page
-	currentTopLevel(a50recipeSelect),
-	%chosenRecipe(Recipe),
+	currentTopLevel(a50recipeConfirm),
+	chosenRecipe(Recipe),
 	recipeName(Recipe, Name),
 	time(Recipe, Minutes),
 	servings(Recipe, Persons), 

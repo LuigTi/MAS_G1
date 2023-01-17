@@ -218,7 +218,7 @@ pattern([b42, [user, appreciation], [agent, appreciationReceipt]]).
 %	U: hi
 
 
-pattern([c10, [agent, greeting], [user, greeting]]) :- not(agentName(_)). 
+%pattern([c10, [agent, greeting], [user, greeting]]) :- not(agentName(_)). 
 
 
 % Pattern C10.1: Opening Self-Identification (Agent)
@@ -227,7 +227,7 @@ pattern([c10, [agent, greeting], [user, greeting]]) :- not(agentName(_)).
 %	A: I'm  BellaBot
 %	U: hi
 
-pattern([c10, [agent, greeting], [agent, selfidentification], [user, greeting]]) :- agentName(_). 
+pattern([c10, [agent, greeting], [agent, selfIdentification], [user, greeting]]) :- agentName(_). 
 
 %%% C30 Patterns: Capabilities
 % Pattern C30.0: General Capability Check
