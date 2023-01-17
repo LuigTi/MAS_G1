@@ -151,20 +151,20 @@ check_noingredient_from_list(Recipe, RecipeList, Ingredient):- member(Recipe,Rec
 
 
 %% TODO: check it, is pretty long
-applyFilter('excludeingredienttype', Ingredient, RecipeIDsIn, RecipeIDsOut) :-findall(Recipe,check_noType_from_list(Recipe, RecipeIDsIn, Ingredient),RecipeIDsOut).
-check_noType_from_list(Recipe, RecipeList, Ingredient):- member(Recipe,RecipeList), ingredients(Recipe, IngredientList),from_ingredientList_to_typeList(IngredientList, TypeList), not(member(Ingredient,TypeList) .
+%applyFilter('excludeingredienttype', Ingredient, RecipeIDsIn, RecipeIDsOut) :-findall(Recipe,check_noType_from_list(Recipe, RecipeIDsIn, Ingredient),RecipeIDsOut).
+%check_noType_from_list(Recipe, RecipeList, Ingredient):- member(Recipe,RecipeList), ingredients(Recipe, IngredientList),from_ingredientList_to_typeList(IngredientList, TypeList), not(member(Ingredient,TypeList) .
 
 from_ingredientList_to_typeList([], List).
-from_ingredientList_to_typeList([Ing|List], TypeList):- typeIngredient(Ing,Ty), append(TypeList,[Ty], FinalTypeList),from_ingredientList_to_typeList(List,FinalTypeList)   
- 
+from_ingredientList_to_typeList([Ing|List], TypeList):- typeIngredient(Ing,Ty), append(TypeList,[Ty], FinalTypeList),from_ingredientList_to_typeList(List,FinalTypeList)   .
+ % im dumb
 
 
 %%%
 % Predicates to filter recipes on a specific ingredient 
 % Use example: the user wants to filter recipes including "tahini" (where tahini is an 
 % ingredient)
-applyFilter('ingredient', Ingredient, RecipeIDsIn, RecipeIDsOut) :- findall(Recipe,check_ingredient_from_list(Recipe, RecipeIDsIn, Ingredient),RecipeIDsOut)	.
-check_ingredient_from_list(Recipe, RecipeList, Ingredient):- member(Recipe,RecipeList), ingredients(Recipe, IngredientList),from_ingredientList_to_typeList(IngredientList, TypeList), member(Ingredient,TypeList .
+%applyFilter('ingredient', Ingredient, RecipeIDsIn, RecipeIDsOut) :- findall(Recipe,check_ingredient_from_list(Recipe, RecipeIDsIn, Ingredient),RecipeIDsOut)	.
+%check_ingredient_from_list(Recipe, RecipeList, Ingredient):- member(Recipe,RecipeList), ingredients(Recipe, IngredientList),from_ingredientList_to_typeList(IngredientList, TypeList), member(Ingredient,TypeList .
 
 applyFilter('ingredienttype', Ingredient, RecipeIDsIn, RecipeIDsOut) :-findall(Recipe,check_Type_from_list(Recipe, RecipeIDsIn, Ingredient),RecipeIDsOut).	
 check_Type_from_list(Recipe, RecipeList, Ingredient):- member(Recipe,RecipeList), ingredients(Recipe, IngredientList),from_ingredientList_to_typeList(IngredientList, TypeList), member(Ingredient,TypeList) .
@@ -179,7 +179,7 @@ check_mealType_from_list(Recipe, RecipeList,Value):-member(Recipe,RecipeList), m
 applyFilter('nrOfIngredients', Value, RecipeIDsIn, RecipeIDsOut) :-findall(Recipe,check_nrOfIngredients_from_list(Recipe, RecipeIDsIn, Value),RecipeIDsOut).
 check_nrOfIngredients_from_list(Recipe, RecipeList,Value):-member(Recipe,RecipeList), nrOfIngredients(Recipe, N), N=<Value.
 
-applyFilter('nrSteps', Value, RecipeIDsIn, RecipeIDsOut) :-findall(Recipe,check_nrsteps_from_list(Recipe, RecipeIDsIn, Value),RecipeIDsOut).
+%applyFilter('nrSteps', Value, RecipeIDsIn, RecipeIDsOut) :-findall(Recipe,check_nrsteps_from_list(Recipe, RecipeIDsIn, Value),RecipeIDsOut).
 check_nrsteps_fromlist(Recipe, RecipeList,Value):-member(Recipe,RecipeList), nrSteps(Recipe, N), N=<Value.
 
 % Predicate to filter recipes on max amount of time of fast (under 30 minutes) recipes
@@ -188,8 +188,8 @@ check_fast_from_list(Recipe, RecipeList):-member(Recipe,RecipeList), time(Recipe
 
 %%%
 % Predicate to filter on number of servings 
-applyFilter('servings', Value, RecipeIDsIn, RecipeIDsOut) :- findall(Recipe,check_serving_from_list(Recipe, RecipeIDsIn, Value),RecipeIDsOut).
-check_serving_from_list(Recipe, RecipeList,Value):- member(Recipe,RecipeList), serving(Recipe, N), N = Value.
+%applyFilter('servings', Value, RecipeIDsIn, RecipeIDsOut) :- findall(Recipe,check_serving_from_list(Recipe, RecipeIDsIn, Value),RecipeIDsOut).
+%check_serving_from_list(Recipe, RecipeList,Value):- member(Recipe,RecipeList), serving(Recipe, N), N = Value.
 
 %%%
 % Predicate to filter recipes on tag
