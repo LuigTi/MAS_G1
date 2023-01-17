@@ -93,7 +93,7 @@ page(a50recipeSelect, _, Html) :-
 
 	% Conditions for when to show this page
 	currentTopLevel(a50),
-	recipeIDs(Recipes),
+	recipesFiltered(Recipes),
 	length(Recipes, N),
 	N > 15,
 	
@@ -128,8 +128,8 @@ page(a50recipeSelect, _, Html) :-
 
 page(a50recipeSelect, _, Html) :-
 	% Conditions for when to show this page
-	currentTopLevel(a50),
-	recipeIDs(Recipes),
+	currentTopLevel(a50recipeSelect),
+	recipesFiltered(Recipes),
 	length(Recipes, N),
 	N =< 15;
 	memoryKeyValue('show', 'true'),
@@ -168,7 +168,7 @@ page(a50recipeSelect, _, Html) :-
 
 page(a50recipeConfirm, _, Html) :-
 	% Condition for when to show this page
-	currentTopLevel(a50),
+	currentTopLevel(a50recipeSelect),
 	%chosenRecipe(Recipe),
 	recipeName(Recipe, Name),
 	time(Recipe, Minutes),
