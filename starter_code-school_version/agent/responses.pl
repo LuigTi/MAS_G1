@@ -45,7 +45,7 @@ text_generator(Intent, SelectedText) :-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Intent: appreciation receipt
-text(appreciationReceipt, "You're welcome, my dude.").
+text(appreciationReceipt, "You're welcome.").
 
 
 % Intent: context mismatch
@@ -74,14 +74,14 @@ text(a50recipeConfirm, paraphraseRequest, "Is this right? a50recipeConfirm").
 text(c40, paraphraseRequest, "I did not understand. c40"). % we don't care exactly what user said. we got some response.
 
 % Intent: positive receipt
-text(positiveReceipt, "").
+text(positiveReceipt, "ok").
 	
 
 % Intent: self identification
-text(selfIdentification, Txt) :- agentName(Bot_name), string_concat("I'm", Bot_name, Txt).
+text(selfIdentification, Txt) :- agentName(Bot_name), string_concat("I am", Bot_name, Txt).
 
 % Intent: specify goal
-text(specifyGoal, '.').
+text(specifyGoal, "I'll help you find a recipe.").
 
 % Intent: session closer
 text(sessionCloser, "").
@@ -114,33 +114,28 @@ text(ackFilter, Txt) :-
 	string_concat("These recipes ", TxtPart2, Txt).
 
 % Intent: confirm request for specific filter:
-text(confirmRequest, "").
+text(confirmRequest, "Confirming request").
 
 % Intent: feature inquiry
-text(featureInquiry, "") :- 
-	recipesFiltered(Recipes), length(Recipes, L), L > 890.
+text(featureInquiry, "featureInquiry, no filters applied") :-recipesFiltered(Recipes), length(Recipes, L), L > 890.
 	
-text(featureInquiry, "") :-
-	recipesFiltered(Recipes), length(Recipes, L), L < 891, L > 15,
-	not(memoryKeyValue('show', 'true')).
+text(featureInquiry, "featureInquiry, too many recipes to show") :-recipesFiltered(Recipes), length(Recipes, L), L < 891, L > 15,not(memoryKeyValue('show', 'true')).
 		
-text(featureInquiry, "") :-
-	recipesFiltered(Recipes), length(Recipes, L), 
-	( L<16 ; memoryKeyValue('show', 'true') ).
+text(featureInquiry, "featureInquiry, I'll show you the recipes") :-recipesFiltered(Recipes), length(Recipes, L),( L<16 ; memoryKeyValue('show', 'true') ).
 
 
 
 
 % Intent: feature removal request
-text(featureRemovalRequest, "").
+text(featureRemovalRequest, "Could you remove some of the filters?").
 
 
 % This intent is used for answering the user intent pictureRequest.
 % Intent: grantPicture
-%text(grantPicture, "") :- .
+text(grantPicture, "Picture granted, I'll show you the recipes")  :- recipesFiltered(Recipes), length(Recipes, L), L <100.
 % Intent: pictureNotGranted
 % request user to provide more preferences.
-%text(pictureNotGranted, "" ):- .
+text(pictureNotGranted, "Picture not granted, there are too many recipes" ):- recipesFiltered(Recipes), length(Recipes, L), L >99.
 
 % Intent: no recipes left
 text(noRecipesLeft, Txt) :-
@@ -152,14 +147,14 @@ text(noRecipesLeft, Txt) :-
 
 
 % Intent: recipe choice receipt
-%text(recipeChoiceReceipt, Txt) :- . %TODO
+text(recipeChoiceReceipt, Txt) :- currentRecipe(ID), recipeName(ID, RecipeName), recipeIDs(List),  memeber(ID, List), string_concat("Your recipe is", RecipeName, Txt).
 
 % Intent: recipeCheck
-text(recipeCheck, "").
+text(recipeCheck, "Look at the recipe, is it fine?").
 	
 % Intent: recipe inquiry
 
-text(recipeInquiry, "").
+text(recipeInquiry, "recipeInquiry. What would you like to cook.").
 
 % used in a21removeKeyFromMemory for handling deleteParameter.
 text(removedSpecificFilter(DelFilter), Txt) :-

@@ -45,7 +45,7 @@ slotFill(dummyP, dummyI).
 % that there are recipes left.
 
 
-pattern(_) :- parent(a21featureRequest, a50recipeConfirm),
+pattern([a21featureRequest, [user, addFilter], [agent, removeConflicts(Params)], [agent, ackFilter], [agent, insert(a50recipeSelect)]]) :- parent(a21featureRequest, a50recipeConfirm),
 	getParamsPatternInitiatingIntent(user, addFilter, Params).
 
 %Variant 2: a21featureRequest
@@ -53,19 +53,19 @@ pattern(_) :- parent(a21featureRequest, a50recipeConfirm),
 %A variant for when a user wants to add a specific filter while already checking a recipe 
 % but there are no recipes left that satisfy all feature requests.
 
-pattern(_):- parent(a21featureRequest, a50recipeConfirm),
+pattern([a21featureRequest, [user, addFilter], [agent, removeConflicts(Params)],[agent, noRecipesLeft], [agent, featureRemovalRequest],[agent, insert(a50recipeSelect)]]):- parent(a21featureRequest, a50recipeConfirm),
 	getParamsPatternInitiatingIntent(user, addFilter, Params).
 	
 %Variant 3: a21featureRequest
 % A variant for when there are recipes that satisfy all feature requests; automatically 
 % remove all feature requests that are conflicting with the new request(s).
 
-pattern(_):- getParamsPatternInitiatingIntent(user, addFilter, Params).
+pattern([a21featureRequest, [user, addFilter], [agent, removeConflicts(Params)], [agent, ackFilter], [agent,featureInquiry]]):- getParamsPatternInitiatingIntent(user, addFilter, Params).
 
 
 %Variant 4: a21featureRequest
 %A variant for the case where by adding filters there is no recipe left that satisfies all filters.
-pattern(_):- getParamsPatternInitiatingIntent(user, addFilter, Params).
+pattern([a21featureRequest, [user, addFilter], [agent, removeConflicts(Params)],[agent, noRecipesLeft], [agent, featureRemovalRequest]]):- getParamsPatternInitiatingIntent(user, addFilter, Params).
 
 
 
@@ -79,11 +79,13 @@ pattern(_):- getParamsPatternInitiatingIntent(user, addFilter, Params).
 
 
 % Variant for when there are less than 100 recipes left. 
-%Put Pattern Here 
+pattern([a21noMoreFilters, [user, noMoreFilters], [agent, grantPicture],[agent, update(['show'='true'])]]).
 
 
 % Variant for when there are still 100 or more recipes left.
-%Put Pattern Here 
+pattern([a21noMoreFilters, [user, noMoreFilters], [agent, pictureNotGranted]]).
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Pattern: a21removeKeyFromMemory							%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -158,13 +160,13 @@ pattern([a21removeKeyFromMemory,
 %	U: Yes
 
 %Confirmation
-%Put Pattern Here 
+pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation]]). %TODO check
 
 %Appreciation
-%Put Pattern Here 
+pattern([a50recipeConfirm, [agent, recipeCheck], [user, appreciation], [agent, appreciationReceipt]]).
 
 %Disconfirmation
-%Put Pattern Here 
+pattern([a50recipeConfirm, [agent, recipeCheck], [user, disconfirmation],[agent,insert(a50recipeSelect)]]). 
 
 
 
@@ -199,8 +201,7 @@ pattern([b12, [user, defaultFallback], [agent, paraphraseRequest]]).
 %	U: goodbye
 %	A: not sure what that means in this context.
 
-pattern([b13, [user, not(Intent)], [agent, contextMismatch]]):- expectedIntent(user, Intent).%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%TOCHECK
-%pattern(b13, [user, _], [agent, contextMismatch]).
+pattern(b13, [user, _], [agent, contextMismatch]).
 
 %Pattern B42: Appreciation Receipt
 
@@ -234,11 +235,11 @@ pattern([c10, [agent, greeting], [agent, selfidentification], [user, greeting]])
 %	U: what can you do?
 %	A: At the moment I can ....
 
-%pattern([c30, [user, checkCapability], [agent, describeCapability]]).
+pattern([c30, [user, checkCapability], [agent, describeCapability]]).
 
 %%% C40 Patterns: Closing
 
-pattern([c40, [user, closing], [agent, sessionCloser]]).
+pattern([c40, [agent, sessionCloser], [user, farewell]]).
 
 
 
