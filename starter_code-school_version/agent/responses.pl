@@ -147,7 +147,7 @@ text(noRecipesLeft, Txt) :-
 
 
 % Intent: recipe choice receipt
-text(recipeChoiceReceipt, Txt) :- currentRecipe(ID), recipeName(ID, RecipeName), recipeIDs(List),  member(ID, List), string_concat("Your recipe is", RecipeName, Txt).
+text(recipeChoiceReceipt, Txt) :- currentRecipe(ID), recipeName(ID, RecipeName), recipeIDs(List),  memeber(ID, List), string_concat("Your recipe is", RecipeName, Txt).
 
 % Intent: recipeCheck
 text(recipeCheck, "Look at the recipe, is it fine?").
