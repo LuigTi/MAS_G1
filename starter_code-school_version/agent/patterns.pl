@@ -233,7 +233,6 @@ pattern([c10, [agent, greeting], [agent, selfIdentification], [user, greeting]])
 % Pattern C30.0: General Capability Check
 % Example:
 %	U: what can you do?
-%	A: At the moment I can ....
 
 pattern([c30, [user, checkCapability], [agent, describeCapability]]).
 
