@@ -4,8 +4,8 @@ use 'sic-eis-connector.jar'
 	%TASK ALERT: CONNECT YOUR AGENT
 	%HERE IS WHERE YOU CAN FIND OUT HOW
 	% https://socialrobotics.atlassian.net/wiki/spaces/MAS23/pages/2049081593/Dialogflow+Connecting+Dialogflow+Agent+to+Our+Agent
-		flowkey = 'tryout-whdd-21a94890942f.json', 
-		flowagent = 'tryout-whdd',
+		flowkey = 'test2-pahp-461cc9fd32f9.json', 
+		flowagent = 'test2-pahp',
 		flowlang='en-US'.
 		
 define dialogmngr {

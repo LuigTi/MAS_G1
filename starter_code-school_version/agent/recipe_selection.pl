@@ -138,7 +138,7 @@ check_time_from_list(Recipe, RecipeList, Value):- member(Recipe,RecipeList), tim
 % - they can be made within 45 minutes, 
 % - have less than 18 steps, and
 % - less than 15 ingredients
-easyRecipe(RecipeID) :-	time(RecipeID, Time), Time =< 45, nrSteps(RecipeID, N1), N1 < 18, nrOfIngredients(RecipeID, N2), N2< 15.
+easyRecipe(RecipeID) :-	time(RecipeID, Time), Time =< 45, nrSteps(RecipeID, N1), N1 < 18, nrOfIngredients(RecipeID, N2), N2 < 15.
 		
 
 
