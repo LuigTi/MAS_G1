@@ -91,9 +91,9 @@ recipesFiltered(RecipeIDs) :-
 % Recursively go through all user provided features to find those recipes that satisfy all
 % of these features.  
 recipes_filtered(RecipeIDs, [], RecipeIDs).
-%recipes_filtered(RecipeIDsIn, [ ParamName = Value | Filters], RemainingRecipeIDs) :-
-%	applyFilter(ParamName, Value, RecipeIDsIn, RecipeIDsOut),
-%	recipes_filtered(RecipeIDsOut, Filters, RemainingRecipeIDs).
+recipes_filtered(RecipeIDsIn, [ ParamName = Value | Filters], RemainingRecipeIDs) :-
+	applyFilter(ParamName, Value, RecipeIDsIn, RecipeIDsOut),
+	recipes_filtered(RecipeIDsOut, Filters, RemainingRecipeIDs).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%% recipe selection features  %%%%%%%%%%%%%%%%%%%
@@ -149,10 +149,9 @@ easyRecipe(RecipeID) :-	time(RecipeID, Time), Time =< 45, nrSteps(RecipeID, N1),
 applyFilter('excludeingredient', Ingredient, RecipeIDsIn, RecipeIDsOut) :- findall(Recipe,check_noingredient_from_list(Recipe, RecipeIDsIn, Ingredient),RecipeIDsOut).
 check_noingredient_from_list(Recipe, RecipeList, Ingredient):- member(Recipe,RecipeList), ingredients(Recipe, IngredientList), not(member(Ingredient,IngredientList)).
 
-
 %% TODO: check it, is pretty long
 %applyFilter('excludeingredienttype', Ingredient, RecipeIDsIn, RecipeIDsOut) :-findall(Recipe,check_noType_from_list(Recipe, RecipeIDsIn, Ingredient),RecipeIDsOut).
-%check_noType_from_list(Recipe, RecipeList, Ingredient):- member(Recipe,RecipeList), ingredients(Recipe, IngredientList),from_ingredientList_to_typeList(IngredientList, TypeList), not(member(Ingredient,TypeList) .
+%check_noType_from_list(Recipe, RecipeList, Ingredient):- member(Recipe,RecipeList), ingredients(Recipe, IngredientList),from_ingredientList_to_typeList(IngredientList, TypeList), not(member(Ingredient,TypeList) 
 
 from_ingredientList_to_typeList([], List).
 from_ingredientList_to_typeList([Ing|List], TypeList):- typeIngredient(Ing,Ty), append(TypeList,[Ty], FinalTypeList),from_ingredientList_to_typeList(List,FinalTypeList)   .
