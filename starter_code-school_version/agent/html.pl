@@ -102,6 +102,7 @@ page(a50recipeSelect, _, Html) :-
 	% Constructing HTML page
 	not(memoryKeyValue('show', 'true')),
 	(memoryKeyValue(Key, _), is_filter_param(Key) -> 
+		atomic_list_concat(['I have found ', N, ' recipes that match your preferences.'], RecipesLeftStr) ;
 		atomic_list_concat(['There are ', N, ' recipes available to choose from.'], RecipesLeftStr)
 	),
 	applyTemplate('<div class="alert alert-light"></br></br><center><h1>~a</h1></center></br></br></br></div>', RecipesLeftStr, FirstRow),
