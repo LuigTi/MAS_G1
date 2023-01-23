@@ -65,7 +65,7 @@ text(greeting, "Hola").
 
 
 % Intent: negative welfare receipt
-text(negativeWelfareReceipt, "").
+text(negativeWelfareReceipt, "negative welfare receipt sentence").
 
 % Intent: paraphrase request
 text(c10, paraphraseRequest, "I did not understand. c10"). % we don't care exactly what user said. we got some response.
@@ -84,10 +84,10 @@ text(selfIdentification, Txt) :- agentName(Bot_name), string_concat("I am", Bot_
 text(specifyGoal, "I'll help you find a recipe.").
 
 % Intent: session closer
-text(sessionCloser, "").
+text(sessionCloser, "session closer sentence").
 
 % Intent: sequence closer
-text(sequenceCloser, "").
+text(sequenceCloser, "sequence closer sentence").
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Scripted text and phrases for ** DOMAIN SPECIFIC ** intents (sorted on intent name)	%%%

@@ -218,7 +218,7 @@ pattern([b42, [user, appreciation], [agent, appreciationReceipt]]).
 %	U: hi
 
 
-%pattern([c10, [agent, greeting], [user, greeting]]) :- not(agentName(_)). 
+pattern([c10, [agent, greeting], [user, greeting]]) :- not(agentName(_)). 
 
 
 % Pattern C10.1: Opening Self-Identification (Agent)
@@ -233,7 +233,6 @@ pattern([c10, [agent, greeting], [agent, selfIdentification], [user, greeting]])
 % Pattern C30.0: General Capability Check
 % Example:
 %	U: what can you do?
-%	A: At the moment I can ....
 
 pattern([c30, [user, checkCapability], [agent, describeCapability]]).
 
