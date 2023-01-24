@@ -205,14 +205,14 @@ page(a50recipeConfirm, _, Html) :-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 	%Steps
 	%%Here you should retrieve a list of the recipe steps
-	recipeSteps(RecipeID, Steps),
+	recipeSteps(Recipe, Steps),
 		
 	append(["<h4>Recipe instructions:</h4>"], Steps, RI),
 	itemsList(RI, Row2Col1Html),
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 	%Ingredients
 	%%Here you should retrieve the list of ingredients
-	ingredients(RecipeID, Ingredients),
+	ingredients(Recipe, Ingredients),
 	bulletList(Ingredients, I),
 	atom_concat("<h4>Ingredients:</h4>", I, Row2Col2Html),
 	atom_concat(Row2Col2Html, Row2Col1Html, Row2ColHtml), 
