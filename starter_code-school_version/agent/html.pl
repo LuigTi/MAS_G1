@@ -10,7 +10,6 @@
 :- dynamic
 	% predicate to keep track of whether page is up to date
 	pageUpToDate/1.
-	chosenRecipe/1.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Page layouts									%%%
@@ -171,10 +170,6 @@ page(a50recipeSelect, _, Html) :-
 page(a50recipeConfirm, _, Html) :-
 	% Condition for when to show this page
 	currentTopLevel(a50recipeConfirm),
-	chosenRecipe(Recipe),
-	recipeName(Recipe, Name),
-	time(Recipe, Minutes),
-	servings(Recipe, Persons), 
 	 
 	
 
@@ -183,6 +178,8 @@ page(a50recipeConfirm, _, Html) :-
 	% Name
 	
 	%Here you should retrieve the chosen recipe and its name
+	currentRecipe(Recipe),
+	recipeName(Recipe, Name),
 
 	
 	to_upper_case(Name, TxtUp),
@@ -190,6 +187,7 @@ page(a50recipeConfirm, _, Html) :-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%% Duration
 	%%Here you should retrieve the time it takes to do each recipe
+	time(Recipe, Minutes),
 
 
 	atomic_list_concat(['Takes ', Minutes, ' minutes'], Time),
@@ -197,7 +195,7 @@ page(a50recipeConfirm, _, Html) :-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 	%Servings
 	%%Here you should retrieve the number of servings the recipe has
-	
+	servings(Recipe, Persons), 
 	
 	string_concat("Serves ", Persons, Servings),
 	applyTemplate('<h6 class="text-center"><span class="badge badge-light">~a</span></h6>', Servings, S), %%%
@@ -207,15 +205,14 @@ page(a50recipeConfirm, _, Html) :-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 	%Steps
 	%%Here you should retrieve a list of the recipe steps
-	bagof(Step, getStepString(Recipe, Step), Steps),
-	
+	recipeSteps(RecipeID, Steps),
+		
 	append(["<h4>Recipe instructions:</h4>"], Steps, RI),
 	itemsList(RI, Row2Col1Html),
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 	%Ingredients
 	%%Here you should retrieve the list of ingredients
-	bagof(Ingredient, ingredient(Recipe, Ingredient), Ingredients),
-
+	ingredients(RecipeID, Ingredients),
 	bulletList(Ingredients, I),
 	atom_concat("<h4>Ingredients:</h4>", I, Row2Col2Html),
 	atom_concat(Row2Col2Html, Row2Col1Html, Row2ColHtml), 

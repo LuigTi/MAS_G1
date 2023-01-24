@@ -25,7 +25,8 @@ currentRecipe(RecipeID) :- memoryKeyValue("recipe", RecipeName), recipeName(Reci
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %For Visual Support to-do 
 
-ingredients(RecipeID, IngredientList) :- findall(IngredientNeeded,ingredient(RecipeID, IngredientNeeded), IngredientListNotFinal), list_to_set(IngredientListNotFinal,IngredientList ).
+%ingredients(RecipeID, IngredientList) :- setof(IngredientNeeded,ingredient(RecipeID, IngredientNeeded), IngredientList).
+ingredients(RecipeID, IngredientList) :- setof(IngredientNeeded,RecipeID^ingredient(RecipeID, IngredientNeeded), IngredientList).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -45,8 +46,9 @@ nrOfIngredients(RecipeID, N) :- ingredients(RecipeID,ListIng), length(ListIng,N)
 **/
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %For Visual Support to-do 
-recipeSteps(RecipeID, StepsList) :- findall(StepNeeded,step(RecipeID, _, StepNeeded), StepsList). % TODO: JIIPPPPPPP may be problematic with the visual, check it!
+%recipeSteps(RecipeID, StepsList) :- findall(RecipeID^getStepString(RecipeID, Step), StepsList). % TODO: JIIPPPPPPP may be problematic with the visual, check it!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+recipeSteps(RecipeID, StepsList) :- bagof(String, RecipeID^getStepString(RecipeID, String), StepsList). % TODO: JIIPPPPPPP may be problematic with the visual, check it!
 
 
 getStepString(RecipeID, String) :-
@@ -113,8 +115,7 @@ recipes_filtered(RecipeIDsIn, [ ParamName = Value | Filters], RemainingRecipeIDs
 
 %%%
 % Predicate to filter recipes on cuisines (e.g., Italian recipes)
-applyFilter('cuisine', Value, RecipeIDsIn, RecipeIDsOut) :- findall(Recipe,check_cuisine_from_list(Recipe, RecipeIDsIn, Value),RecipeIDsOut).
-check_cuisine_from_list(Recipe, RecipeList,TypeOfCusine):- member(Recipe,RecipeList), cuisine(Recipe, TypeOfCusine).		
+applyFilter('cuisine', Value, RecipeIDsIn, RecipeIDsOut) :- downcase_atom(Value, StringDown) findall(Recipe,(member(Recipe,RecipeIDsIn), cuisine(Recipe, StringDown)),RecipeIDsOut).		
 %%%
 % Predicate to filter recipes that meet dietary restriction (vegetarian etc).
 applyFilter('dietaryrestriction', Value, RecipeIDsIn, RecipeIDsOut) :-	findall(Recipe,check_dietary_from_list(Recipe, RecipeIDsIn, Value),RecipeIDsOut).
@@ -188,7 +189,7 @@ check_fast_from_list(Recipe, RecipeList):-member(Recipe,RecipeList), time(Recipe
 %%%
 % Predicate to filter on number of servings 
 applyFilter('servings', Value, RecipeIDsIn, RecipeIDsOut) :- findall(Recipe,check_serving_from_list(Recipe, RecipeIDsIn, Value),RecipeIDsOut).
-check_serving_from_list(Recipe, RecipeList,Value):- member(Recipe,RecipeList), servings(Recipe, N), N = Value.
+check_serving_from_list(Recipe, RecipeList,Value):- member(Recipe,RecipeList), servings(Recipe, N), Value = N.  %TODO check if works, otherwise N=Value
 
 %%%
 % Predicate to filter recipes on tag
