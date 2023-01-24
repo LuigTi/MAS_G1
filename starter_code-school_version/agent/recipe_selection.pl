@@ -151,7 +151,7 @@ check_noingredient_from_list(Recipe, RecipeList, Ingredient):- member(Recipe,Rec
 
 %% TODO: check it, is pretty long
 applyFilter('excludeingredienttype', Ingredient, RecipeIDsIn, RecipeIDsOut) :-findall(Recipe,check_noType_from_list(Recipe, RecipeIDsIn, Ingredient),RecipeIDsOut).
-check_noType_from_list(Recipe, RecipeList, Ingredient):- member(Recipe,RecipeList), ingredients(Recipe, IngredientList),from_ingredientList_to_typeList(IngredientList, TypeList), not(member(Ingredient,TypeList) 
+check_noType_from_list(Recipe, RecipeList, Ingredient):- member(Recipe,RecipeList), ingredients(Recipe, IngredientList),from_ingredientList_to_typeList(IngredientList, TypeList), not(member(Ingredient,TypeList)).
 
 from_ingredientList_to_typeList([], List).
 from_ingredientList_to_typeList([Ing|List], TypeList):- typeIngredient(Ing,Ty), append(TypeList,[Ty], FinalTypeList),from_ingredientList_to_typeList(List,FinalTypeList)   .
@@ -188,7 +188,7 @@ check_fast_from_list(Recipe, RecipeList):-member(Recipe,RecipeList), time(Recipe
 %%%
 % Predicate to filter on number of servings 
 applyFilter('servings', Value, RecipeIDsIn, RecipeIDsOut) :- findall(Recipe,check_serving_from_list(Recipe, RecipeIDsIn, Value),RecipeIDsOut).
-check_serving_from_list(Recipe, RecipeList,Value):- member(Recipe,RecipeList), serving(Recipe, N), N = Value.
+check_serving_from_list(Recipe, RecipeList,Value):- member(Recipe,RecipeList), servings(Recipe, N), N = Value.
 
 %%%
 % Predicate to filter recipes on tag
