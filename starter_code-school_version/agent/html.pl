@@ -234,8 +234,19 @@ page(a50recipeConfirm, _, Html) :-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%% Thank you and Salutations page at the end.
-%page(c40, _, Html) :-.
-	
+page(c40, _, Html) :-
+	currentTopLevel(c40), 
+	% Constructing the HTML page
+	% First row: Instructions
+	atomic_list_concat([
+	"<center><h1> this is the closing page </h1></center></br>",
+	"<center><p> you better pick a nice italian recipe </p></center>"
+	], Txt),
+	applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow), 
+	% Putting everything together
+	atomic_list_concat([FirstRow], Body), 
+	% Create the HTML page
+	html(Body, Html).
 
 
 
