@@ -25,7 +25,7 @@ currentRecipe(RecipeID) :- memoryKeyValue("recipe", RecipeName), recipeName(Reci
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %For Visual Support to-do 
 
-ingredients(RecipeID, IngredientList) :- findall(IngredientNeeded,ingredient(RecipeID, IngredientNeeded), IngredientListNotFinal), list_to_set(IngredientListNotFinal,IngredientList ).
+ingredients(RecipeID, IngredientList) :- findall(IngredientNeeded,ingredients(RecipeID, IngredientNeeded), IngredientListNotFinal), list_to_set(IngredientListNotFinal,IngredientList ).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
