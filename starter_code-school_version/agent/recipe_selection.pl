@@ -114,8 +114,8 @@ recipes_filtered(RecipeIDsIn, [ ParamName = Value | Filters], RemainingRecipeIDs
 **/
 
 %%%
-% Predicate to filter recipes on cuisines (e.g., Italian recipes)
-applyFilter('cuisine', Value, RecipeIDsIn, RecipeIDsOut) :- downcase_atom(Value, StringDown) findall(Recipe,(member(Recipe,RecipeIDsIn), cuisine(Recipe, StringDown)),RecipeIDsOut).		
+
+applyFilter('cuisine', Value, RecipeIDsIn, RecipeIDsOut) :- downcase_atom(Value, StringDown), findall(Recipe,(member(Recipe,RecipeIDsIn), cuisine(Recipe, StringDown)),RecipeIDsOut).		
 %%%
 % Predicate to filter recipes that meet dietary restriction (vegetarian etc).
 applyFilter('dietaryrestriction', Value, RecipeIDsIn, RecipeIDsOut) :-	findall(Recipe,check_dietary_from_list(Recipe, RecipeIDsIn, Value),RecipeIDsOut).
