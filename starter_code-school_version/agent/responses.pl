@@ -49,10 +49,10 @@ text(appreciationReceipt, "You're welcome.").
 
 
 % Intent: context mismatch
-text(c10, contextMismatch, "not sure what that means in this context. c10"). % we don't care exactly what user said. we got some response.
-text(a50recipeSelect, contextMismatch, "not sure what that means in this context. a50recipeSelect").
-text(a50recipeConfirm, contextMismatch, "not sure what that means in this context. a50recipeConfirm").
-text(c40, contextMismatch, "not sure what that means in this context. c40").
+text(c10, contextMismatch, "not sure what that means in this context."). % we don't care exactly what user said. we got some response.
+text(a50recipeSelect, contextMismatch, "not sure what that means in this context.").
+text(a50recipeConfirm, contextMismatch, "not sure what that means in this context.").
+text(c40, contextMismatch, "not sure what that means in this context.").
 
 % Intent: describeCapability
 text(describeCapability, "I'm an Artificial Intelligence that will help you select a recipe").
@@ -68,10 +68,10 @@ text(greeting, "Hola").
 text(negativeWelfareReceipt, "negative welfare receipt sentence").
 
 % Intent: paraphrase request
-text(c10, paraphraseRequest, "I did not understand. c10"). % we don't care exactly what user said. we got some response.
-text(a50recipeSelect, paraphraseRequest, "what do you mean? a50recipeSelect").			%%%%%%%%%%%TODO
-text(a50recipeConfirm, paraphraseRequest, "Is this right? a50recipeConfirm").
-text(c40, paraphraseRequest, "I did not understand. c40"). % we don't care exactly what user said. we got some response.
+text(c10, paraphraseRequest, "I did not understand."). % we don't care exactly what user said. we got some response.
+text(a50recipeSelect, paraphraseRequest, "what do you mean?").			%%%%%%%%%%%TODO
+text(a50recipeConfirm, paraphraseRequest, "Is this right?").
+text(c40, paraphraseRequest, "I did not understand."). % we don't care exactly what user said. we got some response.
 
 % Intent: positive receipt
 text(positiveReceipt, "ok").
