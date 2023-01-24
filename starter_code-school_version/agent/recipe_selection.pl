@@ -154,7 +154,7 @@ applyFilter('excludeingredienttype', Ingredient, RecipeIDsIn, RecipeIDsOut) :- d
 % Predicates to filter recipes on a specific ingredient 
 % Use example: the user wants to filter recipes including "tahini" (where tahini is an 
 % ingredient)
-applyFilter('ingredient', Ingredient, RecipeIDsIn, RecipeIDsOut) :- downcase_atom(Ingredient, StringDown), findall(Recipe,(member(Recipe,RecipeIDsIn),hasIngredient(Recipe,StringDown),RecipeIDsOut).
+applyFilter('ingredient', Ingredient, RecipeIDsIn, RecipeIDsOut) :- downcase_atom(Ingredient, StringDown), findall(Recipe,(member(Recipe,RecipeIDsIn),hasIngredient(Recipe,StringDown)),RecipeIDsOut).
 
 applyFilter('ingredienttype', Ingredient, RecipeIDsIn, RecipeIDsOut) :-downcase_atom(Ingredient, StringDown), findall(Recipe,(member(Recipe,RecipeIDsIn), typeIngredient(Ingred, StringDown),hasIngredient(Recipe,Ingred)),RecipeIDsOut).	
 
