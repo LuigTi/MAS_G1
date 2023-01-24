@@ -93,7 +93,7 @@ page(c10, _, Html) :-
 page(a50recipeSelect, _, Html) :-
 
 	% Conditions for when to show this page
-	currentTopLevel(a50),
+	currentTopLevel(a50recipeSelect),
 	recipesFiltered(Recipes),
 	length(Recipes, N),
 	N > 15,
@@ -102,6 +102,7 @@ page(a50recipeSelect, _, Html) :-
 	% Constructing HTML page
 	not(memoryKeyValue('show', 'true')),
 	(memoryKeyValue(Key, _), is_filter_param(Key) -> 
+		atomic_list_concat(['I have found ', N, ' recipes that match your preferences.'], RecipesLeftStr) ;
 		atomic_list_concat(['There are ', N, ' recipes available to choose from.'], RecipesLeftStr)
 	),
 	applyTemplate('<div class="alert alert-light"></br></br><center><h1>~a</h1></center></br></br></br></div>', RecipesLeftStr, FirstRow),
@@ -132,8 +133,8 @@ page(a50recipeSelect, _, Html) :-
 	currentTopLevel(a50recipeSelect),
 	recipesFiltered(Recipes),
 	length(Recipes, N),
-	N =< 15;
-	memoryKeyValue('show', 'true'),
+	(N =< 15;
+	memoryKeyValue('show', 'true')),
 	% Constructing HTML page
 	
 	% First row: Either you have found recipes or no recipe statement
@@ -233,8 +234,19 @@ page(a50recipeConfirm, _, Html) :-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%% Thank you and Salutations page at the end.
-%page(c40, _, Html) :-.
-	
+page(c40, _, Html) :-
+	currentTopLevel(c40), 
+	% Constructing the HTML page
+	% First row: Instructions
+	atomic_list_concat([
+	"<center><h1> this is the closing page </h1></center></br>",
+	"<center><p> you better pick a nice italian recipe </p></center>"
+	], Txt),
+	applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow), 
+	% Putting everything together
+	atomic_list_concat([FirstRow], Body), 
+	% Create the HTML page
+	html(Body, Html).
 
 
 

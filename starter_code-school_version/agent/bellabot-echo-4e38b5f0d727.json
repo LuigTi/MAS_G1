@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "bellabot-echo",
+  "private_key_id": "4e38b5f0d727e0862c84e4e32c1a9948ee1d8c23",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDcPqrC6aOdZX04\nMgfSYdc/lnjSlpWNhmLt96WhXIojLyuqLcuPwml0RhlAqHR2UjYYX5cHT9xcRVc7\n+YuRlI1R4Jz2Csv7QZCSz/hy2YQ0+8b2fUFFD3WYjwyEgDCJ+UsW5YZGJsaQ+JUU\nLYrD3sdUPXSRgy1DyEIISKgCtyXPQb7xqNGlcbHaGc3LYzJnB62ugc9aEZTivrWY\nF0ej586nZ9nJMOaD3Iaz6ziTpzPtqrdzfUeRKt8xaXYt7YoTc41LJKVqG9eEYUty\nMyLAMJtc8Ngj6PhD5MBEg/SLQ3L1WJPE3z7NXaCMNLr1hs1YQBThTbAmYEbHc479\nrT0+Dv47AgMBAAECggEAOnkazf/ItBeHTL2frP/T7WpuLn7TOs1Eg6hdnX8bn6a8\n4YQiCMtVQwz/VFbFAMrn2MW8K7FMsGSqed5Raze041mOYpZQPKdWElxLunY8bvKv\niq6LfyHRF01XRfBgsqjwgiYy5XoS+tc8gSxsLH9/jUJ5qc5ZXKcUvO1JSdtFGwZ7\n43AiZDSHRAzXwqwAyyb1FVv39GvC2OcGzdhZZ4S6bsuF2SVLQ7qnzy9caGgmbWLW\nPodJZTrMW7Lrn+fOmc2yMq/buDttTNjr2qWHI1BvGBunjozc8/1CHN40Cl01kqAR\nd6bHnmk3vS3AixESNjNdKbWzuT3j5wafwodwpWgX8QKBgQDza30eDDWI1RM2HNJG\nrfQ0VO7DfXewgfeNjNranFXID1boISnXXNz9DmZtYXzrjul583GFYCWi9UD8Zpnw\nwb10Tt56Wt1mMYHCSQr49LV/1mcWdF0vmYr3crLUJNJe7E5pSoHDSlRmGo/l5T5T\noNab7Azq4IZ7jt91YRLYyFO6SwKBgQDnoJDMK/g3OVRAOEisO9l229X07Pk+WJWq\nfehM3ma7uAfuG6fM/qQ0rHBP0MsRzIDJqKkwgoNmBwoy5MS2flqPa4TNl+0X+X7S\n5tMjviR2r+ST8ng3JeSqvKPgvFj+cF/2vHtnpXtTb4K3fjXJJ9kf5hQWhs6pSVu+\nqwL4ZutV0QKBgQCByVsBrWLR3UIMBRv8wX1Gdc6Efx5VB0b1uxdpnheCvuMIi74i\nbQoLByWHxoXzltRXyHxLr/MBSyDmMtJ7cuFP5UlsFYyck2LrM0TdbqRjT+7RIyQY\nYBafTxGYWTWtlPNN4oMDnFsZwand2vf7YPNsWVSd2y75LDlq/WIuIcm6twKBgQDM\nwYX+1wevWcB+nMKxbp7IkYFL6IhUct6rPm4yNZA/dWmdNVlav+fMoHsQM5SwAUX/\n/lbCCT263ZJIdy7l3ECV9AgL7reqr+VK7r3LJPT67nZzyq42ogrIW8XKjvVkx1Yt\nuWSltQWWNkcpiiplzhIEPtGXMEhUIgM2Q9p2WBTFYQKBgAEPGP1ORxq6mZ2oqQjd\n2YyyWIbx67uQdZFIe9LzAdkECjyNwLjZy+09hDZe9msVpVqYY2JDS83RWqxUHNDe\n30xutISfL9L2khSljsiaSTLIRBidH8kZcWk9N6TpoqAHtRHzlEdFNV6piHj8J7rh\nzEqN/yu1cIYiuuIU1viRjowj\n-----END PRIVATE KEY-----\n",
+  "client_email": "bella-108@bellabot-echo.iam.gserviceaccount.com",
+  "client_id": "108338764656477758248",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bella-108%40bellabot-echo.iam.gserviceaccount.com"
+}
