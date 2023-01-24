@@ -45,8 +45,9 @@ nrOfIngredients(RecipeID, N) :- ingredients(RecipeID,ListIng), length(ListIng,N)
 **/
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %For Visual Support to-do 
-recipeSteps(RecipeID, StepsList) :- findall(StepNeeded,step(RecipeID, _, StepNeeded), StepsList). % TODO: JIIPPPPPPP may be problematic with the visual, check it!
+%recipeSteps(RecipeID, StepsList) :- findall(RecipeID^getStepString(RecipeID, Step), StepsList). % TODO: JIIPPPPPPP may be problematic with the visual, check it!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+recipeSteps(RecipeID, StepsList) :- bagof(String, RecipeID^getStepString(RecipeID, String), StepsList). % TODO: JIIPPPPPPP may be problematic with the visual, check it!
 
 
 getStepString(RecipeID, String) :-
@@ -188,7 +189,7 @@ check_fast_from_list(Recipe, RecipeList):-member(Recipe,RecipeList), time(Recipe
 %%%
 % Predicate to filter on number of servings 
 applyFilter('servings', Value, RecipeIDsIn, RecipeIDsOut) :- findall(Recipe,check_serving_from_list(Recipe, RecipeIDsIn, Value),RecipeIDsOut).
-check_serving_from_list(Recipe, RecipeList,Value):- member(Recipe,RecipeList), servings(Recipe, N), N = Value.
+check_serving_from_list(Recipe, RecipeList,Value):- member(Recipe,RecipeList), servings(Recipe, N), Value = N.  %TODO check if works, otherwise N=Value
 
 %%%
 % Predicate to filter recipes on tag
