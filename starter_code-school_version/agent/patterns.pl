@@ -182,6 +182,7 @@ pattern([a50recipeConfirm, [agent, recipeCheck], [user, disconfirmation],[agent,
 
 pattern([a50recipeSelect, [agent, specifyGoal], [agent,recipeInquiry], [user, recipeRequest], [agent, recipeChoiceReceipt], [agent, insert(a50recipeConfirm)]]).
 
+pattern([a40random, [user, randomChoice], [agent, update(['random'='true'])], [agent, insert(a50recipeConfirm)]]).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Sequence Management Patterns (Moore Ch6) (b12, b13, b14, b42)              %%%
@@ -201,7 +202,7 @@ pattern([b12, [user, defaultFallback], [agent, paraphraseRequest]]).
 %	U: goodbye
 %	A: not sure what that means in this context.
 
-pattern(b13, [user, _], [agent, contextMismatch]). 
+pattern([b13, [user, _], [agent, contextMismatch]]).
 
 %Pattern B42: Appreciation Receipt
 
@@ -227,7 +228,7 @@ pattern([c10, [agent, greeting], [user, greeting]]) :- not(agentName(_)).
 %	A: I'm  BellaBot
 %	U: hi
 
-pattern([c10, [agent, greeting], [agent, selfIdentification], [user, greeting]]) :- agentName(_). 
+pattern([c10, [agent, greeting], [agent, selfIdentification], [user, greeting], [agent,insert(a50recipeSelect)]]) :- agentName(_). 
 
 %%% C30 Patterns: Capabilities
 % Pattern C30.0: General Capability Check

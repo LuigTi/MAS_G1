@@ -56,7 +56,9 @@ getStepString(RecipeID, String) :-
 	atomic_list_concat(['Step ', NrStep, ': ', StepSentence, '.'], String).
 
 nrSteps(RecipeID, N) :-  recipeSteps(RecipeID, StepsList), length(StepsList,N).
-	
+
+
+randomRecipe(RecipeID) :- recipeIDs(RecipesIDs), random_member(RecipeID, RecipesIDs).
 
 
 /**

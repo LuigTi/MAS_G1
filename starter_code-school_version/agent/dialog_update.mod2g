@@ -149,6 +149,15 @@ module dialog_update {
 		intent(Intent, Params, Conf, Txt, Source), not(Intent=greeting)
 	then delete(intent(Intent, Params, Conf, Txt, Source))
 		+ insert(intent(greeting, [], Conf, Txt, Source)).
+		
+	% MOD IN HERE
+		
+%	if currentTopLevel(a40menu), 
+%		intent(Intent, Params, Conf, Txt, Source), not(Intent=randomChoice)
+%	then delete(intent(Intent, Params, Conf, Txt, Source))
+%		+ insert(intent(randomChoice, [], Conf, Txt, Source)).
+
+	% MOD END
 
 	% Update the agent's memory (recording parameters provided as user input).
 	% We take a simple approach for now, not taking context into account, where:
