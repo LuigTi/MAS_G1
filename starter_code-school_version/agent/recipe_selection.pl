@@ -147,7 +147,7 @@ easyRecipe(RecipeID) :-	time(RecipeID, Time), Time =< 45, nrSteps(RecipeID, N1),
 applyFilter('excludeingredient', Ingredient, RecipeIDsIn, RecipeIDsOut) :- downcase_atom(Ingredient, StringDown), findall(Recipe,(member(Recipe,RecipeIDsIn), not(hasIngredient(Recipe,StringDown))),RecipeIDsOut).
 
 %% TODO: check it, is pretty long
-applyFilter('excludeingredienttype', Ingredient, RecipeIDsIn, RecipeIDsOut) :- downcase_atom(Ingredient, StringDown), findall(Recipe,(member(Recipe,RecipeIDsIn), typeIngredient(Ingred, StringDown),not(hasIngredient(Recipe,Ingred))),RecipeIDsOut).
+applyFilter('excludeingredienttype', IngredientType, RecipeIDsIn, RecipeIDsOut) :- downcase_atom(IngredientType, IngredientTypeDown), findall(Recipe,(member(Recipe,RecipeIDsIn), findall(Type,(hasIngredient(Recipe,Ingred),typeIngredient(Ingred,Type)), ListTypeOfIngredRecipe),not(member(IngredientTypeDown,ListTypeOfIngredRecipe))),RecipeIDsOut).
 
 
 %%%
