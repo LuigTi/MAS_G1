@@ -38,7 +38,7 @@ module dialog_init {
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%TASK ALERT: INSERT AGENT NAME
 	
-	if true then insert(agentName('Bimbo'), lastTopicCheck).
+	if true then insert(agentName('Benito'), lastTopicCheck).
 	
 	% Next line prints all user intents that occur in patterns to agent's console
 	if retrieveIntentsfromPatterns(user, Intents),

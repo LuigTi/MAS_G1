@@ -185,6 +185,5 @@ applyFilter('tag', Value, RecipeIDsIn, RecipeIDsOut) :- findall(Recipe,(member(R
 
 
 %% NEW DEFINED BY TLP
-applyFilter('nutrients', Nutrient, RecipeIDsIn, RecipeIDsOut) :-downcase_atom(Nutrient, StringDown), 
-findall(Recipe,(member(Recipe,RecipeIDsIn), typeIngredient(Ingred, StringDown),hasIngredient(Recipe,Ingred)),RecipeIDsOut).
+applyFilter('nutrients', Nutrient, RecipeIDsIn, RecipeIDsOut) :- downcase_atom(Nutrient, StringDown), findall(Recipe,(member(Recipe,RecipeIDsIn), typeIngredient(Ingred, StringDown),hasIngredient(Recipe,Ingred)),RecipeIDsOut).
 
