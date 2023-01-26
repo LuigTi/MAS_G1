@@ -583,3 +583,10 @@ conflict('vegatarian', 'non-vegetarian').
 conflict('non-vegetarian', 'vegatarian').
 
 % TODO: also strange to have both vegan as well as vegetarian (the first is more strict).
+
+% NEW TLP
+typeIngredient(Ingredient, 'proteins') :- typeIngredient(Ingredient, 'fish' );typeIngredient(Ingredient, 'meat');typeIngredient(Ingredient, 'egg'). 
+
+typeIngredient(Ingredient, 'carbohydrates') :- typeIngredient(Ingredient, 'pasta' ).
+
+typeIngredient(Ingredient, 'fats') :- typeIngredient(Ingredient, 'dairy' );typeIngredient(Ingredient, 'pork');typeIngredient(Ingredient, 'cheese').

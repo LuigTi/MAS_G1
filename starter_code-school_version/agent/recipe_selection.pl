@@ -180,3 +180,9 @@ applyFilter('servings', Value, RecipeIDsIn, RecipeIDsOut) :- findall(Recipe,(mem
 % Use example: the user wants to filter on "pizza" dishes (recipes that have the "pizza" tag)
 %
 applyFilter('tag', Value, RecipeIDsIn, RecipeIDsOut) :- findall(Recipe,(member(Recipe,RecipeIDsIn), tag(Recipe, Value)),RecipeIDsOut).
+
+
+%% NEW DEFINED BY TLP
+applyFilter('nutrients', Nutrient, RecipeIDsIn, RecipeIDsOut) :-downcase_atom(Nutrient, StringDown), 
+findall(Recipe,(member(Recipe,RecipeIDsIn), typeIngredient(Ingred, StringDown),hasIngredient(Recipe,Ingred)),RecipeIDsOut).
+
