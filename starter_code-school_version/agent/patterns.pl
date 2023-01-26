@@ -243,7 +243,7 @@ pattern([b12, [user, defaultFallback], [agent, paraphraseRequest]]).
 %	U: goodbye
 %	A: not sure what that means in this context.
 
-pattern(b13, [user, _], [agent, contextMismatch]). 
+pattern([b13, [user, _], [agent, contextMismatch]]). 
 
 %Pattern B42: Appreciation Receipt
 
