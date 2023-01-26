@@ -34,6 +34,48 @@ pattern([slotFill(X), [agent, repeat(X)]]).
 slotFill(dummyP, dummyI).
 
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Pattern: e1 DEFINED BY TLP NEW NEW NEW CHECK IT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% at the end of the normal cycle, (after a50recipeConfirm) 
+
+%----> e1 new pattern to request intention to add recipe to calendar
+
+%Confirmation
+ % pattern([e1, [agent, questionCalendar], [user, confirmation],[agent, questionDay],[user, dayAnswer],[agent, questionMeal],[user, mealAnswer], [agent, insert_in_memory(recipe with tag meal and day)], [agent, insert(e2)]]).
+
+%Disconfirmation
+% pattern([e1, [agent, questionCalendar], [user, disconfirmation]]). 
+
+
+%----> e2 new patter to request intention to look for another recipe or just visualize the calendar
+
+%Confirmation, (new recipes)
+% pattern([e2, [agent, followUp], [user, addNewRecipes], [agent, insert(a50recipeSelect)]]).
+
+%Disconfirmation, (look at calendar)
+% pattern([e2, [agent, followUp], [user, lookCalendar], [agent, insert(e3)]]).
+
+
+%----> e3 new patter to for calendar page %user can do: 1) be done 2) add new recipes 3) remove some recipes
+
+%1)
+% pattern([e3, [agent, nextMove], [user,disconfirmation]]).
+
+%2)
+% pattern([e3, [agent, nextMove], [user, addNewRecipes], [agent, insert(a50recipeSelect)]]).
+
+%3)-----------------------------> TODO: deleteRecipe = "I want to delete a recipe" OR "I want to delete ...(recipe)"
+% pattern([e3, [agent, nextMove], [user, deleteRecipe],[agent, delete_from_memory(recipe)], [agent, insert(e3)]]).
+%
+
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Pattern: a21featureRequest								%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
