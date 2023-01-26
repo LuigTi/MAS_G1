@@ -126,7 +126,7 @@ ingredientsMeetDiet([], _). % the empty list of ingredients meets any dietary re
 ingredientsMeetDiet([ Ingredient | Rest ], DietaryRestriction) :- typeIngredient(Ingredient,DietaryRestriction), ingredientsMeetDiet(Rest,DietaryRestriction)	.
 
 % Predicate to filter recipes on max amount of time
-applyFilter('duration', Minutes, RecipeIDsIn, RecipeIDsOut) :- downcase_atom(Minutes, StringDown), findall(Recipe,(member(Recipe,RecipeIDsIn), time(Recipe, Time), Time =< StringDown),RecipeIDsOut).
+applyFilter('duration', Minutes, RecipeIDsIn, RecipeIDsOut) :- findall(Recipe,(member(Recipe,RecipeIDsIn), time(Recipe, Time), Time =< Minutes),RecipeIDsOut).
 
 %%%
 % Predicate to filter on easy recipes
