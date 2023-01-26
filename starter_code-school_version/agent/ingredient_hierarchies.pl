@@ -517,6 +517,7 @@ typeIngredient('pappardelle', 'pasta').
 typeIngredient('campanelle', 'pasta'). 
 typeIngredient('macaroni', 'pasta').
 
+
 % lactose-free recipe should not use dairy products.
 typeIngredient(Ingredient, 'lactose-free') :-
 	not(typeIngredient(Ingredient, 'dairy')), !.
