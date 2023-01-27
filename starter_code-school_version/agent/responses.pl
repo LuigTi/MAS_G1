@@ -61,7 +61,8 @@ text(a50recipeConfirm, contextMismatch, "this is an yes no question.").
 text(a50recipeConfirm, contextMismatch, "please say yes or no.").
 text(c40, contextMismatch, "you should farewell me.").
 text(c40, contextMismatch, "please say goodbye.").
-
+text(e1, contextMismatch, "sir what day?").
+text(e12, contextMismatch, "siuuuuuu").
 % Intent: describeCapability
 text(describeCapability, "I'm an Artificial Intelligence that will help you select a recipe").
 	

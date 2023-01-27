@@ -45,14 +45,18 @@ slotFill(dummyP, dummyI).
 %----> e1 new pattern to request intention to add recipe to calendar
 
 %Confirmation
-pattern([e1, [agent, questionCalendar], [user, confirmation],[agent, questionDay],[user, dayAnswer], [agent, insertDay(Params)],[agent, insert(e2)]]) :- 
-	getParamsPatternInitiatingIntent(user, addFilter, Params).
+%pattern([e1, [agent, questionDay],[user, confirmation],[agent, questionDay],[user, dayAnswer], [agent, insertDay(Params)],[agent, insert(e2)]]) :- 
+	%getParamsPatternInitiatingIntent(user, addFilter, Params).
 
 %Disconfirmation
-pattern([e1, [agent, questionCalendar], [user, disconfirmation], [agent, insert(c40)]]). 
+%pattern([e1, [agent, questionCalendar], [user, disconfirmation], [agent, insert(c40)]]). 
 
-pattern([e2, [agent, questionMeal],[user, mealAnswer], [agent, insertMeal(Params)]]) :-
-	getParamsPatternInitiatingIntent(user, addFilter, Params).
+pattern([e1, [agent, questionCalendar], [user, confirmation],[agent, questionDay], [agent, insert(e12)]]).
+
+pattern([e12,[agent, questionDay], [user, dayAnswer], [agent, insert(c40)]]).%:- getParamsPatternInitiatingIntent(user, addFilter, Params).
+
+%pattern([e2, [agent, questionMeal],[user, mealAnswer], [agent, insertMeal(Params)]]) :-
+%	getParamsPatternInitiatingIntent(user, addFilter, Params).
 
 
 %----> e2 new patter to request intention to look for another recipe or just visualize the calendar
