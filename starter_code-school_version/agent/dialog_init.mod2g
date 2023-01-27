@@ -16,10 +16,10 @@ module dialog_init {
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%% Initialize dialog management parameters.										%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	if true then
+	if true, randomRecipe(RecipeID) then
 		% Agenda (list of patterns)
 		%TASK ALERT UPDATE AGENDA
-		insert(agenda([c10, a50recipeSelect, c40])) +
+		insert(agenda([c10])) +
 		% Session history (initialized to a list of one empty sequence).
 		insert(session([ [start] ])) +
 		% Memory (initially empty).
@@ -27,8 +27,9 @@ module dialog_init {
 		% Initialize missingSlots/1. See dialog.pl for more info.
 		insert(missingSlots([])) +
 		% Initialize stepCounter/1 and totalSteps/1. See dialog.pl for more info.
-		insert(stepCounter(-1), totalSteps(0)).
-
+		insert(stepCounter(-1), totalSteps(0)) +
+		% Add random
+		insert(randomRep(RecipeID)).
 	% Copy agenda to be able to reinitialize (restart) agenda.
 	if agenda(Agenda) then insert(initialAgenda(Agenda)).
 	
