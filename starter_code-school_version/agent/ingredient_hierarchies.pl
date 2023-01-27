@@ -80,28 +80,6 @@ typeIngredient('duck fat', 'duck').
 typeIngredient('duck breasts', 'duck'). 
 typeIngredient('duck drumsticks', 'duck'). 
 
-% poultry
-typeIngredient('chicken drumsticks', 'poultry'). 
-typeIngredient('duck breasts', 'poultry'). 
-typeIngredient('chicken wings', 'poultry'). 
-typeIngredient('chicken stock', 'poultry'). 
-typeIngredient('duck drumsticks', 'poultry'). 
-typeIngredient('chicken legs', 'poultry'). 
-typeIngredient('chicken thighs', 'poultry'). 
-typeIngredient('chicken carcass', 'poultry'). 
-typeIngredient('chicken leg with thigh', 'poultry'). 
-typeIngredient('chicken gyozas', 'poultry'). 
-typeIngredient('chicken skin', 'poultry'). 
-typeIngredient('chicken breast', 'poultry'). 
-typeIngredient('chicken pate', 'poultry'). 
-typeIngredient('turkey leftovers', 'poultry'). 
-typeIngredient('chicken', 'poultry'). 
-typeIngredient('duck fat', 'poultry'). 
-typeIngredient('chicken breasts', 'poultry'). 
-typeIngredient('chicken thigh', 'poultry'). 
-typeIngredient('turkey', 'poultry'). 
-typeIngredient('turkey meat', 'poultry'). 
-typeIngredient('chicken tikka', 'poultry'). 
 
 % meat
 typeIngredient('chicken drumsticks', 'meat').
@@ -518,6 +496,304 @@ typeIngredient('campanelle', 'pasta').
 typeIngredient('macaroni', 'pasta').
 
 
+
+
+%proteins
+typeIngredient('haddock', 'proteins'). 
+typeIngredient('crab meat', 'proteins'). 
+typeIngredient('fish', 'proteins'). 
+typeIngredient('king prawns', 'proteins'). 
+typeIngredient('mackerel', 'proteins'). 
+typeIngredient('fillets', 'proteins'). 
+typeIngredient('shell', 'proteins'). 
+typeIngredient('minced meat', 'proteins'). 
+typeIngredient('oyster mushrooms', 'proteins'). 
+typeIngredient('oyster sauce', 'proteins'). 
+typeIngredient('dark meat', 'proteins'). 
+typeIngredient('king oyster mushroom', 'proteins'). 
+typeIngredient('anchovies', 'proteins'). 
+typeIngredient('squid', 'proteins'). 
+typeIngredient('salmon', 'proteins'). 
+typeIngredient('prawns', 'proteins'). 
+typeIngredient('sauce', 'proteins'). 
+typeIngredient('cray', 'proteins'). 
+typeIngredient('stock', 'proteins'). 
+typeIngredient('turkey meat', 'proteins'). 
+typeIngredient('monk', 'proteins').
+typeIngredient('bacon', 'proteins'). 
+typeIngredient('pork shoulder', 'proteins'). 
+typeIngredient('pepperoni slices', 'proteins').
+typeIngredient('pork', 'proteins'). 
+typeIngredient('salami', 'proteins'). 
+typeIngredient('streaky bacon', 'proteins'). 
+typeIngredient('pork steaks', 'proteins'). 
+typeIngredient('pork ribs', 'proteins'). 
+typeIngredient('pork belly', 'proteins'). 
+typeIngredient('back bacon rashers', 'proteins'). 
+typeIngredient('bacon lardons', 'proteins'). 
+typeIngredient('pork sausages', 'proteins'). 
+typeIngredient('minced pork', 'proteins'). 
+typeIngredient('pork chops', 'proteins'). 
+typeIngredient('pork mince', 'proteins'). 
+typeIngredient('pork belly strips', 'proteins'). 
+typeIngredient('pork loin steaks', 'proteins'). 
+typeIngredient('pork belly slices', 'proteins'). 
+typeIngredient('mortadella', 'proteins').
+typeIngredient('stewing beef', 'proteins'). 
+typeIngredient('beef shank', 'proteins'). 
+typeIngredient('beef tomatoes', 'proteins'). 
+typeIngredient('beef short ribs', 'proteins'). 
+typeIngredient('beef', 'proteins'). 
+typeIngredient('lean minced beef', 'proteins'). 
+typeIngredient('beef stock', 'proteins'). 
+typeIngredient('beef brisket', 'proteins'). 
+typeIngredient('beef steak', 'proteins'). 
+typeIngredient('beef mince', 'proteins').
+typeIngredient('lamb chops', 'proteins'). 
+typeIngredient('lamb mince', 'proteins'). 
+typeIngredient('lamb shoulder', 'proteins'). 
+typeIngredient('lamb neck', 'proteins'). 
+typeIngredient('lamb', 'proteins').
+typeIngredient('chicken pate', 'proteins'). 
+typeIngredient('chicken tikka', 'proteins'). 
+typeIngredient('chicken stock', 'proteins'). 
+typeIngredient('chicken gyozas', 'proteins'). 
+typeIngredient('chicken', 'proteins'). 
+typeIngredient('chicken breasts', 'proteins'). 
+typeIngredient('chicken skin', 'proteins'). 
+typeIngredient('chicken breast', 'proteins'). 
+typeIngredient('chicken carcass', 'proteins'). 
+typeIngredient('chicken wings', 'proteins'). 
+typeIngredient('chicken legs', 'proteins'). 
+typeIngredient('chicken thighs', 'proteins'). 
+typeIngredient('chicken leg with thigh', 'proteins'). 
+typeIngredient('chicken thigh', 'proteins'). 
+typeIngredient('chicken drumsticks', 'proteins').
+typeIngredient('turkey leftovers', 'proteins'). 
+typeIngredient('turkey', 'proteins'). 
+typeIngredient('turkey meat', 'proteins'). 
+typeIngredient('duck fat', 'proteins'). 
+typeIngredient('duck breasts', 'proteins'). 
+typeIngredient('duck drumsticks', 'proteins').
+typeIngredient('chicken drumsticks', 'proteins'). 
+typeIngredient('duck breasts', 'proteins'). 
+typeIngredient('chicken wings', 'proteins'). 
+typeIngredient('chicken stock', 'proteins'). 
+typeIngredient('duck drumsticks', 'proteins'). 
+typeIngredient('chicken legs', 'proteins'). 
+typeIngredient('chicken thighs', 'proteins'). 
+typeIngredient('chicken carcass', 'proteins'). 
+typeIngredient('chicken leg with thigh', 'proteins'). 
+typeIngredient('chicken gyozas', 'proteins'). 
+typeIngredient('chicken skin', 'proteins'). 
+typeIngredient('chicken breast', 'proteins'). 
+typeIngredient('chicken pate', 'proteins'). 
+typeIngredient('turkey leftovers', 'proteins'). 
+typeIngredient('chicken', 'proteins'). 
+typeIngredient('duck fat', 'proteins'). 
+typeIngredient('chicken breasts', 'proteins'). 
+typeIngredient('chicken thigh', 'proteins'). 
+typeIngredient('turkey', 'proteins'). 
+typeIngredient('turkey meat', 'proteins'). 
+typeIngredient('chicken tikka', 'proteins'). 
+typeIngredient('chicken drumsticks', 'proteins').
+typeIngredient('duck breasts', 'proteins').
+typeIngredient('crab proteins', 'proteins').
+typeIngredient('bacon', 'proteins').
+typeIngredient('chicken wings', 'proteins'). 
+typeIngredient('chicken stock', 'proteins'). 
+typeIngredient('duck drumsticks', 'proteins'). 
+typeIngredient('chicken legs', 'proteins'). 
+typeIngredient('pork shoulder', 'proteins'). 
+typeIngredient('chicken thighs', 'proteins'). 
+typeIngredient('lean minced beef', 'proteins'). 
+typeIngredient('beef brisket', 'proteins'). 
+typeIngredient('chicken carcass', 'proteins'). 
+typeIngredient('pepperoni slices', 'proteins'). 
+typeIngredient('pork', 'proteins'). 
+typeIngredient('chicken leg with thigh', 'proteins'). 
+typeIngredient('minced proteins', 'proteins'). 
+typeIngredient('chicken gyozas', 'proteins'). 
+typeIngredient('chicken skin', 'proteins'). 
+typeIngredient('salami', 'proteins'). 
+typeIngredient('dark proteins', 'proteins'). 
+typeIngredient('chicken breast', 'proteins'). 
+typeIngredient('stewing beef', 'proteins'). 
+typeIngredient('beef stock', 'proteins'). 
+typeIngredient('streaky bacon', 'proteins'). 
+typeIngredient('chicken pate', 'proteins'). 
+typeIngredient('beef shank', 'proteins'). 
+typeIngredient('pork steaks', 'proteins'). 
+typeIngredient('pork belly slices', 'proteins'). 
+typeIngredient('turkey leftovers', 'proteins'). 
+typeIngredient('pork ribs', 'proteins'). 
+typeIngredient('chicken', 'proteins'). 
+typeIngredient('beef steak', 'proteins'). 
+typeIngredient('duck fat', 'proteins'). 
+typeIngredient('beef', 'proteins'). 
+typeIngredient('pork belly', 'proteins'). 
+typeIngredient('beef mince', 'proteins'). 
+typeIngredient('back bacon rashers', 'proteins'). 
+typeIngredient('bacon lardons', 'proteins'). 
+typeIngredient('pork sausages', 'proteins'). 
+typeIngredient('minced pork', 'proteins'). 
+typeIngredient('pork chops', 'proteins'). 
+typeIngredient('chicken breasts', 'proteins'). 
+typeIngredient('pork mince', 'proteins'). 
+typeIngredient('beef tomatoes', 'proteins'). 
+typeIngredient('chicken thigh', 'proteins'). 
+typeIngredient('beef short ribs', 'proteins'). 
+typeIngredient('pork belly strips', 'proteins'). 
+typeIngredient('pork loin steaks', 'proteins'). 
+typeIngredient('turkey', 'proteins'). 
+typeIngredient('turkey proteins', 'proteins'). 
+typeIngredient('chicken tikka', 'proteins'). 
+typeIngredient('mortadella', 'proteins'). 
+typeIngredient('lamb chops', 'proteins'). 
+typeIngredient('lamb mince', 'proteins'). 
+typeIngredient('lamb shoulder', 'proteins'). 
+typeIngredient('lamb neck', 'proteins'). 
+typeIngredient('lamb', 'proteins').
+typeIngredient('egg noodles', 'proteins'). 
+typeIngredient('eggs', 'proteins'). 
+typeIngredient('egg white', 'proteins'). 
+typeIngredient('egg', 'proteins').
+typeIngredient('egg whites', 'proteins'). 
+typeIngredient('egg yolks', 'proteins').
+
+
+
+
+%Carbs 
+typeIngredient('orzo', 'carbohydrates'). 
+typeIngredient('bucatini', 'carbohydrates'). 
+typeIngredient('carbohydrates', 'carbohydrates'). 
+typeIngredient('spaghetti', 'carbohydrates'). 
+typeIngredient('tortellini', 'carbohydrates'). 
+typeIngredient('conchiglie', 'carbohydrates'). 
+typeIngredient('mafaldine', 'carbohydrates'). 
+typeIngredient('conchiglioni', 'carbohydrates'). 
+typeIngredient('linguine', 'carbohydrates'). 
+typeIngredient('rice vermicelli', 'carbohydrates'). 
+typeIngredient('lasagna sheets', 'carbohydrates'). 
+typeIngredient('casarecce', 'carbohydrates'). 
+typeIngredient('cannelloni', 'carbohydrates'). 
+typeIngredient('tagliatelle', 'carbohydrates'). 
+typeIngredient('lasagne sheets', 'carbohydrates'). 
+typeIngredient('rigatoni', 'carbohydrates'). 
+typeIngredient('vermicelli noodles', 'carbohydrates'). 
+typeIngredient('fettuccine', 'carbohydrates'). 
+typeIngredient('paccheri', 'carbohydrates'). 
+typeIngredient('penne carbohydrates', 'carbohydrates'). 
+typeIngredient('gnocchi', 'carbohydrates'). 
+typeIngredient('penne', 'carbohydrates'). 
+typeIngredient('pappardelle', 'carbohydrates'). 
+typeIngredient('campanelle', 'carbohydrates'). 
+typeIngredient('macaroni', 'carbohydrates').
+
+
+
+%fats
+typeIngredient('cheddar', 'fats'). 
+typeIngredient('manchego cheese', 'fats'). 
+typeIngredient('pecorino', 'fats'). 
+typeIngredient('cheese', 'fats'). 
+typeIngredient('blue cheese', 'fats'). 
+typeIngredient('cottage cheese', 'fats'). 
+typeIngredient('vanilla buttercream', 'fats'). 
+typeIngredient('parmesan', 'fats'). 
+typeIngredient('butter', 'fats'). 
+typeIngredient('cheese slices', 'fats'). 
+typeIngredient('ricotta', 'fats'). 
+typeIngredient('camembert', 'fats'). 
+typeIngredient('milk yoghurt', 'fats'). 
+typeIngredient('melted butter', 'fats'). 
+typeIngredient('caramel ice cream', 'fats'). 
+typeIngredient('yogurt', 'fats'). 
+typeIngredient('brie', 'fats'). 
+typeIngredient('milk', 'fats'). 
+typeIngredient('butter beans', 'fats'). 
+typeIngredient('feta cheese', 'fats'). 
+typeIngredient('manchego', 'fats'). 
+typeIngredient('horseradish cream', 'fats'). 
+typeIngredient('single cream', 'fats'). 
+typeIngredient('vanilla ice cream', 'fats'). 
+typeIngredient('provolone cheese', 'fats'). 
+typeIngredient('saag', 'fats'). 
+typeIngredient('mozzarella', 'fats'). 
+typeIngredient('condensed milk', 'fats'). 
+typeIngredient('halloumi cheese', 'fats'). 
+typeIngredient('mascarpone', 'fats'). 
+typeIngredient('yoghurt', 'fats'). 
+typeIngredient('red leicester', 'fats'). 
+%typeIngredient('almond butter', 'fats'). 
+typeIngredient('burrata', 'fats'). 
+%typeIngredient('butternut squash', 'fats'). 
+typeIngredient('pecorino cheese', 'fats'). 
+typeIngredient('skyr yogurt', 'fats'). 
+typeIngredient('parmesan cheese', 'fats'). 
+typeIngredient('ricotta cheese', 'fats'). 
+typeIngredient('buttermilk', 'fats'). 
+typeIngredient('cheddar cheese', 'fats'). 
+typeIngredient('mozzarella cheese', 'fats'). 
+typeIngredient('tzatziki', 'fats'). 
+typeIngredient('cream cheese', 'fats'). 
+typeIngredient('double cream', 'fats'). 
+typeIngredient('edam cheese slices', 'fats'). 
+typeIngredient('feta', 'fats'). 
+typeIngredient('halloumi', 'fats'). 
+typeIngredient('sour cream', 'fats').
+typeIngredient('cheddar', 'fats'). 
+typeIngredient('manchego cheese', 'fats'). 
+typeIngredient('cheese', 'fats'). 
+typeIngredient('pecorino', 'fats'). 
+typeIngredient('blue cheese', 'fats'). 
+typeIngredient('cottage cheese', 'fats'). 
+typeIngredient('parmesan', 'fats'). 
+typeIngredient('cheese slices', 'fats'). 
+typeIngredient('ricotta', 'fats'). 
+typeIngredient('camembert', 'fats'). 
+typeIngredient('brie', 'fats'). 
+typeIngredient('feta cheese', 'fats'). 
+typeIngredient('manchego', 'fats'). 
+typeIngredient('provolone cheese', 'fats'). 
+typeIngredient('saag', 'fats'). 
+typeIngredient('mozzarella', 'fats'). 
+typeIngredient('halloumi cheese', 'fats'). 
+typeIngredient('mascarpone', 'fats'). 
+typeIngredient('red leicester', 'fats'). 
+typeIngredient('burrata', 'fats'). 
+typeIngredient('pecorino cheese', 'fats'). 
+typeIngredient('parmesan cheese', 'fats'). 
+typeIngredient('ricotta cheese', 'fats'). 
+typeIngredient('cheddar cheese', 'fats'). 
+typeIngredient('mozzarella cheese', 'fats'). 
+typeIngredient('goat cheese', 'fats'). 
+typeIngredient('cream cheese', 'fats'). 
+typeIngredient('edam cheese slices', 'fats'). 
+typeIngredient('feta', 'fats'). 
+typeIngredient('halloumi', 'fats').
+typeIngredient('taleggio', 'fats').
+typeIngredient('bacon', 'fats'). 
+typeIngredient('pork shoulder', 'fats'). 
+typeIngredient('pepperoni slices', 'fats').
+typeIngredient('pork', 'fats'). 
+typeIngredient('salami', 'fats'). 
+typeIngredient('streaky bacon', 'fats'). 
+typeIngredient('pork steaks', 'fats'). 
+typeIngredient('pork ribs', 'fats'). 
+typeIngredient('pork belly', 'fats'). 
+typeIngredient('back bacon rashers', 'fats'). 
+typeIngredient('bacon lardons', 'fats'). 
+typeIngredient('pork sausages', 'fats'). 
+typeIngredient('minced pork', 'fats'). 
+typeIngredient('pork chops', 'fats'). 
+typeIngredient('pork mince', 'fats'). 
+typeIngredient('pork belly strips', 'fats'). 
+typeIngredient('pork loin steaks', 'fats'). 
+typeIngredient('pork belly slices', 'fats'). 
+typeIngredient('mortadella', 'fats').  
+
 % lactose-free recipe should not use dairy products.
 typeIngredient(Ingredient, 'lactose-free') :-
 	not(typeIngredient(Ingredient, 'dairy')), !.
@@ -586,8 +862,8 @@ conflict('non-vegetarian', 'vegatarian').
 % TODO: also strange to have both vegan as well as vegetarian (the first is more strict).
 
 % NEW TLP
-typeIngredient(Ingredient, 'proteins') :- typeIngredient(Ingredient, 'fish' );typeIngredient(Ingredient, 'meat');typeIngredient(Ingredient, 'egg'). 
+%typeIngredient(Ingredient, 'proteins') :- typeIngredient(Ingredient, 'fish' );typeIngredient(Ingredient, 'meat');typeIngredient(Ingredient, 'egg'). % Ingridient = 'salmon'. 
 
-typeIngredient(Ingredient, 'carbohydrates') :- typeIngredient(Ingredient, 'pasta' ).
+%typeIngredient(Ingredient, 'carbohydrates') :- typeIngredient(Ingredient, 'pasta' ). % ; Ingredient = 'bread'.
 
-typeIngredient(Ingredient, 'fats') :- typeIngredient(Ingredient, 'dairy' );typeIngredient(Ingredient, 'pork');typeIngredient(Ingredient, 'cheese').
+%typeIngredient(Ingredient, 'fats') :- typeIngredient(Ingredient, 'dairy' );typeIngredient(Ingredient, 'pork');typeIngredient(Ingredient, 'cheese'). % % Ingridient = 'Avocado'
