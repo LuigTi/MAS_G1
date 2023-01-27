@@ -58,9 +58,19 @@ page(c10, _, Html) :-
 	% Condition for when to show this page
 	currentTopLevel(c10), 
 	% Constructing HTML page
-	atomic_list_concat(['<div class="card"><div class="card-body">This is ~a.</div></div>'], Template),
+	atomic_list_concat(['<div class="row justify-content-center"><div class="card"><div class="card-body">This is ~a.</div></div></div>'], Template),
 	% Get the bot's name if it has one; other call it 'your assistant'
-	(agentName(Name) -> N = Name ; N = 'your recipe selection assistant'), applyTemplate(Template, N, Body),
+	(agentName(Name) -> N = Name ; N = 'your recipe selection assistant'), applyTemplate(Template, N, FirstRow),
+	
+	
+	SecondRow = '<div class="text-center mt-5"><img src="https://i.etsystatic.com/18352527/r/il/cf3bcf/4054481837/il_570xN.4054481837_ggrc.jpg" class="fluid"></div>',
+
+	
+	
+	
+	atomic_list_concat([FirstRow, SecondRow], Body),
+	
+	
 	% Create the HTML page
 	html(Body, Html).
 	
@@ -414,6 +424,8 @@ html(MainContent, Html) :-
 
 %%% Main page layout
 bg('<div class="audioEnabled"></div>').
+
+        
 % Header
 % We show a listening icon (mic) which can be used as button by a user to switch
 % between not listening (muted) and listening.
