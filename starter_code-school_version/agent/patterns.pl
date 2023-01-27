@@ -158,9 +158,11 @@ pattern([a21removeKeyFromMemory,
 % Example:
 %	A: Can you confirm that this is the recipe? 
 %	U: Yes
+pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation], [agent, ingredientCheck], [user, confirmation], [agent, lastTopicCheck], [user, disconfirmation], [agent, insert(c40)]]).
 
+pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation], [agent, ingredientCheck], [user, confirmation], [agent, lastTopicCheck], [user, sconfirmation], [agent, terminate], [agent, insert(a50recipeSelect)]]).
 %Confirmation
-pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation]]). %TODO check
+%pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation]]). %TODO check
 
 %Appreciation
 pattern([a50recipeConfirm, [agent, recipeCheck], [user, appreciation], [agent, appreciationReceipt]]).
@@ -182,7 +184,13 @@ pattern([a50recipeConfirm, [agent, recipeCheck], [user, disconfirmation],[agent,
 
 pattern([a50recipeSelect, [agent, specifyGoal], [agent,recipeInquiry], [user, recipeRequest], [agent, recipeChoiceReceipt], [agent, insert(a50recipeConfirm)]]).
 
-pattern([a40random, [user, randomChoice], [agent, update(['random'='true'])], [agent, insert(a50recipeConfirm)]]).
+pattern([a40random, [user, randomChoice], [agent, update(['random'='true'])], [agent, insert(a50recipeConfirm)]]). 
+
+pattern([a40stop, [user, stop], [agent, insert(c40)]]).
+
+pattern([a40restart, [user, restart], [agent, terminate], [agent, insert(c10)]]).
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Sequence Management Patterns (Moore Ch6) (b12, b13, b14, b42)              %%%

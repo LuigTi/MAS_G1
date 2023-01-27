@@ -29,6 +29,7 @@
 	%   intent triples of its associated pattern (references by the pattern id).
 	session/1,
 	steps/2,
+	randomRep/1,
 	% bot is talking
 	talking/0.
 	

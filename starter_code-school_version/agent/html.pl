@@ -250,7 +250,7 @@ page(a50recipeConfirm, _, Html) :-
 	%Here you should retrieve the chosen recipe and its name
 	%currentRecipe(Recipe),
 
-	randomRecipe(Recipe),
+	randomRep(Recipe),
 	
 	recipeName(Recipe, Name),
 

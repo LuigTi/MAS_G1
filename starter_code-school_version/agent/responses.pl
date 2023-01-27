@@ -47,11 +47,17 @@ text_generator(Intent, SelectedText) :-
 % Intent: appreciation receipt
 text(appreciationReceipt, "You're welcome.").
 
+% ingredientCheck
+text(ingredientCheck, "Do you have all the ingredients").
+
+% lastTopicCheck
+text(lastTopicCheck, "Would you like to select a different recipe?").
 
 % Intent: context mismatch
 text(c10, contextMismatch, "not sure what that means in this context."). % we don't care exactly what user said. we got some response.
 text(a50recipeSelect, contextMismatch, "not sure what that means in this context.").
 text(a50recipeConfirm, contextMismatch, "not sure what that means in this context.").
+text(a40, contextMismatch, "not sure what that means in this context.").
 text(c40, contextMismatch, "not sure what that means in this context.").
 
 % Intent: describeCapability
