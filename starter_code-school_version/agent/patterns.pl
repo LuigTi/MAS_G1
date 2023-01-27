@@ -200,15 +200,19 @@ pattern([a21removeKeyFromMemory,
 % Example:
 %	A: Can you confirm that this is the recipe? 
 %	U: Yes
+pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation], [agent, ingredientCheck], [user, confirmation], [agent, lastTopicCheck], [user, disconfirmation], [agent, insert(c40)]]).
 
+pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation], [agent, ingredientCheck], [user, confirmation], [agent, lastTopicCheck], [user, confirmation], [agent, terminate], [agent, insert(a50recipeSelect)]]).
 %Confirmation
-pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation]]). %TODO check
+%pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation]]). %TODO check
 
 %Appreciation
 pattern([a50recipeConfirm, [agent, recipeCheck], [user, appreciation], [agent, appreciationReceipt]]).
 
 %Disconfirmation
 pattern([a50recipeConfirm, [agent, recipeCheck], [user, disconfirmation],[agent,insert(a50recipeSelect)]]). 
+
+pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation], [agent, ingredientCheck], [user, disconfirmation], [agent, insert(c40)]]).
 
 
 
@@ -223,6 +227,13 @@ pattern([a50recipeConfirm, [agent, recipeCheck], [user, disconfirmation],[agent,
 
 
 pattern([a50recipeSelect, [agent, specifyGoal], [agent,recipeInquiry], [user, recipeRequest], [agent, recipeChoiceReceipt], [agent, insert(a50recipeConfirm)]]).
+
+pattern([a40random, [user, randomChoice], [agent, update(['random'='true'])], [agent, insert(a50recipeConfirm)]]). 
+
+pattern([a40stop, [user, stop], [agent, insert(c40)]]).
+
+pattern([a40restart, [user, restart], [agent, terminate], [agent, insert(c10)]]).
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -269,7 +280,7 @@ pattern([c10, [agent, greeting], [user, greeting]]) :- not(agentName(_)).
 %	A: I'm  BellaBot
 %	U: hi
 
-pattern([c10, [agent, greeting], [agent, selfIdentification], [user, greeting]]) :- agentName(_). 
+pattern([c10, [agent, greeting], [agent, selfIdentification], [user, greeting], [agent,insert(a50recipeSelect)]]) :- agentName(_). 
 
 %%% C30 Patterns: Capabilities
 % Pattern C30.0: General Capability Check

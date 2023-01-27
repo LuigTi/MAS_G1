@@ -78,6 +78,16 @@ page(c10, _, Html) :-
 	% Create the HTML page
 	%html(Body, Html).
 
+page(a40menu, _, Html) :-
+	% Condition for when to show this page
+	currentTopLevel(a40menu), 
+	% Constructing HTML page
+	atomic_list_concat(['<div class="card"><div class="card-body">This is ~a.</div></div>'], Template),
+	% Get the bot's name if it has one; other call it 'your assistant'
+	(agentName(Name) -> N = Name ; N = 'your recipe selection assistant'), applyTemplate(Template, N, Body),
+	% Create the HTML page
+	html(Body, Html).
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -223,6 +233,67 @@ page(a50recipeConfirm, _, Html) :-
 	html(Body, Html).
 
 	% ADD THE PICTURE
+
+
+% TEST
+
+page(a50recipeConfirm, _, Html) :-
+	% Condition for when to show this page
+	currentTopLevel(a50recipeConfirm),
+	
+	memoryKeyValue('random', 'true'),
+
+	% Constructing HTML page
+
+	% Name
+	
+	%Here you should retrieve the chosen recipe and its name
+	%currentRecipe(Recipe),
+
+	randomRep(Recipe),
+	
+	recipeName(Recipe, Name),
+
+	
+	to_upper_case(Name, TxtUp),
+ 	applyTemplate('<div class="card-body"><center><h3 class="card-title">~a</h3></center>', TxtUp, IT),
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%% Duration
+	%%Here you should retrieve the time it takes to do each recipe
+	time(Recipe, Minutes),
+
+
+	atomic_list_concat(['Takes ', Minutes, ' minutes'], Time),
+	applyTemplate('<h6 class="text-center"><span class="badge badge-light">~a</span></h6>', Time, D), %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+	%Servings
+	%%Here you should retrieve the number of servings the recipe has
+	servings(Recipe, Persons), 
+	
+	string_concat("Serves ", Persons, Servings),
+	applyTemplate('<h6 class="text-center"><span class="badge badge-light">~a</span></h6>', Servings, S),
+	atom_concat(D, S, DS),
+	atom_concat(IT, DS, TIDS),
+	applyTemplate('<div class="card mb-3">~a</div></div>', TIDS, Row1Html), 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+	%Steps
+	%%Here you should retrieve a list of the recipe steps
+	recipeSteps(Recipe, Steps),
+		
+	append(["<h4>Recipe instructions:</h4>"], Steps, RI),
+	itemsList(RI, Row2Col1Html),
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+	%Ingredients
+	%%Here you should retrieve the list of ingredients
+	ingredients(Recipe, Ingredients),
+	bulletList(Ingredients, I),
+	atom_concat("<h4>Ingredients:</h4>", I, Row2Col2Html),
+	atom_concat(Row2Col2Html, Row2Col1Html, Row2ColHtml), 
+	applyTemplate('<div class="card mx-auto" style="width:90vw, height:100vw">~a</div>', Row2ColHtml, Row2Html),
+	% Putting everything together
+	atomic_list_concat([Row1Html, Row2Html], Body),
+	% Create the HTML page
+	html(Body, Html).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Page layout for closing/goodbye (pattern 40)            %%%

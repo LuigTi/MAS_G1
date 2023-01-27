@@ -149,6 +149,19 @@ module dialog_update {
 		intent(Intent, Params, Conf, Txt, Source), not(Intent=greeting)
 	then delete(intent(Intent, Params, Conf, Txt, Source))
 		+ insert(intent(greeting, [], Conf, Txt, Source)).
+		
+	% MOD IN HERE
+	
+	%  generate random rep when needed
+	if intent(randomChoice, _, _, _, _), randomRecipe(RecipeID)
+	then insert(randomRep(RecipeID)).
+		
+%	if currentTopLevel(a40menu), 
+%		intent(Intent, Params, Conf, Txt, Source), not(Intent=randomChoice)
+%	then delete(intent(Intent, Params, Conf, Txt, Source))
+%		+ insert(intent(randomChoice, [], Conf, Txt, Source)).
+
+	% MOD END
 
 	% Update the agent's memory (recording parameters provided as user input).
 	% We take a simple approach for now, not taking context into account, where:
@@ -264,19 +277,35 @@ module dialog_update {
 		%%% Actions for managing the agenda
 		% Handle instruction 'restart' (which reinitializes the agent's agenda and clears
 		% the agent's memory).
-		if Intent = restart, 
+		if Intent = restart,
 			agenda(Agenda), initialAgenda(InitAgenda), memory(Params),
 			session(List), append([ [] ], List, NewList) % start a new sequence
 		then updateSession(agent, restart, [], '')
 			+ delete(agenda(Agenda)) + insert(agenda(InitAgenda))
 			+ delete(memory(Params)) + insert(memory([])) 
 			+ delete(session(List)) + insert(session(NewList)).
+			
+		% MOD START
+		if Intent = refresh1, %randomRecipe(NewRecipeID), randomRep(RecipeID),
+			agenda(Agenda), memory(Params),
+			session(List) % start a new sequence
+		then updateSession(agent, restart, [], '')
+			+ delete(agenda(Agenda)) + insert(agenda([c10]))
+			+ delete(memory(Params)) + insert(memory([])) 
+			+ delete(session(List)) + insert(session([ [start] ])).
+			%+ delete(randomRep(RecipeID)) + insert(randomRep(NewRecipeID)).
+			
+		if Intent = randomInsert, randomRecipe(NewRecipeID), randomRep(RecipeID)
+		then delete(randomRep(RecipeID)) + insert(randomRep(NewRecipeID)).
+		% MOD END
 				
 		% Handle instruction 'terminate' (which clears the agent's agenda)
-		if Intent = terminate,
-			agenda(Agenda)
+		if Intent = terminate, randomRecipe(NewRecipeID), randomRep(RecipeID),
+			agenda(Agenda), memory(Params)
 		then updateSession(agent, terminate, [], '')
-			+ delete(agenda(Agenda)) + insert(agenda([])).
+			+ delete(agenda(Agenda)) + insert(agenda([c10]))
+			+ delete(randomRep(RecipeID)) + insert(randomRep(NewRecipeID))
+			+ delete(memory(Params)) + insert(memory([])) .
 	}
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
