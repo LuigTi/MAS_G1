@@ -45,10 +45,14 @@ slotFill(dummyP, dummyI).
 %----> e1 new pattern to request intention to add recipe to calendar
 
 %Confirmation
- % pattern([e1, [agent, questionCalendar], [user, confirmation],[agent, questionDay],[user, dayAnswer],[agent, questionMeal],[user, mealAnswer], [agent, insert_in_memory(recipe with tag meal and day)], [agent, insert(e2)]]).
+pattern([e1, [agent, questionCalendar], [user, confirmation],[agent, questionDay],[user, dayAnswer], [agent, insertDay(Params)],[agent, insert(e2)]]) :- 
+	getParamsPatternInitiatingIntent(user, addFilter, Params).
 
 %Disconfirmation
-% pattern([e1, [agent, questionCalendar], [user, disconfirmation]]). 
+pattern([e1, [agent, questionCalendar], [user, disconfirmation], [agent, insert(c40)]]). 
+
+pattern([e2, [agent, questionMeal],[user, mealAnswer], [agent, insertMeal(Params)]]) :-
+	getParamsPatternInitiatingIntent(user, addFilter, Params).
 
 
 %----> e2 new patter to request intention to look for another recipe or just visualize the calendar
@@ -200,7 +204,7 @@ pattern([a21removeKeyFromMemory,
 % Example:
 %	A: Can you confirm that this is the recipe? 
 %	U: Yes
-pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation], [agent, ingredientCheck], [user, confirmation], [agent, lastTopicCheck], [user, disconfirmation], [agent, insert(c40)]]).
+pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation], [agent, ingredientCheck], [user, confirmation], [agent, lastTopicCheck], [user, disconfirmation], [agent, insert(e1)]]).
 
 pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation], [agent, ingredientCheck], [user, confirmation], [agent, lastTopicCheck], [user, confirmation], [agent, terminate], [agent, insert(a50recipeSelect)]]).
 %Confirmation

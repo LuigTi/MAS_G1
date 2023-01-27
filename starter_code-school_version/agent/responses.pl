@@ -170,4 +170,22 @@ text(removedSpecificFilter(DelFilter), Txt) :-
 	string_concat("I removed the ", Str1, Str2),
 	string_concat(Str2, " requirement.", Txt).
 
+% testt111
+text(questionCalendar, "would you like to add this recipe to the calendar?").
+
+text(questionDay, "on what day would you like to cook this recipe?").
+
+text(questionMeal, "would you like to cook this recipe as breakfast, lunch, or dinner?").
+
+text(followUp, "Would you like to visualize the calendar or look for another recipe?").
+
+text(nextMove, "would you like to add a new recipe or delete a recipe?").
+
+
+
+
+
+
+
+
 
