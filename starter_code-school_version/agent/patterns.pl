@@ -160,7 +160,7 @@ pattern([a21removeKeyFromMemory,
 %	U: Yes
 pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation], [agent, ingredientCheck], [user, confirmation], [agent, lastTopicCheck], [user, disconfirmation], [agent, insert(c40)]]).
 
-pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation], [agent, ingredientCheck], [user, confirmation], [agent, lastTopicCheck], [user, sconfirmation], [agent, terminate], [agent, insert(a50recipeSelect)]]).
+pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation], [agent, ingredientCheck], [user, confirmation], [agent, lastTopicCheck], [user, confirmation], [agent, terminate], [agent, insert(a50recipeSelect)]]).
 %Confirmation
 %pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation]]). %TODO check
 
@@ -169,6 +169,8 @@ pattern([a50recipeConfirm, [agent, recipeCheck], [user, appreciation], [agent, a
 
 %Disconfirmation
 pattern([a50recipeConfirm, [agent, recipeCheck], [user, disconfirmation],[agent,insert(a50recipeSelect)]]). 
+
+pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation], [agent, ingredientCheck], [user, disconfirmation], [agent, insert(c40)]]).
 
 
 
