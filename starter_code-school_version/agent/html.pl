@@ -79,8 +79,8 @@ page(e1, _, Html) :-
 	% Constructing the HTML page
 	% First row: Instructions
 	atomic_list_concat([
-	"<center><h1> calendar </h1></center></br>",
-	"<center><p> calendar </p></center>"
+	"<center><h1> calendar1 </h1></center></br>",
+	"<center><p> calendar1 </p></center>"
 	], Txt),
 	applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow), 
 	% Putting everything together
@@ -88,7 +88,19 @@ page(e1, _, Html) :-
 	% Create the HTML page
 	html(Body, Html).
 	
-	
+page(e2, _, Html) :-
+	currentTopLevel(e2), 
+	% Constructing the HTML page
+	% First row: Instructions
+	atomic_list_concat([
+	"<center><h1> calendar2 </h1></center></br>",
+	"<center><p> calendar2 </p></center>"
+	], Txt),
+	applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow), 
+	% Putting everything together
+	atomic_list_concat([FirstRow], Body), 
+	% Create the HTML page
+	html(Body, Html).
 	
 	
 	% Constructing HTML page

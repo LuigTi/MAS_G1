@@ -51,9 +51,9 @@ slotFill(dummyP, dummyI).
 %Disconfirmation
 %pattern([e1, [agent, questionCalendar], [user, disconfirmation], [agent, insert(c40)]]). 
 
-pattern([e1, [agent, questionCalendar], [user, confirmation],[agent, questionDay], [agent, insert(e12)]]).
+pattern([e1, [agent, questionCalendar], [user, confirmation],[agent, questionDay], [agent, insert(e2)]]).
 
-pattern([e12,[agent, questionDay], [user, dayAnswer], [agent, insert(c40)]]).%:- getParamsPatternInitiatingIntent(user, addFilter, Params).
+pattern([e2, [user, addFilter], [agent, insertDay(Params)],  [agent, insert(c40)]]) :- getParamsPatternInitiatingIntent(user, addFilter, Params).
 
 %pattern([e2, [agent, questionMeal],[user, mealAnswer], [agent, insertMeal(Params)]]) :-
 %	getParamsPatternInitiatingIntent(user, addFilter, Params).
