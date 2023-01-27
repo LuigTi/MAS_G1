@@ -301,10 +301,11 @@ module dialog_update {
 				
 		% Handle instruction 'terminate' (which clears the agent's agenda)
 		if Intent = terminate, randomRecipe(NewRecipeID), randomRep(RecipeID),
-			agenda(Agenda)
+			agenda(Agenda), memory(Params)
 		then updateSession(agent, terminate, [], '')
 			+ delete(agenda(Agenda)) + insert(agenda([c10]))
-			+ delete(randomRep(RecipeID)) + insert(randomRep(NewRecipeID)).
+			+ delete(randomRep(RecipeID)) + insert(randomRep(NewRecipeID))
+			+ delete(memory(Params)) + insert(memory([])) .
 	}
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
