@@ -215,9 +215,7 @@ page(a50recipeSelect, _, Html) :-
 page(a50recipeConfirm, _, Html) :-
 	% Condition for when to show this page
 	currentTopLevel(a50recipeConfirm),
-	 
 	
-
 	% Constructing HTML page
 
 	% Name
