@@ -127,8 +127,37 @@ page(e4, _, Html) :-
 	applyTemplate(TemplateMeal, B, ThirdRow),
 	FourthRow = '<div class="text-center mt-5"></div>',
 	%table
-	atomic_list_concat(['<table bgcolor="black" width="700"><tr bgcolor="white"><th width="100"></th><th width="100">Monday</th><th width="100">Tuesday</th><th width="100">Wednesday</th><th width="100">Thursday</th><th width="100">Friday</th><th width="100">Saturday</th><th width="100">Sunday</th></tr></table>'], TableRow1),
-	atomic_list_concat([FirstRow, SecondRow, ThirdRow, FourthRow, TableRow1], Body),
+	atomic_list_concat(['<table bgcolor="black" width="700"><tr bgcolor="white"><th width="100"></th><th width="100">Monday</th><th width="100">Tuesday</th><th width="100">Wednesday</th><th width="100">Thursday</th><th width="100">Friday</th><th width="100">Saturday</th><th width="100">Sunday</th></tr>'], TableRow1),
+	atomic_list_concat(['<tr bgcolor="white" align="center"><td>Breakfast</td>'], Breakfast),
+	atomic_list_concat(['<td>a</td>'], Breakfast1),
+	atomic_list_concat(['<td>a</td>'], Breakfast2),
+	atomic_list_concat(['<td>a</td>'], Breakfast3),
+	atomic_list_concat(['<td>a</td>'], Breakfast4),
+	atomic_list_concat(['<td>a</td>'], Breakfast5),
+	atomic_list_concat(['<td>a</td>'], Breakfast6),
+	atomic_list_concat(['<td>a</td></tr>'], Breakfast7),
+	atomic_list_concat(['<tr bgcolor="white" align="center"><td>Lunch</td>'], Lunch),
+	atomic_list_concat(['<td>a</td>'], Lunch1),
+	atomic_list_concat(['<td>a</td>'], Lunch2),
+	atomic_list_concat(['<td>a</td>'], Lunch3),
+	atomic_list_concat(['<td>a</td>'], Lunch4),
+	atomic_list_concat(['<td>a</td>'], Lunch5),
+	atomic_list_concat(['<td>a</td>'], Lunch6),
+	atomic_list_concat(['<td>a</td></tr>'], Lunch7),
+	atomic_list_concat(['<tr bgcolor="white" align="center"><td>Dinner</td>'], Dinner),
+	atomic_list_concat(['<td>a</td>'], Dinner1),
+	atomic_list_concat(['<td>a</td>'], Dinner2),
+	atomic_list_concat(['<td>a</td>'], Dinner3),
+	atomic_list_concat(['<td>a</td>'], Dinner4),
+	atomic_list_concat(['<td>a</td>'], Dinner5),
+	atomic_list_concat(['<td>a</td>'], Dinner6),
+	atomic_list_concat(['<td>a</td></tr></table>'], Dinner7),
+	
+	
+	
+	
+	
+	atomic_list_concat([FirstRow, SecondRow, ThirdRow, FourthRow, TableRow1, Breakfast, Breakfast1, Breakfast2, Breakfast3, Breakfast4, Breakfast5, Breakfast6, Breakfast7, Lunch, Lunch1, Lunch2, Lunch3, Lunch4, Lunch5, Lunch6, Lunch7, Dinner, Dinner1, Dinner2, Dinner3, Dinner4, Dinner5, Dinner6, Dinner7], Body),
 	
 	% Create the HTML page
 	html(Body, Html).
