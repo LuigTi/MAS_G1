@@ -53,7 +53,7 @@ slotFill(dummyP, dummyI).
 
 pattern([e1, [agent, questionCalendar], [user, confirmation],[agent, questionDay], [agent, insert(e12)]]).
 
-pattern([e12,[agent, questionDay], [user, dayAnswer], [agent, insert(c40)]]).%:- getParamsPatternInitiatingIntent(user, addFilter, Params).
+pattern([e12,[user, addFilter], [agent, insertDay(Params)], [agent, insert(c40)]]):- getParamsPatternInitiatingIntent(user, addFilter, Params).
 
 %pattern([e2, [agent, questionMeal],[user, mealAnswer], [agent, insertMeal(Params)]]) :-
 %	getParamsPatternInitiatingIntent(user, addFilter, Params).
