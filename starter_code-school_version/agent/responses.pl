@@ -201,5 +201,8 @@ text(deleteRecipe(_), "Recipe deleted").
 
 text(clearMemory, "lol").
 
+text(groceryList, "Fratello, la vuoi conservare la lista della spesa?").
+
+
 
 

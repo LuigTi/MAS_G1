@@ -311,11 +311,10 @@ module dialog_update {
 		if Intent = clearMemory, memory(Mem)
 		then delete(memory(Mem)) + insert(memory([])).
 		
+		if Intent = groceryList, findall(Ingredient,(recipeDay(RecipeID,_), ingredientAndQuantity(RecipeID,Ingredient)),ListOfIngredient)
+		then insert(groceryList(ListOfIngredient)).
 		
 		
-		
-		
-				
 		% Handle instruction 'terminate' (which clears the agent's agenda)
 		if Intent = terminate, randomRecipe(NewRecipeID), randomRep(RecipeID),
 			agenda(Agenda), memory(Params)

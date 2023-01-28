@@ -198,6 +198,24 @@ page(a40menu, _, Html) :-
 
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% page for the grocery list
+
+page(f1, _, Html) :-
+	currentTopLevel(f1), 
+	% Constructing the HTML page
+	% First row: Instructions
+	atomic_list_concat([
+	"<center><h1> the list would be here </h1></center></br>",
+	"<center><p> the list would be here </p></center>"
+	], Txt),
+	applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow), 
+	% Putting everything together
+	atomic_list_concat([FirstRow], Body), 
+	% Create the HTML page
+	html(Body, Html).
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Page layout (1) for long recipe selection (pattern a50recipeSelect)%%%
 %%% Page shown while there are more than K(=15) recipe options         %%%
