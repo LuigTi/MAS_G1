@@ -299,13 +299,22 @@ pattern([c30, [user, checkCapability], [agent, describeCapability]]).
 pattern([c40, [agent, sessionCloser], [user, farewell]]).
 
 
+%%% E1, E2, setting calendar.
+
+pattern([e1, [agent, questionCalendar], [user, disconfirmation],[agent, insert(c40)]]).
 
 pattern([e1, [agent, questionCalendar], [user, confirmation],[agent, questionDay], [agent, insert(e12)]]).
 
-pattern([e12,[user, addFilter], [agent, insertDay(Params)], [agent, insert(c40)]]):- getParamsPatternInitiatingIntent(user, addFilter, Params).
+pattern([e12,[user, addFilter], [agent, insertDay(Params)], [agent, insert(e2)]]):- getParamsPatternInitiatingIntent(user, addFilter, Params).
+
+pattern([e2, [agent, questionMeal], [agent, insert(e22)]]).
+
+pattern([e22,[user, addFilter], [agent, insertMeal(Params)], [agent, insert(c40)]]):- getParamsPatternInitiatingIntent(user, addFilter, Params).
 
 
-pattern([e1, [agent, questionCalendar], [user, disconfirmation],[agent, insert(c40)]]).
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Special Patterns used to only handle button-based interaction			%%%

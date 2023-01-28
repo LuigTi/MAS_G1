@@ -32,7 +32,9 @@
 	randomRep/1,
 	% bot is talking
 	talking/0,
-	recipeData/2.
+	recipeDay/2,
+	recipeMeal/2.
+	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Memory: a memory is a list of entity key, value pairs  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

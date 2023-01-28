@@ -103,6 +103,33 @@ page(e12, _, Html) :-
 	% Create the HTML page
 	html(Body, Html).	
 
+page(e2, _, Html) :-
+	currentTopLevel(e2), 
+	% Constructing the HTML page
+	% First row: Instructions
+	atomic_list_concat([
+	"<center><h1> type of meal? </h1></center></br>",
+	"<center><p> type of meal? </p></center>"
+	], Txt),
+	applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow), 
+	% Putting everything together
+	atomic_list_concat([FirstRow], Body), 
+	% Create the HTML page
+	html(Body, Html).
+	
+page(e22, _, Html) :-
+	currentTopLevel(e22), 
+	% Constructing the HTML page
+	% First row: Instructions
+	atomic_list_concat([
+	"<center><h1> ok </h1></center></br>",
+	"<center><p> ok </p></center>"
+	], Txt),
+	applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow), 
+	% Putting everything together
+	atomic_list_concat([FirstRow], Body), 
+	% Create the HTML page
+	html(Body, Html).	
 
 	
 	% Constructing HTML page

@@ -185,6 +185,7 @@ text(nextMove, "would you like to add a new recipe or delete a recipe?").
 
 text(insertDay(_), "Ok, aded for that day").
 
+text(insertMeal(_), "got it!").
 
 
 
