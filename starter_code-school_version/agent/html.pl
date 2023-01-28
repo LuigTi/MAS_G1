@@ -58,87 +58,14 @@ page(c10, _, Html) :-
 	% Condition for when to show this page
 	currentTopLevel(c10), 
 	% Constructing HTML page
-	atomic_list_concat(['<div class="row justify-content-center"><div class="card"><div class="card-body">This is ~a.</div></div></div>'], Template),
+	atomic_list_concat(['<div class="container"><div class="row justify-content-center"><div class="card"><div class="card-body"><h5 class="card-title text-center">Hello!</h5><p class="card-text text-center">i am ~a</p><div class="d-flex justify-content-center"><img src="https://i.etsystatic.com/18352527/r/il/cf3bcf/4054481837/il_570xN.4054481837_ggrc.jpg" class="img-fluid" style="width:200px; height:300px;"></div></div></div></div></div>'], Template),
+  
 	% Get the bot's name if it has one; other call it 'your assistant'
-	(agentName(Name) -> N = Name ; N = 'your recipe selection assistant'), applyTemplate(Template, N, FirstRow),
-	
-	
-	SecondRow = '<div class="text-center mt-5"><img src="https://i.etsystatic.com/18352527/r/il/cf3bcf/4054481837/il_570xN.4054481837_ggrc.jpg" class="fluid"></div>',
-
-	
-	
-	
-	atomic_list_concat([FirstRow, SecondRow], Body),
-	
+	(agentName(Name) -> N = Name ; N = 'your recipe selection assistant'), applyTemplate(Template, N, Body),	
 	
 	% Create the HTML page
 	html(Body, Html).
 	
-page(e1, _, Html) :-
-	currentTopLevel(e1), 
-	% Constructing the HTML page
-	% First row: Instructions
-	atomic_list_concat([
-	"<center><h1> calendar </h1></center></br>",
-	"<center><p> calendar </p></center>"
-	], Txt),
-	applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow), 
-	% Putting everything together
-	atomic_list_concat([FirstRow], Body), 
-	% Create the HTML page
-	html(Body, Html).
-	
-	
-page(e12, _, Html) :-
-	currentTopLevel(e12), 
-	% Constructing the HTML page
-	% First row: Instructions
-	atomic_list_concat([
-	"<center><h1> calendar2 </h1></center></br>",
-	"<center><p> calendar2 </p></center>"
-	], Txt),
-	applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow), 
-	% Putting everything together
-	atomic_list_concat([FirstRow], Body), 
-	% Create the HTML page
-	html(Body, Html).	
-
-page(e2, _, Html) :-
-	currentTopLevel(e2), 
-	% Constructing the HTML page
-	% First row: Instructions
-	atomic_list_concat([
-	"<center><h1> type of meal? </h1></center></br>",
-	"<center><p> type of meal? </p></center>"
-	], Txt),
-	applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow), 
-	% Putting everything together
-	atomic_list_concat([FirstRow], Body), 
-	% Create the HTML page
-	html(Body, Html).
-	
-page(e22, _, Html) :-
-	currentTopLevel(e22), 
-	% Constructing the HTML page
-	% First row: Instructions
-	atomic_list_concat([
-	"<center><h1> ok </h1></center></br>",
-	"<center><p> ok </p></center>"
-	], Txt),
-	applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow), 
-	% Putting everything together
-	atomic_list_concat([FirstRow], Body), 
-	% Create the HTML page
-	html(Body, Html).	
-
-	
-	% Constructing HTML page
-	%atomic_list_concat(['<div class="alert alert-light"><center></br><h1>Hello!</br></br>','I am ~a</h1></br></br></center></div>'], Template),
-	%atomic_list_concat(['<div class="alert alert-light"><center></br><h1>Hello!</br></br>','I am ~a</h1></br></br></center></div>'], Template),
-	% Get the bot's name if it has one; other call it 'your assistant'
-	%(agentName(Name) -> N = Name ; N = 'your recipe selection assistant'), applyTemplate(Template, N, Body),
-	% Create the HTML page
-	%html(Body, Html).
 
 page(a40menu, _, Html) :-
 	% Condition for when to show this page
@@ -242,7 +169,9 @@ page(a50recipeSelect, _, Html) :-
 page(a50recipeConfirm, _, Html) :-
 	% Condition for when to show this page
 	currentTopLevel(a50recipeConfirm),
+	 
 	
+
 	% Constructing HTML page
 
 	% Name
