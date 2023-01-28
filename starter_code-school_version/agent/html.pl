@@ -64,7 +64,7 @@ page(c10, _, Html) :-
 	(agentName(Name) -> N = Name ; N = 'your recipe selection assistant'), applyTemplate(Template, N, FirstRow),
 	
 	
-	SecondRow = '<div class="text-center mt-5"><img src="https://i.etsystatic.com/18352527/r/il/cf3bcf/4054481837/il_570xN.4054481837_ggrc.jpg" class="fluid"></div>',
+	SecondRow = '<div class="text-center mt-5"></div>',
 
 	
 	
@@ -111,9 +111,9 @@ page(e2, _, Html) :-
 	% Create the HTML page
 	html(Body, Html).
 	
-page(e4, _, Html) :-
+page(e3, _, Html) :-
 	% Condition for when to show this page
-	currentTopLevel(e4), 
+	currentTopLevel(e3), 
 	% Constructing HTML page
 	atomic_list_concat(['<div class="row justify-content-center"><div class="card"><div class="card-body">This is ~a.</div></div></div>'], Template),
 	% Get the bot's name if it has one; other call it 'your assistant'
@@ -131,25 +131,27 @@ page(e4, _, Html) :-
 	% Create the HTML page
 	html(Body, Html).
 
-page(e3, _, Html) :-
+page(e4, _, Html) :-
 	% Condition for when to show this page
-	currentTopLevel(e3), 
+	currentTopLevel(e4), 
 	% Constructing HTML page
-	atomic_list_concat(['<div class="row justify-content-center"><div class="card"><div class="card-body">This is added to ~a.</div></div></div>'], Template),
-	atomic_list_concat(['<div class="row justify-content-center"><div class="card"><div class="card-body">This is added to ~a.</div></div></div>'], Template1),
+	atomic_list_concat(['<h3>~a is scheduled </h3>'], TemplateRecipe),
+	atomic_list_concat(['<h3>on ~a.</h3>'], TemplateDay),
+	atomic_list_concat(['<h3>at ~a.</h3>'], TemplateMeal),
 	% Get the bot's name if it has one; other call it 'your assistant'
-	(recipeDataDay(_, Params), member(weekdays = A, Params)),
-	(recipeDataMeal(_, Params1), member(mealType = B, Params1)),
-	%recipeName(Recipe, Name),
-	applyTemplate(Template, A, FirstRow),
-	applyTemplate(Template1, B, ThirdRow),
+	(recipeDataDay(RecipeID, Day), member(weekdays = A, Day)),
+	(recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal)),
+	recipeName(RecipeID, Name),
+	applyTemplate(TemplateRecipe, Name, FirstRow),
+	applyTemplate(TemplateDay, A, SecondRow),
+	applyTemplate(TemplateMeal, B, ThirdRow),
 	
-	SecondRow = '<div class="text-center mt-5"></div>',
+	FourthRow = '<div class="text-center mt-5"></div>',
 
 	
 	
 	
-	atomic_list_concat([FirstRow, ThirdRow, SecondRow], Body),
+	atomic_list_concat([FirstRow, SecondRow, ThirdRow, FourthRow], Body),
 	
 	
 	% Create the HTML page

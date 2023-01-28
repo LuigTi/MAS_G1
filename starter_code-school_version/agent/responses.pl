@@ -98,7 +98,7 @@ text(selfIdentification, Txt) :- agentName(Bot_name), string_concat("I am", Bot_
 text(specifyGoal, "I'll help you find a recipe.").
 
 % Intent: session closer
-text(sessionCloser, "session closer sentence").
+text(sessionCloser, "See you again.").
 
 % Intent: sequence closer
 text(sequenceCloser, "sequence closer sentence").
