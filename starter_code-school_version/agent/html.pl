@@ -103,7 +103,7 @@ page(a50recipeSelect, _, Html) :-
 		atomic_list_concat(['I have found ', N, ' recipes that match your preferences.'], RecipesLeftStr) ;
 		atomic_list_concat(['There are ', N, ' recipes available to choose from.'], RecipesLeftStr)
 	),
-	applyTemplate('<div class="alert alert-light"></br></br><center><h1>~a</h1></center></br></br></br></div>', RecipesLeftStr, FirstRow),
+	applyTemplate('<style>.alert {font-size: 2px;}</style><div class="alert alert-dark"></br></br><center><h1>~a</h1></center></br></br></br></div>', RecipesLeftStr, FirstRow),
 	% Second row: display the filters stored in memory and show them as list on screen.
 	filters_to_strings(FilterStrings),
 	itemsList(FilterStrings, TR),
