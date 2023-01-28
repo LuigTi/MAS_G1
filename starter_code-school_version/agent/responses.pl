@@ -61,8 +61,8 @@ text(a50recipeConfirm, contextMismatch, "this is an yes no question.").
 text(a50recipeConfirm, contextMismatch, "please say yes or no.").
 text(c40, contextMismatch, "you should farewell me.").
 text(c40, contextMismatch, "please say goodbye.").
-text(e1, contextMismatch, "sir what day?").
-text(e12, contextMismatch, "siuuuuuu").
+text(e1, contextMismatch, "yes or no").
+text(e12, contextMismatch, "sir what day?").
 % Intent: describeCapability
 text(describeCapability, "I'm an Artificial Intelligence that will help you select a recipe").
 	
@@ -70,7 +70,7 @@ text(describeCapability, "I'm an Artificial Intelligence that will help you sele
 text(farewell, "Bye bye").
 
 % Intent: greeting
-text(greeting, "Hola"). 
+text(greeting, "Hello"). 
 
 
 % Intent: negative welfare receipt

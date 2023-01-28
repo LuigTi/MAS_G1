@@ -79,8 +79,8 @@ page(e1, _, Html) :-
 	% Constructing the HTML page
 	% First row: Instructions
 	atomic_list_concat([
-	"<center><h1> calendar </h1></center></br>",
-	"<center><p> calendar </p></center>"
+	"<center><h1> calendar1 </h1></center></br>",
+	"<center><p> calendar1 </p></center>"
 	], Txt),
 	applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow), 
 	% Putting everything together
@@ -88,9 +88,28 @@ page(e1, _, Html) :-
 	% Create the HTML page
 	html(Body, Html).
 	
+
+	
+page(e12, _, Html) :-
+	% Condition for when to show this page
+	currentTopLevel(e12), 
+	% Constructing HTML page
+	atomic_list_concat(['<div class="row justify-content-center"><div class="card"><div class="card-body">This is ~a.</div></div></div>'], Template),
+	% Get the bot's name if it has one; other call it 'your assistant'
+	(recipeData(_, Params) -> N = Params ; N = 'Day'), applyTemplate(Template, N, FirstRow),
+	
+	
+	SecondRow = '<div class="text-center mt-5"><img src="https://i.etsystatic.com/18352527/r/il/cf3bcf/4054481837/il_570xN.4054481837_ggrc.jpg" class="fluid"></div>',
+
 	
 	
 	
+	atomic_list_concat([FirstRow, SecondRow], Body),
+	
+	
+	% Create the HTML page
+	html(Body, Html).
+
 	% Constructing HTML page
 	%atomic_list_concat(['<div class="alert alert-light"><center></br><h1>Hello!</br></br>','I am ~a</h1></br></br></center></div>'], Template),
 	%atomic_list_concat(['<div class="alert alert-light"><center></br><h1>Hello!</br></br>','I am ~a</h1></br></br></center></div>'], Template),
