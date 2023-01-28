@@ -116,7 +116,7 @@ page(e4, _, Html) :-
 	currentTopLevel(e4), 
 	% Constructing HTML page
 	atomic_list_concat(['<div class="row justify-content-center"><div class="card"><div class="card-body"><div style="display: inline-flex;"><h3>~a is scheduled </h3>'], TemplateRecipe),
-	atomic_list_concat(['<h3> on ~a</h3>'], TemplateDay),
+	atomic_list_concat(['<h3> on ~a </h3>'], TemplateDay),
 	atomic_list_concat(['<h3> at ~a.</h3></div></div></div></div>'], TemplateMeal),
 	% Get the bot's name if it has one; other call it 'your assistant'
 	(recipeDataDay(RecipeID, Day), member(weekdays = A, Day)),
