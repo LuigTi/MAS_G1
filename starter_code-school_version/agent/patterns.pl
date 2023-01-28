@@ -301,11 +301,13 @@ pattern([c40, [agent, sessionCloser], [user, farewell]]).
 
 pattern([e1, [agent, questionCalendar], [user, disconfirmation], [agent, insert(c40)]]). 
 
-pattern([e1, [agent, questionCalendar], [user, confirmation], [agent, questionDay], [agent, insert(e12)]]).
+pattern([e1, [agent, questionCalendar], [user, confirmation], [agent, questionDay], [agent, insert(e2)]]).
 
-pattern([e12, [user, addFilter], [agent, insertDay(Params)], [agent, insert(e13)]]) :- getParamsPatternInitiatingIntent(user, addFilter, Params).
+pattern([e2, [user, addFilter], [agent, insertDay(Params)], [agent, questionMeal], [agent, insert(e4)]]) :- getParamsPatternInitiatingIntent(user, addFilter, Params).
 
-pattern([e13, [agent, farewell], [user, farewell], [agent, insert(c40)]]).
+pattern([e4, [user, addFilter], [agent, insertMeal(Params1)], [agent, insert(e3)]]) :- getParamsPatternInitiatingIntent(user, addFilter, Params1).
+
+pattern([e3, [agent, farewell], [user, farewell], [agent, insert(c40)]]).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Special Patterns used to only handle button-based interaction			%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

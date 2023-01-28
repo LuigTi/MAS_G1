@@ -300,10 +300,10 @@ module dialog_update {
 		% MOD END
 		
 		if Intent = insertDay(Params), (currentRecipe(RecipeID); randomRep(RecipeID))
-		then insert(recipeData(RecipeID, Params)) .
+		then insert(recipeDataDay(RecipeID, Params)) .
 		
-		%if Intent = insertMeal(Params), currentRecipe(RecipeID)
-		%then insert(recipeData(RecipeID, Params)) .
+		if Intent = insertMeal(Params), (currentRecipe(RecipeID); randomRep(RecipeID))
+		then insert(recipeDataMeal(RecipeID, Params)) .
 				
 		% Handle instruction 'terminate' (which clears the agent's agenda)
 		if Intent = terminate, randomRecipe(NewRecipeID), randomRep(RecipeID),
