@@ -63,6 +63,7 @@ text(c40, contextMismatch, "you should farewell me.").
 text(c40, contextMismatch, "please say goodbye.").
 text(e1, contextMismatch, "yes or no").
 text(e12, contextMismatch, "sir what day?").
+
 % Intent: describeCapability
 text(describeCapability, "I'm an Artificial Intelligence that will help you select a recipe").
 	
@@ -81,7 +82,8 @@ text(c10, paraphraseRequest, "I did not understand."). % we don't care exactly w
 text(a50recipeSelect, paraphraseRequest, "what do you mean?").			%%%%%%%%%%%TODO
 text(a50recipeConfirm, paraphraseRequest, "Is this right?").
 text(c40, paraphraseRequest, "I did not understand."). % we don't care exactly what user said. we got some response.
-
+text(e1, paraphraseRequest, "yes or no").
+text(e12, paraphraseRequest, "sir what day?").
 % Intent: positive receipt
 text(positiveReceipt, "ok").
 	
@@ -182,6 +184,7 @@ text(followUp, "Would you like to visualize the calendar or look for another rec
 
 text(nextMove, "would you like to add a new recipe or delete a recipe?").
 
+text(insertDay(_), "Day added.").
 
 
 

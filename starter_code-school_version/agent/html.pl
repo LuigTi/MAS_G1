@@ -11,6 +11,7 @@
 	% predicate to keep track of whether page is up to date
 	pageUpToDate/1.
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Page layouts									%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -96,10 +97,30 @@ page(e12, _, Html) :-
 	% Constructing HTML page
 	atomic_list_concat(['<div class="row justify-content-center"><div class="card"><div class="card-body">This is ~a.</div></div></div>'], Template),
 	% Get the bot's name if it has one; other call it 'your assistant'
-	(recipeData(_, Params) -> N = Params ; N = 'Day'), applyTemplate(Template, N, FirstRow),
+	N = 'Day', applyTemplate(Template, N, FirstRow),
 	
 	
 	SecondRow = '<div class="text-center mt-5"><img src="https://i.etsystatic.com/18352527/r/il/cf3bcf/4054481837/il_570xN.4054481837_ggrc.jpg" class="fluid"></div>',
+
+	
+	
+	
+	atomic_list_concat([FirstRow, SecondRow], Body),
+	
+	
+	% Create the HTML page
+	html(Body, Html).
+
+page(e13, _, Html) :-
+	% Condition for when to show this page
+	currentTopLevel(e13), 
+	% Constructing HTML page
+	atomic_list_concat(['<div class="row justify-content-center"><div class="card"><div class="card-body">This is added to ~a.</div></div></div>'], Template),
+	% Get the bot's name if it has one; other call it 'your assistant'
+	(recipeData(_, Params), member(weekdays = A, Params)), applyTemplate(Template, A, FirstRow),
+	
+	
+	SecondRow = '<div class="text-center mt-5"></div>',
 
 	
 	
