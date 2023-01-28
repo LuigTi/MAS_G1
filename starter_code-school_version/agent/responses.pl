@@ -199,5 +199,7 @@ text(recipeDelete, "Choose the recipe you want to delete from the calendar.").
 
 text(deleteRecipe(_), "Recipe deleted").
 
+text(clearMemory, "lol").
+
 
 

@@ -322,7 +322,7 @@ pattern([e3, [agent, seeCalendar], [user, disconfirmation], [agent, insert(c40)]
 pattern([e3showCalendar, [agent, deleteCalendar], [user, confirmation],  [agent, recipeDelete], [agent, insert(e4)]]).
 
 
-pattern([e3showCalendar, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, confirmation], [agent, insert(a50recipeSelect)]]).
+pattern([e3showCalendar, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, confirmation],[agent, clearMemory], [agent, insert(a50recipeSelect)]]).
 pattern([e3showCalendar, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, disconfirmation], [agent, insert(c40)]]).
 
 
