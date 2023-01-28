@@ -187,7 +187,19 @@ text(insertDay(_), "Ok, aded for that day").
 
 text(insertMeal(_), "got it!").
 
+text(seeCalendar, "Do you want to access the calendar?").
 
+text(showCalendar, "this is your current calendar").
+
+text(addCalendar, "would you like to add something to your calendar?.").
+
+text(deleteCalendar, "would you like to delete a recipe from the calendar?").
+
+text(recipeDelete, "Choose the recipe you want to delete from the calendar.").
+
+text(deleteRecipe(_), "Recipe deleted").
+
+text(clearMemory, "lol").
 
 
 
