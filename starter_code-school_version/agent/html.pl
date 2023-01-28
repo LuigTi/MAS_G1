@@ -131,6 +131,20 @@ page(e22, _, Html) :-
 	% Create the HTML page
 	html(Body, Html).	
 
+%page to ask if user wants to acces the calendar(to see or to edit it)
+page(e3, _, Html) :-
+	currentTopLevel(e3), 
+	% Constructing the HTML page
+	% First row: Instructions
+	atomic_list_concat([
+	"<center><h1> go to calendar? </h1></center></br>",
+	"<center><p> go to calendar? </p></center>"
+	], Txt),
+	applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow), 
+	% Putting everything together
+	atomic_list_concat([FirstRow], Body), 
+	% Create the HTML page
+	html(Body, Html).
 	
 	% Constructing HTML page
 	%atomic_list_concat(['<div class="alert alert-light"><center></br><h1>Hello!</br></br>','I am ~a</h1></br></br></center></div>'], Template),
@@ -139,6 +153,38 @@ page(e22, _, Html) :-
 	%(agentName(Name) -> N = Name ; N = 'your recipe selection assistant'), applyTemplate(Template, N, Body),
 	% Create the HTML page
 	%html(Body, Html).
+
+
+%%%% page with the actual calendar
+page(e3showCalendar, _, Html) :-
+	currentTopLevel(e3showCalendar), 
+	% Constructing the HTML page
+	% First row: Instructions
+	atomic_list_concat([
+	"<center><h1> the calendar would be here </h1></center></br>",
+	"<center><p> the calendar would be here </p></center>"
+	], Txt),
+	applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow), 
+	% Putting everything together
+	atomic_list_concat([FirstRow], Body), 
+	% Create the HTML page
+	html(Body, Html).
+
+page(e4, _, Html) :-
+	currentTopLevel(e4), 
+	% Constructing the HTML page
+	% First row: Instructions
+	atomic_list_concat([
+	"<center><h1> the calendar would be here </h1></center></br>",
+	"<center><p> the calendar would be here </p></center>"
+	], Txt),
+	applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow), 
+	% Putting everything together
+	atomic_list_concat([FirstRow], Body), 
+	% Create the HTML page
+	html(Body, Html).
+
+
 
 page(a40menu, _, Html) :-
 	% Condition for when to show this page

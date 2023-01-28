@@ -307,11 +307,27 @@ pattern([e1, [agent, questionCalendar], [user, confirmation],[agent, questionDay
 
 pattern([e12,[user, addFilter], [agent, insertDay(Params)], [agent, insert(e2)]]):- getParamsPatternInitiatingIntent(user, addFilter, Params).
 
+
+
 pattern([e2, [agent, questionMeal], [agent, insert(e22)]]).
 
-pattern([e22,[user, addFilter], [agent, insertMeal(Params)], [agent, insert(c40)]]):- getParamsPatternInitiatingIntent(user, addFilter, Params).
+pattern([e22,[user, addFilter], [agent, insertMeal(Params)], [agent, insert(e3)]]):- getParamsPatternInitiatingIntent(user, addFilter, Params).
 
 
+
+pattern([e3, [agent, seeCalendar], [user, confirmation], [agent, insert(e3showCalendar)]]).
+
+pattern([e3, [agent, seeCalendar], [user, disconfirmation], [agent, insert(c40)]]).
+
+pattern([e3showCalendar, [agent, deleteCalendar], [user, confirmation],  [agent, recipeDelete], [agent, insert(e4)]]).
+
+
+pattern([e3showCalendar, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, confirmation], [agent, insert(a50recipeSelect)]]).
+pattern([e3showCalendar, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, disconfirmation], [agent, insert(c40)]]).
+
+
+
+pattern([e4,[user, recipeRequest], [agent, deleteRecipe(Params)], [agent, insert(e3showCalendar)]]):- getParamsPatternInitiatingIntent(user, recipeRequest, Params).
 
 
 
