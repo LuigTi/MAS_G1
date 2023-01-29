@@ -33,7 +33,8 @@
 	% bot is talking
 	talking/0,
 	recipeDataDay/2, 
-	recipeDataMeal/2.
+	recipeDataMeal/2,
+	recipeDataIngredients/1.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Memory: a memory is a list of entity key, value pairs  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
