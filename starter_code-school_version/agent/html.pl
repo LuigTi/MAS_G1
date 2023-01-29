@@ -298,10 +298,12 @@ page(a50recipeSelect, _, Html) :-
 	itemsList(FilterStrings, SR),
 	atomic_list_concat(['<center>', SR, '</center>'], SecondRow),
 	% Third row: list of recipes with pictures
+	ThirdRow = '<style>.brown-bg {background-color: #C46200;} </style><div class="container-fluid d-flex justify-content-center brown-bg h-100">',
 	buttonPictureList(Recipes, L),
-	applyTemplate('<div class="row justify-content-center">~a</div>', L, ThirdRow),
+	applyTemplate('<div class="row justify-content-center"><div class="col-4"><button class="btn w-100">~a</button></div></div>', L, FourthRow),
 	% Putting everything together
-	atomic_list_concat([FirstRow, SecondRow, ThirdRow], Body),
+	FifthRow = '</div>',
+	atomic_list_concat([FirstRow, SecondRow, ThirdRow, FourthRow, FifthRow], Body),
 	% Create the HTML page
 	html(Body, Html).
 
@@ -333,6 +335,7 @@ page(a50recipeConfirm, _, Html) :-
 	currentRecipe(Recipe),
 	recipeName(Recipe, Name),
 
+
 	
 	to_upper_case(Name, TxtUp),
  	applyTemplate('<div class="card-body"><center><h3 class="card-title">~a</h3></center>', TxtUp, IT),
@@ -351,8 +354,14 @@ page(a50recipeConfirm, _, Html) :-
 	
 	string_concat("Serves ", Persons, Servings),
 	applyTemplate('<h6 class="text-center"><span class="badge badge-light">~a</span></h6>', Servings, S), %%%
+
+	%get picture
+	picture(Recipe, PictureURL),
+	applyTemplate('<div class="card-body d-flex justify-content-between"><img src="https://cdn.discordapp.com/attachments/1008571195345608704/1069272261804175472/Jip_fat_italian_chef_in_rome_waving_pixar_cartoon_style_d5502be0-2524-4cd4-be91-876d5462a063.png" class="img-fluid" width="45%" style="display: inline-block;"><img src="~a" class="img-fluid" width="45%" style="display: inline-block;"></div>',PictureURL, PIC),
+	
 	atom_concat(D, S, DS),
-	atom_concat(IT, DS, TIDS),
+	atom_concat(DS, PIC, NDS),
+	atom_concat(IT, NDS, TIDS),
 	applyTemplate('<div class="card mb-3">~a</div></div>', TIDS, Row1Html), 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 	%Steps
@@ -468,12 +477,12 @@ bulletList(Items, Html) :-
 
 
 % A button template
-button('<button class="btn btn-light btn-lg mt-5 ml-3" style="font-family: "Times New Roman", font-size:1.5rem, height=2vw">~a</button>').
+button('<button class="btn btn-light btn-lg mt-5 ml-3" style="font-family: "Verdana", font-size:1.5rem, height=2vw">~a</button>').
 button(Content, Html) :- button(Template), applyTemplate(Template, Content, Html).
 
 
 % A start button template
-startButton('<button class="btn btn-primary btn-lg mt-5 ml-3 mb-5" style="font-family: "Times New Roman", font-size:1.5rem, height=2vw">~a</button>').
+startButton('<button class="btn btn-primary btn-lg mt-5 ml-3 mb-5" style="font-family: "Verdana", font-size:1.5rem, height=2vw">~a</button>').
 startButton(Content, Html) :- startButton(Template), applyTemplate(Template, Content, Html).
 
 
