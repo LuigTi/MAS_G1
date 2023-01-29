@@ -26,45 +26,12 @@
 %%% 2. Start Button      				    %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-page(start, _, Html) :-
-    % Condition for when to show this page
-    currentTopLevel(start), 
-    % Get the bot's name if it has one; other call it 'your assistant'
-    (agentName(Name) -> N = Name ; N = 'your recipe selection assistant'),
-    % Constructing the HTML page
-    % First row: Instructions
-    atomic_list_concat([
-        '<div class="container-fluid" style="background-image: url(https://i.pinimg.com/originals/84/ba/58/84ba589568f4d4022a1cd8bef7d25541.gif); background-size: cover;">',
-            '<div class="row justify-content-center align-items-center" style="height: 100vh;">',
-                '<div class="card text-white" style="background: transparent;">',
-                    '<div class="card-body">',
-                        '<h1 class="card-title text-center">Welcome to our Restaurant</h1>',
-                        '<p class="card-text text-center">I am ~a</p>',
-                    '</div>',
-                '</div>',
-            '</div>',
-            '<div class="row justify-content-center" style="position: absolute; top: 80%;">',
-                '<div class="col-3">'], Template),
-    applyTemplate(Template, N, Body),
-    % Second Row: Start Button
-    startButton('Start', B),
-    applyTemplate('~a</div>', B, SecondRow),
-    % Third row: transition effect
-    ThirdRow = '</div></div><div class="transition-container"> <div class="transition-item"></div> </div>',
-    % Putting everything together
-    atomic_list_concat([Body, SecondRow, ThirdRow], Body2), 
-    % Create the HTML page
-    html(Body2, Html).
 
 
-
-
-
-%page(start, _, Html) :- 
-%	% Condition for when to show this page
-%	currentTopLevel(start), 
+page(start, _, Html) :- 
+	% Condition for when to show this page
+	currentTopLevel(start), 
 	% Constructing the HTML page
-<<<<<<< HEAD
 	% First row: Instructions
 	atomic_list_concat(['<style>.brown-bg {background-color: #C46200;}</style><div class="container-fluid  brown-bg h-100"><div class="row justify-content-center"><div class="card mt-5" style=" width: 18rem;"><div class="card-header text-center">Welcome!</div><img src="https://cdn.discordapp.com/attachments/1008571049039896576/1069229487419572354/Jip_fat_happy_italian_chef_in_kitchen_cartoon_style_818a22c0-6ac8-4412-a560-83222dba4b37.png" class="card-img-top"><div class="card-body text-center"><p class="card-text">please press the button to get started!</p></div></div></div>'], FirstRow), 
 	% Second row: Button Instructions
@@ -75,33 +42,8 @@ page(start, _, Html) :-
 	atomic_list_concat([FirstRow, SecondRow], Body), 
 	% Create the HTML page
 	html(Body, Html).
-=======
-%	% First row: Instructions
-%	atomic_list_concat([
-%	"<center><h1> welcome stronzo </h1></center></br>",
-%	"<center><p> you better pick a nice italian recipe </p></center>"
-%	], Txt),
-%	applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow), 
-%	% Second row: Button Instructions
-%	SecondRow = '</br></br></br><div class="row justify-content-center""><h3>Press Start to Begin</h3></div>',
-%	% Third Row: Start Button
-%	startButton('Start', B),
-%	applyTemplate('<div class="row justify-content-center">~a</div>', B, ThirdRow),
-%	% Putting everything together
-%	atomic_list_concat([FirstRow, SecondRow, ThirdRow], Body), 
-%	% Create the HTML page
-%	html(Body, Html).
 
 
-
-
-
-
-
-
-
-
->>>>>>> 54eed5f8fe132f8241cde7b578fbe369d98436c0
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -111,70 +53,17 @@ page(start, _, Html) :-
 %%% 2. Introduce your bot				    %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%page(c10, _, Html) :-
-%	% Condition for when to show this page
-%	currentTopLevel(c10), 
-%	% Constructing HTML page
-%	atomic_list_concat(['<div class="container"><div class="row justify-content-center"><div class="card"><div class="card-body"><h5 class="card-title text-center">Hello!</h5><p class="card-text text-center">i am ~a</p><div class="d-flex justify-content-center"><img src="https://i.etsystatic.com/18352527/r/il/cf3bcf/4054481837/il_570xN.4054481837_ggrc.jpg" class="img-fluid" style="width:200px; height:300px;"></div></div></div></div></div>'], Template),
-%  
-%	% Get the bot's name if it has one; other call it 'your assistant'
-%	(agentName(Name) -> N = Name ; N = 'your recipe selection assistant'), applyTemplate(Template, N, Body),	
-%	
-%	% Create the HTML page
-%	html(Body, Html).
-
-
 
 page(c10, _, Html) :-
-<<<<<<< HEAD
 	% Condition for when to show this page
 	currentTopLevel(c10), 
 	% Constructing HTML page
 	atomic_list_concat(['<style>.brown-bg {background-color: #C46200;} </style><div class="container-fluid  brown-bg h-100"><div class="row justify-content-center"><div class="card mt-5 mb-5" style="width: 18rem;"><div class="card-header text-center">Hello! my name is ~a</div><img src="https://cdn.discordapp.com/attachments/1008571049039896576/1069248561625169991/Jip_fat_italian_chef_in_kitchen_introducing_himself_pixar_carto_aa6d3b4c-155d-4f17-b377-85fe5c4872c3.png" class="card-img-top"><div class="card-body text-center"><p class="card-text">please say hello to me so i am sure your microphone is working!</p></div></div></div></div>'], Template),
   
 	% Get the bot's name if it has one; other call it 'your assistant'
-	(agentName(Name) -> N = Name ; N = 'your recipe selection assistant'), applyTemplate(Template, N, Body),	
-=======
-    % Condition for when to show this page
-    currentTopLevel(c10), 
-    % Constructing HTML page
-    atomic_list_concat([
-        '<html>',
-        '<head>',
-        '<style>',
-        'body {',
-        'background-image: url("https://i.pinimg.com/originals/84/ba/58/84ba589568f4d4022a1cd8bef7d25541.gif");',
-        'background-size: cover;',
-        'background-repeat: no-repeat;',
-        '}',
-        '.center {',
-        'display: flex;',
-        'align-items: center;',
-        'justify-content: center;',
-        'height: 100vh;',
-        '}',
-        '</style>',
-        '</head>',
-        '<body>',
-        '<div class="center">',
-        '<div class="card">',
-        '<div class="card-body">',
-        '<h1 class="text-center">Welcome to</h1>',
-        '<h3 class="text-center">Your recipe selection assistant</h3>',
-        '<div class="d-flex justify-content-center">',
-        '<img src="https://i.pinimg.com/originals/50/38/f6/5038f6672f089f3a50c4f075feddfc42.gif" class="img-fluid" style="width:200px; height:300px;">',
-        '</div>',
-        '<div class="d-flex justify-content-center">',
-        '<button class="btn btn-primary">Start</button>',
-        '</div>',
-        '</div>',
-        '</div>',
-        '</div>',
-        '</body>',
-        '</html>'
-    ], HtmlBody),
-    % Create the HTML page
-    html(HtmlBody, Html).
+	(agentName(Name) -> N = Name ; N = 'your recipe selection assistant'), applyTemplate(Template, N, Body),
+    	% Create the HTML page
+    	html(Body, Html).
 
 %page(e1, _, Html) :-   %%%% Original version 
 %	currentTopLevel(e1), 
@@ -256,7 +145,7 @@ page(e2, _, Html) :-
 	atomic_list_concat([FirstRow], Body), 
 	% Create the HTML page
 	html(Body, Html).
->>>>>>> 54eed5f8fe132f8241cde7b578fbe369d98436c0
+
 	
 page(e22, _, Html) :-
 	currentTopLevel(e22), 
@@ -355,40 +244,12 @@ page(f1, _, Html) :-
 
 
 page(a50recipeSelect,_, Html) :-
-
-    % Conditions for when to show this page
-    currentTopLevel(a50recipeSelect),
-    recipesFiltered(Recipes),
-    length(Recipes, N),
-    N > 15,
-
-
-    % Constructing HTML page
-    not(memoryKeyValue('show', 'true')),
-    (memoryKeyValue(Key,_), is_filter_param(Key) -> 
-        atomic_list_concat(['I have found ', N, ' recipes that match your preferences.'], RecipesLeftStr) ;
-        atomic_list_concat(['There are ', N, ' recipes available to choose from.'], RecipesLeftStr)
-    ),
-    applyTemplate('<style>.alert {font-size: 2px; background-image: url(https://i.pinimg.com/originals/84/ba/58/84ba589568f4d4022a1cd8bef7d25541.gif); background-size: cover;}</style><div class="alert alert-dark"></br></br><center><h1>~a</h1></center></br></br></br></div>', RecipesLeftStr, FirstRow),
-    % Second row: display the filters stored in memory and show them as list on screen.
-    filters_to_strings(FilterStrings),
-    itemsList(FilterStrings, TR),
-    % Third row: display text
-    SecondRow = '</br><center><h4>What kind of recipe are you looking for?</h4></center></br>',
-    atomic_list_concat(['<center>', TR, '</center>'], ThirdRow),
-    % Putting everything together
-    atomic_list_concat([FirstRow, SecondRow, ThirdRow], Body),
-    % Create the HTML page
-    html(Body, Html).
-
-<<<<<<< HEAD
 	% Conditions for when to show this page
 	currentTopLevel(a50recipeSelect),
 	recipesFiltered(Recipes),
 	length(Recipes, N),
 	N > 15,
 	
-	 
 	% Constructing HTML page
 	not(memoryKeyValue('show', 'true')),
 	(memoryKeyValue(Key, _), is_filter_param(Key) -> 
@@ -407,8 +268,6 @@ page(a50recipeSelect,_, Html) :-
 	% Create the HTML page
 	html(Body, Html).
 	
-=======
->>>>>>> 54eed5f8fe132f8241cde7b578fbe369d98436c0
 	
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
