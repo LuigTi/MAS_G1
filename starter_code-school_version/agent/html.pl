@@ -64,6 +64,18 @@ page(start, _, Html) :-
 %	% Condition for when to show this page
 %	currentTopLevel(start), 
 	% Constructing the HTML page
+<<<<<<< HEAD
+	% First row: Instructions
+	atomic_list_concat(['<style>.brown-bg {background-color: #C46200;}</style><div class="container-fluid  brown-bg h-100"><div class="row justify-content-center"><div class="card mt-5" style=" width: 18rem;"><div class="card-header text-center">Welcome!</div><img src="https://cdn.discordapp.com/attachments/1008571049039896576/1069229487419572354/Jip_fat_happy_italian_chef_in_kitchen_cartoon_style_818a22c0-6ac8-4412-a560-83222dba4b37.png" class="card-img-top"><div class="card-body text-center"><p class="card-text">please press the button to get started!</p></div></div></div>'], FirstRow), 
+	% Second row: Button Instructions
+	% Third Row: Start Button
+	startButton('Start', B),
+	applyTemplate('<div class="row justify-content-center">~a</div></div>', B, SecondRow),
+	% Putting everything together
+	atomic_list_concat([FirstRow, SecondRow], Body), 
+	% Create the HTML page
+	html(Body, Html).
+=======
 %	% First row: Instructions
 %	atomic_list_concat([
 %	"<center><h1> welcome stronzo </h1></center></br>",
@@ -89,6 +101,7 @@ page(start, _, Html) :-
 
 
 
+>>>>>>> 54eed5f8fe132f8241cde7b578fbe369d98436c0
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -113,6 +126,15 @@ page(start, _, Html) :-
 
 
 page(c10, _, Html) :-
+<<<<<<< HEAD
+	% Condition for when to show this page
+	currentTopLevel(c10), 
+	% Constructing HTML page
+	atomic_list_concat(['<style>.brown-bg {background-color: #C46200;} </style><div class="container-fluid  brown-bg h-100"><div class="row justify-content-center"><div class="card mt-5 mb-5" style="width: 18rem;"><div class="card-header text-center">Hello! my name is ~a</div><img src="https://cdn.discordapp.com/attachments/1008571049039896576/1069248561625169991/Jip_fat_italian_chef_in_kitchen_introducing_himself_pixar_carto_aa6d3b4c-155d-4f17-b377-85fe5c4872c3.png" class="card-img-top"><div class="card-body text-center"><p class="card-text">please say hello to me so i am sure your microphone is working!</p></div></div></div></div>'], Template),
+  
+	% Get the bot's name if it has one; other call it 'your assistant'
+	(agentName(Name) -> N = Name ; N = 'your recipe selection assistant'), applyTemplate(Template, N, Body),	
+=======
     % Condition for when to show this page
     currentTopLevel(c10), 
     % Constructing HTML page
@@ -234,6 +256,7 @@ page(e2, _, Html) :-
 	atomic_list_concat([FirstRow], Body), 
 	% Create the HTML page
 	html(Body, Html).
+>>>>>>> 54eed5f8fe132f8241cde7b578fbe369d98436c0
 	
 page(e22, _, Html) :-
 	currentTopLevel(e22), 
@@ -268,7 +291,6 @@ page(e3, _, Html) :-
 	atomic_list_concat([FirstRow], Body), 
 	% Create the HTML page
 	html(Body, Html).
-	
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% page with the actual calendar
@@ -359,6 +381,34 @@ page(a50recipeSelect,_, Html) :-
     % Create the HTML page
     html(Body, Html).
 
+<<<<<<< HEAD
+	% Conditions for when to show this page
+	currentTopLevel(a50recipeSelect),
+	recipesFiltered(Recipes),
+	length(Recipes, N),
+	N > 15,
+	
+	 
+	% Constructing HTML page
+	not(memoryKeyValue('show', 'true')),
+	(memoryKeyValue(Key, _), is_filter_param(Key) -> 
+		atomic_list_concat(['I have found ', N, ' recipes that match your preferences.'], RecipesLeftStr) ;
+		atomic_list_concat(['There are ', N, ' recipes available to choose from.'], RecipesLeftStr)
+	),
+	applyTemplate('<style>.brown-bg {background-color: #C46200;} </style><div class="container-fluid  brown-bg h-100"><div class="row justify-content-center"><div class="card mt-5 mb-5" style="width: 18rem;"><div class="card-header text-center">~a </div><img src="https://cdn.discordapp.com/attachments/1008571195345608704/1069272261804175472/Jip_fat_italian_chef_in_rome_waving_pixar_cartoon_style_d5502be0-2524-4cd4-be91-876d5462a063.png" class="card-img-top"><div class="card-body text-center"><p class="card-text">please name some ingredients or recipes so i can help you make a choice! </p></div></div></div>', RecipesLeftStr, FirstRow),
+	% Second row: display the filters stored in memory and show them as list on screen.
+	filters_to_strings(FilterStrings),
+	itemsList(FilterStrings, TR),
+	% Third row: display text
+	SecondRow = '</br><center><h4>What kind of recipe are you looking for?</h4></center></br>',
+	atomic_list_concat(['<center>', TR, '</center></div>'], ThirdRow),
+	% Putting everything together
+	atomic_list_concat([FirstRow, SecondRow, ThirdRow], Body),
+	% Create the HTML page
+	html(Body, Html).
+	
+=======
+>>>>>>> 54eed5f8fe132f8241cde7b578fbe369d98436c0
 	
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -538,14 +588,7 @@ page(a50recipeConfirm, _, Html) :-
 page(c40, _, Html) :-
 	currentTopLevel(c40), 
 	% Constructing the HTML page
-	% First row: Instructions
-	atomic_list_concat([
-	"<center><h1> this is the closing page </h1></center></br>",
-	"<center><p> you better pick a nice italian recipe </p></center>"
-	], Txt),
-	applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow), 
-	% Putting everything together
-	atomic_list_concat([FirstRow], Body), 
+	atomic_list_concat(['<style>.brown-bg {background-color: #C46200;} </style><div class="container-fluid  brown-bg h-100"><div class="row justify-content-center"><div class="card mt-5 mb-5" style="width: 18rem;"><div class="card-header text-center">Ciao!</div><img src="https://cdn.discordapp.com/attachments/1008571195345608704/1069272362517803158/Jip_fat_italian_chef_in_rome_waving_pixar_cartoon_style_b7ea60ff-7ed1-4ef4-92f9-3c89e9b68665.png" class="card-img-top"><div class="card-body text-center"><p class="card-text">enjoy your meal!</p></div></div></div></div>'], Body), 
 	% Create the HTML page
 	html(Body, Html).
 
@@ -571,7 +614,7 @@ button(Content, Html) :- button(Template), applyTemplate(Template, Content, Html
 
 
 % A start button template
-startButton('<button class="btn btn-dark btn-lg mt-5 ml-3" style="font-family: "Times New Roman", font-size:1.5rem, height=2vw">~a</button>').
+startButton('<button class="btn btn-primary btn-lg mt-5 ml-3 mb-5" style="font-family: "Times New Roman", font-size:1.5rem, height=2vw">~a</button>').
 startButton(Content, Html) :- startButton(Template), applyTemplate(Template, Content, Html).
 
 
