@@ -357,7 +357,7 @@ page(a50recipeConfirm, _, Html) :-
 
 	%get picture
 	picture(Recipe, PictureURL),
-	applyTemplate('<div class="card-body d-flex justify-content-between"><img src="https://cdn.discordapp.com/attachments/1008571195345608704/1069272261804175472/Jip_fat_italian_chef_in_rome_waving_pixar_cartoon_style_d5502be0-2524-4cd4-be91-876d5462a063.png" class="img-fluid" width="45%" style="display: inline-block;"><img src="~a" class="img-fluid" width="45%" style="display: inline-block;"></div>',PictureURL, PIC),
+	applyTemplate('<div class="card-body d-flex justify-content-between"><img src="https://st4.depositphotos.com/1049680/25908/i/1600/depositphotos_259089906-stock-photo-young-handsome-man-isolated-background.jpg" class="img-fluid" width="45%" style="display: inline-block;"><img src="~a" class="img-fluid" width="55%" style="display: inline-block;"></div>',PictureURL, PIC),
 	
 	atom_concat(D, S, DS),
 	atom_concat(DS, PIC, NDS),
