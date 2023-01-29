@@ -192,6 +192,8 @@ text(insertDay(_), "Day added.").
 
 text(insertMeal(_), "Meal added.").
 
+text(insertIngredient, "Here is the ingredient.").
+
 
 
 
