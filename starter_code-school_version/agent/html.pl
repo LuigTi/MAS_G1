@@ -116,8 +116,8 @@ page(e4, _, Html) :-
 	currentTopLevel(e4), 
 	% Constructing HTML page
 	atomic_list_concat(['<div class="row justify-content-center"><div class="card"><div class="card-body"><div style="display: inline-flex;"><h3>~a is scheduled </h3>'], TemplateRecipe),
-	atomic_list_concat(['<h3> on ~a </h3>'], TemplateDay),
-	atomic_list_concat(['<h3> at ~a.</h3></div></div></div></div>'], TemplateMeal),
+	atomic_list_concat(['<h3>on ~a </h3>'], TemplateDay),
+	atomic_list_concat(['<h3>at ~a.</h3></div></div></div></div>'], TemplateMeal),
 	% Get the bot's name if it has one; other call it 'your assistant'
 	(recipeDataDay(RecipeID, Day), member(weekdays = A, Day)),
 	(recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal)),
@@ -156,13 +156,6 @@ page(e4, _, Html) :-
 	% Create the HTML page
 	html(Body, Html).
 
-	% Constructing HTML page
-	%atomic_list_concat(['<div class="alert alert-light"><center></br><h1>Hello!</br></br>','I am ~a</h1></br></br></center></div>'], Template),
-	%atomic_list_concat(['<div class="alert alert-light"><center></br><h1>Hello!</br></br>','I am ~a</h1></br></br></center></div>'], Template),
-	% Get the bot's name if it has one; other call it 'your assistant'
-	%(agentName(Name) -> N = Name ; N = 'your recipe selection assistant'), applyTemplate(Template, N, Body),
-	% Create the HTML page
-	%html(Body, Html).
 
 page(a40menu, _, Html) :-
 	% Condition for when to show this page
