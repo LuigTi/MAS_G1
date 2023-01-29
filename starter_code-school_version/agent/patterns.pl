@@ -323,7 +323,8 @@ pattern([e3showCalendar, [agent, deleteCalendar], [user, confirmation],  [agent,
 
 
 pattern([e3showCalendar, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, confirmation],[agent, clearMemory], [agent, insert(a50recipeSelect)]]).
-pattern([e3showCalendar, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, disconfirmation], [agent, insert(f1)]]).
+pattern([e3showCalendar, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, disconfirmation],[agent, groceryQuestion],[user, confirmation], [agent, groceryList], [agent, insert(f1)]]).
+pattern([e3showCalendar, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, disconfirmation],[agent, groceryQuestion],[user, disconfirmation], [agent, insert(c40)]]).
 
 
 
@@ -333,8 +334,9 @@ pattern([e4,[user, recipeRequest], [agent, deleteRecipe(Params)], [agent, insert
 
 %% from here grocery list
 
-pattern([f1, [agent, groceryList], [user, confirmation], [agent, insert(c40)]]).
-pattern([f1, [agent, groceryList], [user, disconfirmation], [agent, insert(c40)]]).
+pattern([f1,[agent, showGrocery],[agent, questionFinal],[user, farewell], [agent, insert(c40)]]). 
+
+
 
 
 

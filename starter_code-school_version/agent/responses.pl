@@ -199,9 +199,15 @@ text(recipeDelete, "Choose the recipe you want to delete from the calendar.").
 
 text(deleteRecipe(_), "Recipe deleted").
 
-text(clearMemory, "lol").
+text(clearMemory, "removing all previous filters").
 
-text(groceryList, "Fratello, la vuoi conservare la lista della spesa?").
+text(groceryList, "I am hereby making your grocery list").
+
+text(groceryQuestion, "Would you like to see your grocery list?").
+
+text(showGrocery, "This is your grocery list.").
+
+text(questionFinal, "It's been a pleasure to help you out, when you are done with the grocery list, you can just say Bye Bye.").
 
 
 
