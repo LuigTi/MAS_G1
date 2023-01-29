@@ -290,8 +290,8 @@ page(a50recipeSelect, _, Html) :-
 	
 	% First row: Either you have found recipes or no recipe statement
 	(N > 0 ->
-		FirstRow = "<center><h3>I have found the following recipes that you might like:</h3></center>" ;
-		FirstRow = "<center><h3>There are no recipes that meet all of your preferences:</h3></center>"
+		FirstRow = '<style>.brown-bg {background-color: #C46200;} </style><div class="container-fluid  brown-bg h-100"><div class="row justify-content-center"><div class="card mt-5 mb-5" style="width: 18rem;"><div class="card-header text-center">I have found the following recipes that you might like</div><img src="https://cdn.discordapp.com/attachments/1008571195345608704/1069272225477300345/Jip_fat_italian_chef_in_rome_waving_pixar_cartoon_style_8f09bed1-171c-4ee9-8fcb-9c35020405f2.png" class="card-img-top"></div></div></div>' ;
+		FirstRow = '<style>.brown-bg {background-color: #C46200;} </style><div class="container-fluid  brown-bg h-100"><div class="row justify-content-center"><div class="card mt-5 mb-5" style="width: 18rem;"><div class="card-header text-center">I could not find anything that matches your requests</div><img src="https://cdn.discordapp.com/attachments/1008571195345608704/1069301347557572658/Jip_sad_fat_italian_chef_pixar_style_3c7c51d9-419f-4ee4-9e24-a20191f85667.png" class="card-img-top"></div></div></div>'
 	),
 	% Second row: display the filters stored in memory and show them as list on screen.
 	filters_to_strings(FilterStrings),
