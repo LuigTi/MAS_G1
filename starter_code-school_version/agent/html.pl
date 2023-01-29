@@ -276,18 +276,67 @@ page(e3, _, Html) :-
 
 
 page(e3showCalendar, _, Html) :-
-	currentTopLevel(e3showCalendar), 
-	% Constructing the HTML page
-	% First row: Instructions
-	atomic_list_concat([
-	"<center><h1> the calendar would be here </h1></center></br>",
-	"<center><p> the calendar would be here </p></center>"
-	], Txt),
-	applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow), 
-	% Putting everything together
-	atomic_list_concat([FirstRow], Body), 
-	% Create the HTML page
-	html(Body, Html).
+currentTopLevel(e3showCalendar),
+% Constructing the HTML page
+% First row: Instructions
+atomic_list_concat([
+"<center><h1> the calendar would be here </h1></center></br>",
+"<center><p> the calendar would be here </p></center>"
+], Txt),
+applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow),
+% Adding the table
+atomic_list_concat([
+"<table class='table table-bordered'>",
+"<thead>",
+"<tr>",
+"<th>  </th>",
+"<th>Monday</th>",
+"<th>Tuesday</th>",
+"<th>Wednesday</th>",
+"<th>Thursday</th>",
+"<th>Friday</th>",
+"<th>Saturday</th>",
+"<th>Sunday</th>",
+"</tr>",
+"</thead>",
+"<tbody>",
+"<tr>",
+"<td>Breakfast</td>",
+"<td></td>",
+"<td></td>",
+"<td></td>",
+"<td></td>",
+"<td></td>",
+"<td></td>",
+"<td></td>",
+"</tr>",
+"<tr>",
+"<td>Lunch</td>",
+"<td></td>",
+"<td></td>",
+"<td></td>",
+"<td></td>",
+"<td></td>",
+"<td></td>",
+"<td></td>",
+"</tr>",
+"<tr>",
+"<td>Dinner</td>",
+"<td></td>",
+"<td></td>",
+"<td></td>",
+"<td></td>",
+"<td></td>",
+"<td></td>",
+"<td></td>",
+"</tr>",
+"</tbody>",
+"</table>"
+], Table),
+% Putting everything together
+atomic_list_concat([FirstRow, Table], Body),
+% Create the HTML page
+html(Body, Html).
 
 
 
@@ -309,18 +358,24 @@ page(e4, _, Html) :-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% page for the grocery list
 
 page(f1, _, Html) :-
-	currentTopLevel(f1), 
-	% Constructing the HTML page
-	% First row: Instructions
-	atomic_list_concat([
-	"<center><h1> the list would be here </h1></center></br>",
-	"<center><p> the list would be here </p></center>"
-	], Txt),
-	applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow), 
-	% Putting everything together
-	atomic_list_concat([FirstRow], Body), 
-	% Create the HTML page
-	html(Body, Html).
+    currentTopLevel(f1), 
+    groceryList(ListOfIngredients),
+    % Constructing the HTML page
+    % First row: Instructions
+    atomic_list_concat([
+    "<center><h1> Grocery List </h1></center></br>",
+    "<center><p> List of ingredients: </p></center>"
+    ], Txt),
+    applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow), 
+    % Second row: Grocery list
+    atomic_list_concat(ListOfIngredients, ", ", Ingredients),
+    atomic_list_concat(["<center><p>", Ingredients, "</p></center>"], List),
+    applyTemplate('<div class="row justify-content-center">~a</div>', List, SecondRow), 
+    % Putting everything together
+    atomic_list_concat([FirstRow, SecondRow], Body), 
+    % Create the HTML page
+    html(Body, Html).
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
