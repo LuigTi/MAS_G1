@@ -16734,8 +16734,7 @@ step('299', 3, 'mix well and allow it to marinate for 30 mins.').
 step('299', 4, 'meanwhile, thinly slice the remaining half of your lemon, and mince the onion, garlic and ginger.'). 
 step('299', 5, 'following that, zest and juice two additional lemons into a bowl.'). 
 step('299', 6, 'combine the chicken stock, 3 tbsp soy sauce, 1 tbsp sugar and 1/2 tsp white pepper powder in a jug.'). 
-step('299', 7, 'heat up a pan with 5cm of vegetable oil to deep fry the chicken
-pour 200g of plain flour into a bowl and tip in your chicken along with its marinating liquid.'). 
+step('299', 7, 'heat up a pan with 5cm of vegetable oil to deep fry the chicken pour 200g of plain flour into a bowl and tip in your chicken along with its marinating liquid.'). 
 step('299', 8, 'mix it well with your hands, scrunching up the chicken so that there are lots of craggy bits.'). 
 step('299', 9, 'in a small cup, combine the cornflour with 1 tbsp water.'). 
 step('299', 10, 'deep fry each piece of chicken in batches for 3-4 mins until golden brown, set aside to drain on a paper towel.'). 
@@ -16743,8 +16742,7 @@ step('299', 11, 'heat up a large wok until smoking and pour a large glug of oil 
 step('299', 12, 'stir fry the onion, ginger and garlic for 1 min until golden brown.'). 
 step('299', 13, 'pour in the chicken stock mixture and bring the sauce to a bubble.'). 
 step('299', 14, 'add the cornflour mix and whisk to combine.'). 
-step('299', 15, 'simmer the sauce for 2 mins until it is thick and glossy
-toss in the chicken and lemon juice and mix well.'). 
+step('299', 15, 'simmer the sauce for 2 mins until it is thick and glossy toss in the chicken and lemon juice and mix well.'). 
 step('299', 16, 'cook for 30 secs and serve on a bed of steamed rice.'). 
 step('299', 17, 'top with toasted sesame seeds, lemon slices and enjoy.'). 
 ingredient('299', 'chicken thighs'). 
