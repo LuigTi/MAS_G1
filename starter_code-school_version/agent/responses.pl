@@ -192,6 +192,8 @@ text(insertDay(_), "Day added.").
 
 text(insertMeal(_), "Meal added.").
 
+text(questionIngredient, "Do you want to look at the ingredient again?").
+
 text(insertIngredient, "Here is the ingredient.").
 
 
