@@ -245,7 +245,9 @@ page(e4, _, Html) :-
 page(f1, _, Html) :-
     currentTopLevel(f1), 
     groceryList(ListOfIngredients),
-    bulletList(ListOfIngredients, Body),
+    bulletList(ListOfIngredients, Body1),
+    Firstrow = '<br>',
+    atomic_list_concat([Firstrow, Body1], Body),
     html(Body, Html).
 
 
@@ -484,12 +486,8 @@ page(c40, _, Html) :-
 	currentTopLevel(c40), 
 	% Constructing the HTML page
 	% First row: Instructions
-	atomic_list_concat([
-	"<center><h1> See you next time! </h1></center></br>"
-	], Txt),
-	applyTemplate('<div class="row justify-content-center"><div class="alert mt-5" style="background-color: rgb(138, 112, 88);">~a</div></div>', Txt, FirstRow), 
+	atomic_list_concat(['<br><div class="text-center" style="font-size: 3rem;">See you next time!</div>'], Body), 
 	% Putting everything together
-	atomic_list_concat([FirstRow], Body), 
 	% Create the HTML page
 	html(Body, Html).
 
