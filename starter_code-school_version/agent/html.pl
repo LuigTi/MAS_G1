@@ -89,8 +89,8 @@ page(e1, _, Html) :-
 	
 
 	
-page(e2, _, Html) :-
-	currentTopLevel(e2), 
+page(e12, _, Html) :-
+	currentTopLevel(e12), 
 	% Constructing HTML page
 	atomic_list_concat(['<div class="row justify-content-center"><div class="card"><div class="card-body">This is ~a.</div></div></div>'], Template),
 	N = 'Day Scheduling', applyTemplate(Template, N, FirstRow),
@@ -99,9 +99,9 @@ page(e2, _, Html) :-
 	% Create the HTML page
 	html(Body, Html).
 	
-page(e3, _, Html) :-
+page(e13, _, Html) :-
 	% Condition for when to show this page
-	currentTopLevel(e3), 
+	currentTopLevel(e13), 
 	% Constructing HTML page
 	atomic_list_concat(['<div class="row justify-content-center"><div class="card"><div class="card-body">This is ~a.</div></div></div>'], Template),
 	N = 'Meal Scheduling', applyTemplate(Template, N, FirstRow),
@@ -110,6 +110,54 @@ page(e3, _, Html) :-
 	% Create the HTML page
 	html(Body, Html).
 
+
+page(e3, _, Html) :-
+	% Condition for when to show this page
+	currentTopLevel(e3), 
+	% Constructing HTML page
+	atomic_list_concat(['<div class="row justify-content-center"><div class="card"><div class="card-body"><div style="display: inline-flex;"><h3>~a is scheduled </h3>'], TemplateRecipe),
+	atomic_list_concat(['<h3> &nbsp;on ~a </h3>'], TemplateDay),
+	atomic_list_concat(['<h3> &nbsp;at ~a.</h3></div></div></div></div>'], TemplateMeal),
+	% Get the bot's name if it has one; other call it 'your assistant'
+	(recipeDataDay(RecipeID, Day), member(weekdays = A, Day)),
+	(recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal)),
+	recipeName(RecipeID, Name),
+	applyTemplate(TemplateRecipe, Name, FirstRow),
+	applyTemplate(TemplateDay, A, SecondRow),
+	applyTemplate(TemplateMeal, B, ThirdRow),
+	FourthRow = '<div class="text-center mt-5"></div>',
+	%table
+	atomic_list_concat(['<table border="1" bgcolor="black" width="1150" height="330"><tr bgcolor="white"><th width="100" height="30"></th><th style="text-align: center" width="150">Monday</th><th style="text-align: center" width="150">Tuesday</th><th style="text-align: center" width="150">Wednesday</th><th style="text-align: center" width="150">Thursday</th><th style="text-align: center" width="150">Friday</th><th style="text-align: center" width="150">Saturday</th><th style="text-align: center" width="150">Sunday</th></tr>'], TableRow1),
+	atomic_list_concat(['<tr bgcolor="white" height="100" align="center"><td>Breakfast</td>'], Breakfast),
+	((atomic_list_concat(['<td>~a</td>'], Breakfast1), A = 'Monday', B = 'breakfast', applyTemplate(Breakfast1, Name, Breakfast11)); atomic_list_concat(['<td> </td>'], Breakfast11)),
+	((atomic_list_concat(['<td>~a</td>'], Breakfast2),A = 'Tuesday', B = 'breakfast', applyTemplate(Breakfast2, Name, Breakfast22)); atomic_list_concat(['<td> </td>'], Breakfast22)),
+	((atomic_list_concat(['<td>~a</td>'], Breakfast3),A = 'Wednesday', B = 'breakfast', applyTemplate(Breakfast3, Name, Breakfast33)); atomic_list_concat(['<td> </td>'], Breakfast33)),
+	((atomic_list_concat(['<td>~a</td>'], Breakfast4),A = 'Thursday', B = 'breakfast', applyTemplate(Breakfast4, Name, Breakfast44)); atomic_list_concat(['<td> </td>'], Breakfast44)),
+	((atomic_list_concat(['<td>~a</td>'], Breakfast5),A = 'Friday', B = 'breakfast', applyTemplate(Breakfast5, Name, Breakfast55)); atomic_list_concat(['<td> </td>'], Breakfast55)),
+	((atomic_list_concat(['<td>~a</td>'], Breakfast6),A = 'Saturday', B = 'breakfast', applyTemplate(Breakfast6, Name, Breakfast66)); atomic_list_concat(['<td> </td>'], Breakfast66)),
+	((atomic_list_concat(['<td>~a</td></tr>'], Breakfast7),A = 'Sunday', B = 'breakfast', applyTemplate(Breakfast7, Name, Breakfast77)); atomic_list_concat(['<td> </td></tr>'], Breakfast77)),
+	atomic_list_concat(['<tr bgcolor="white" height="100" align="center"><td>Lunch</td>'], Lunch),
+	((atomic_list_concat(['<td>~a</td>'], Lunch1), A = 'Monday', B = 'lunch', applyTemplate(Lunch1, Name, Lunch11)); atomic_list_concat(['<td> </td>'], Lunch11)),
+	((atomic_list_concat(['<td>~a</td>'], Lunch2), A = 'Tuesday', B = 'lunch', applyTemplate(Lunch2, Name, Lunch22)); atomic_list_concat(['<td> </td>'], Lunch22)),
+	((atomic_list_concat(['<td>~a</td>'], Lunch3), A = 'Wednesday', B = 'lunch', applyTemplate(Lunch3, Name, Lunch33)); atomic_list_concat(['<td> </td>'], Lunch33)),
+	((atomic_list_concat(['<td>~a</td>'], Lunch4), A = 'Thursday', B = 'lunch', applyTemplate(Lunch4, Name, Lunch44)); atomic_list_concat(['<td> </td>'], Lunch44)),
+	((atomic_list_concat(['<td>~a</td>'], Lunch5), A = 'Friday', B = 'lunch', applyTemplate(Lunch5, Name, Lunch55)); atomic_list_concat(['<td> </td>'], Lunch55)),
+	((atomic_list_concat(['<td>~a</td>'], Lunch6), A = 'Saturday', B = 'lunch', applyTemplate(Lunch6, Name, Lunch66)); atomic_list_concat(['<td> </td>'], Lunch66)),
+	((atomic_list_concat(['<td>~a</td></tr>'], Lunch7), A = 'Sunday', B = 'lunch', applyTemplate(Lunch7, Name, Lunch77)); atomic_list_concat(['<td> </td></tr>'], Lunch77)),
+	atomic_list_concat(['<tr bgcolor="white" height="100" align="center"><td>Dinner</td>'], Dinner),
+	((atomic_list_concat(['<td>~a</td>'], Dinner1), A = 'Monday', B = 'dinner', applyTemplate(Dinner1, Name, Dinner11)); atomic_list_concat(['<td> </td>'], Dinner11)),
+	((atomic_list_concat(['<td>~a</td>'], Dinner2), A = 'Tuesday', B = 'dinner', applyTemplate(Dinner2, Name, Dinner22)); atomic_list_concat(['<td> </td>'], Dinner22)),
+	((atomic_list_concat(['<td>~a</td>'], Dinner3), A = 'Wednesday', B = 'dinner', applyTemplate(Dinner3, Name, Dinner33)); atomic_list_concat(['<td> </td>'], Dinner33)),
+	((atomic_list_concat(['<td>~a</td>'], Dinner4), A = 'Thursday', B = 'dinner', applyTemplate(Dinner4, Name, Dinner44)); atomic_list_concat(['<td> </td>'], Dinner44)),
+	((atomic_list_concat(['<td>~a</td>'], Dinner5), A = 'Friday', B = 'dinner', applyTemplate(Dinner5, Name, Dinner55)); atomic_list_concat(['<td> </td>'], Dinner55)),
+	((atomic_list_concat(['<td>~a</td>'], Dinner6), A = 'Saturday', B = 'dinner', applyTemplate(Dinner6, Name, Dinner66)); atomic_list_concat(['<td> </td>'], Dinner66)),
+	((atomic_list_concat(['<td>~a</td></tr></table>'], Dinner7), A = 'Sunday', B = 'dinner', applyTemplate(Dinner7, Name, Dinner77)); atomic_list_concat(['<td> </td></tr></table>'], Dinner77)),	
+	atomic_list_concat([FirstRow, SecondRow, ThirdRow, FourthRow, TableRow1, Breakfast, Breakfast11, Breakfast22, Breakfast33, Breakfast44, Breakfast55, Breakfast66, Breakfast77, Lunch, Lunch11, Lunch22, Lunch33, Lunch44, Lunch55, Lunch66, Lunch77, Dinner, Dinner11, Dinner22, Dinner33, Dinner44, Dinner55, Dinner66, Dinner77], Body),
+	% Create the HTML page
+	html(Body, Html).
+
+
+%%%%%%%%%%%%%%%% not to see the calendar but to delete smt.
 page(e4, _, Html) :-
 	% Condition for when to show this page
 	currentTopLevel(e4), 
@@ -154,6 +202,39 @@ page(e4, _, Html) :-
 	atomic_list_concat([FirstRow, SecondRow, ThirdRow, FourthRow, TableRow1, Breakfast, Breakfast11, Breakfast22, Breakfast33, Breakfast44, Breakfast55, Breakfast66, Breakfast77, Lunch, Lunch11, Lunch22, Lunch33, Lunch44, Lunch55, Lunch66, Lunch77, Dinner, Dinner11, Dinner22, Dinner33, Dinner44, Dinner55, Dinner66, Dinner77], Body),
 	% Create the HTML page
 	html(Body, Html).
+
+
+
+
+
+
+%%%%%%%%%%%% Grocery list with ingridients list. 
+
+
+page(f1, _, Html) :-
+    currentTopLevel(f1), 
+    groceryList(ListOfIngredients),
+    % Constructing the HTML page
+    % First row: Instructions
+    atomic_list_concat([
+    "<center><h1> Grocery List </h1></center></br>",
+    "<center><p> List of ingredients: </p></center>"
+    ], Txt),
+    applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow), 
+    % Second row: Grocery list
+    atomic_list_concat(ListOfIngredients, ", ", Ingredients),
+    atomic_list_concat(["<center><p>", Ingredients, "</p></center>"], List),
+    applyTemplate('<div class="row justify-content-center">~a</div>', List, SecondRow), 
+    % Putting everything together
+    atomic_list_concat([FirstRow, SecondRow], Body), 
+    % Create the HTML page
+    html(Body, Html).
+
+
+
+
+
+
 
 
 page(a40menu, _, Html) :-

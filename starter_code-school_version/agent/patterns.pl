@@ -299,21 +299,42 @@ pattern([c30, [user, checkCapability], [agent, describeCapability]]).
 
 pattern([c40, [agent, sessionCloser], [user, farewell]]).
 
-pattern([e1, [agent, questionCalendar], [user, disconfirmation], [agent, insert(c40)]]). 
+%pattern([e1, [agent, questionCalendar], [user, disconfirmation], [agent, insert(c40)]]). 
 
-pattern([e1, [agent, questionCalendar], [user, confirmation], [agent, questionDay], [agent, insert(e2)]]).
+%pattern([e1, [agent, questionCalendar], [user, confirmation], [agent, questionDay], [agent, insert(e2)]]).
 
-pattern([e2, [user, addFilter], [agent, insertDay(Params)], [agent, questionMeal], [agent, insert(e3)]]) :- getParamsPatternInitiatingIntent(user, addFilter, Params).
+%pattern([e2, [user, addFilter], [agent, insertDay(Params)], [agent, questionMeal], [agent, insert(e3)]]) :- getParamsPatternInitiatingIntent(user, addFilter, Params).
 
-pattern([e3, [user, addFilter], [agent, insertMeal(Params1)], [agent, insert(e4)]]) :- getParamsPatternInitiatingIntent(user, addFilter, Params1).
+%pattern([e3, [user, addFilter], [agent, insertMeal(Params1)], [agent, insert(e4)]]) :- getParamsPatternInitiatingIntent(user, addFilter, Params1).
 
-pattern([e4, [agent, farewell], [user, farewell], [agent, insert(c40)]]).
+%pattern([e4, [agent, farewell], [user, farewell], [agent, insert(c40)]]).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % for today sunday29/1 : add the shitty ingredient list thingy.                  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+pattern([e1, [agent, questionCalendar], [user, disconfirmation],[agent, insert(c40)]]).
+
+pattern([e1, [agent, questionCalendar], [user, confirmation],[agent, questionDay], [agent, insert(e12)]]).
+
+pattern([e12,[user, addFilter], [agent, insertDay(Params)], [agent, questionMeal], [agent, insert(e13)]]):- getParamsPatternInitiatingIntent(user, addFilter, Params).
+
+pattern([e13,[user, addFilter], [agent, insertMeal(Params)], [agent, insert(e3)]]):- getParamsPatternInitiatingIntent(user, addFilter, Params).
 
 
+
+
+pattern([e3, [agent, deleteCalendar], [user, confirmation],  [agent, recipeDelete], [agent, insert(e4)]]).
+
+
+pattern([e3, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, confirmation],[agent, clearMemory], [agent, insert(a50recipeSelect)]]).
+pattern([e3, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, disconfirmation],[agent, groceryQuestion],[user, confirmation], [agent, groceryList], [agent, insert(f1)]]).
+pattern([e3, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, disconfirmation],[agent, groceryQuestion],[user, disconfirmation], [agent, insert(c40)]]).
+
+
+
+pattern([e4,[user, recipeRequest], [agent, deleteRecipe(Params)], [agent, insert(e3)]]):- getParamsPatternInitiatingIntent(user, recipeRequest, Params).
+
+pattern([f1,[agent, showGrocery],[agent, questionFinal],[user, farewell], [agent, insert(c40)]]).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

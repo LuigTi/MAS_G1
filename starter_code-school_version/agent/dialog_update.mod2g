@@ -305,8 +305,17 @@ module dialog_update {
 		if Intent = insertMeal(Params),(currentRecipe(RecipeID); randomRep(RecipeID))
 		then insert(recipeDataMeal(RecipeID, Params)) .
 		
-		if Intent = ingredientList ,(currentRecipe(RecipeID); randomRep(RecipeID)), setof(Ingredients, ((currentRecipe(RecipeID); randomRep(RecipeID)), ingredient(RecipeID, Ingredients)), ListIngredients)
-		then insert(recipeDataIngredients(ListIngredients)) .
+		%if Intent = ingredientList ,(currentRecipe(RecipeID); randomRep(RecipeID)), setof(Ingredients, ((currentRecipe(RecipeID); randomRep(RecipeID)), ingredient(RecipeID, Ingredients)), ListIngredients)
+		%then insert(recipeDataIngredients(ListIngredients)) .
+		
+		if Intent = deleteRecipe(Params), recipeName(RecipeID, Params), recipeDataMeal(RecipeID, Typemeal), recipeDataDay(RecipeID, Recipeday)
+        then delete(recipeDataMeal(RecipeID, Typemeal)) + delete(recipeDataDay(RecipeID, Recipeday)) .
+
+        if Intent = clearMemory, memory(Mem)
+        then delete(memory(Mem)) + insert(memory([])).
+
+        if Intent = groceryList, findall(Ingredient,(recipeDataDay(RecipeID,_), ingredientAndQuantity(RecipeID,Ingredient)),ListOfIngredient)
+        then insert(groceryList(ListOfIngredient)).
 				
 		% Handle instruction 'terminate' (which clears the agent's agenda)
 		if Intent = terminate, randomRecipe(NewRecipeID), randomRep(RecipeID),

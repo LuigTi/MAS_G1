@@ -189,12 +189,29 @@ text(nextMove, "would you like to add a new recipe or delete a recipe?").
 
 text(insertDay(_), "Day added.").
 
+text(addCalendar, "would you like to add something to your calendar").
 
 text(insertMeal(_), "Meal added.").
 
 text(questionIngredient, "Do you want to look at the ingredient again?").
 
 text(insertIngredient, "Here is the ingredient.").
+
+text(deleteCalendar, "would you like to delete a recipe from the calendar?").
+
+text(recipeDelete, "Choose the recipe you want to delete from the calendar.").
+
+text(deleteRecipe(_), "Recipe deleted").
+
+text(clearMemory, "removing all previous filters").
+
+text(groceryList, "I am hereby making your grocery list").
+
+text(groceryQuestion, "Would you like to see your grocery list?").
+
+text(showGrocery, "This is your grocery list.").
+
+text(questionFinal, "It's been a pleasure to help you out, when you are done with the grocery list, you can just say Bye Bye.").
 
 
 

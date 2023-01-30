@@ -34,7 +34,9 @@
 	talking/0,
 	recipeDataDay/2, 
 	recipeDataMeal/2,
-	recipeDataIngredients/1.
+	deleteRecipe/1,
+	groceryList/1.
+	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Memory: a memory is a list of entity key, value pairs  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
