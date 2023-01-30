@@ -115,76 +115,76 @@ page(e3, _, Html) :-
 	% Condition for when to show this page
 	currentTopLevel(e3), 
 	% Constructing HTML page
-	atomic_list_concat(['<div class="row justify-content-center"><div class="card"><div class="card-body"><div style="display: inline-flex;"><h3>~a is scheduled </h3>'], TemplateRecipe),
-	atomic_list_concat(['<h3> &nbsp;on ~a </h3>'], TemplateDay),
-	atomic_list_concat(['<h3> &nbsp;at ~a.</h3></div></div></div></div>'], TemplateMeal),
+	atomic_list_concat(['<div class="row justify-content-center"><div class="card"><div class="card-body"><div style="display: inline-flex;"><h3>Here is your meal schedule for the week.</h3></div></div></div></div>'], FirstRow),
+	%atomic_list_concat(['<h3> &nbsp;on ~a </h3>'], TemplateDay),
+	%atomic_list_concat(['<h3> &nbsp;at ~a.</h3></div></div></div></div>'], TemplateMeal),
 	% Get the bot's name if it has one; other call it 'your assistant'
 	%(recipeDataDay(RecipeID, Day), member(weekdays = A, Day)),
 	%(recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal)),
 	%recipeName(RecipeID, Name),
-	applyTemplate(TemplateRecipe, Name, FirstRow),
-	applyTemplate(TemplateDay, A, SecondRow),
-	applyTemplate(TemplateMeal, B, ThirdRow),
+	%applyTemplate(TemplateRecipe, Name, FirstRow),
+	%applyTemplate(TemplateDay, A, SecondRow),
+	%applyTemplate(TemplateMeal, B, ThirdRow),
 	FourthRow = '<div class="text-center mt-5"></div>',
 	%table
-	atomic_list_concat(['<table border="1" bgcolor="black" width="1150" height="330"><tr bgcolor="white"><th width="100" height="30"></th><th style="text-align: center" width="150">Monday</th><th style="text-align: center" width="150">Tuesday</th><th style="text-align: center" width="150">Wednesday</th><th style="text-align: center" width="150">Thursday</th><th style="text-align: center" width="150">Friday</th><th style="text-align: center" width="150">Saturday</th><th style="text-align: center" width="150">Sunday</th></tr>'], TableRow1),
+	atomic_list_concat(['<div style="display: flex; justify-content: center; "><table border="1" bgcolor="black" width="1150" height="330"><tr bgcolor="white"><th width="100" height="30"></th><th style="text-align: center" width="150">Monday</th><th style="text-align: center" width="150">Tuesday</th><th style="text-align: center" width="150">Wednesday</th><th style="text-align: center" width="150">Thursday</th><th style="text-align: center" width="150">Friday</th><th style="text-align: center" width="150">Saturday</th><th style="text-align: center" width="150">Sunday</th></tr>'], TableRow1),
 	atomic_list_concat(['<tr bgcolor="white" height="100" align="center"><td>Breakfast</td>'], Breakfast),
-	((atomic_list_concat(['<td>~a</td>'], Breakfast1), variableMondayBreakfast(RecipeID1), applyTemplate(Breakfast1, RecipeID1, Breakfast11)); atomic_list_concat(['<td> </td>'], Breakfast11)),
-	((atomic_list_concat(['<td>~a</td>'], Breakfast2), variableTuesdayBreakfast(RecipeID2), applyTemplate(Breakfast2, RecipeID2, Breakfast22)); atomic_list_concat(['<td> </td>'], Breakfast22)),
-	((atomic_list_concat(['<td>~a</td>'], Breakfast3),variableWednesdayBreakfast(RecipeID3), applyTemplate(Breakfast3, RecipeID3, Breakfast33)); atomic_list_concat(['<td> </td>'], Breakfast33)),
-	((atomic_list_concat(['<td>~a</td>'], Breakfast4),variableThursdayBreakfast(RecipeID4), applyTemplate(Breakfast4, RecipeID4, Breakfast44)); atomic_list_concat(['<td> </td>'], Breakfast44)),
-	((atomic_list_concat(['<td>~a</td>'], Breakfast5),variableFridayBreakfast(RecipeID5), applyTemplate(Breakfast5, RecipeID5, Breakfast55)); atomic_list_concat(['<td> </td>'], Breakfast55)),
-	((atomic_list_concat(['<td>~a</td>'], Breakfast6),variableSaturdayBreakfast(RecipeID6), applyTemplate(Breakfast6, RecipeID6, Breakfast66)); atomic_list_concat(['<td> </td>'], Breakfast66)),
-	((atomic_list_concat(['<td>~a</td></tr>'], Breakfast7),variableSundayBreakfast(RecipeID7), applyTemplate(Breakfast7, RecipeID7, Breakfast77)); atomic_list_concat(['<td> </td></tr>'], Breakfast77)),
+	((atomic_list_concat(['<td>~a</td>'], Breakfast1), variableMondayBreakfast(RecipeID1), recipeName(RecipeID1, Name1), applyTemplate(Breakfast1, Name1, Breakfast11)); atomic_list_concat(['<td> </td>'], Breakfast11)),
+	((atomic_list_concat(['<td>~a</td>'], Breakfast2), variableTuesdayBreakfast(RecipeID2),recipeName(RecipeID2, Name2), applyTemplate(Breakfast2, Name2, Breakfast22)); atomic_list_concat(['<td> </td>'], Breakfast22)),
+	((atomic_list_concat(['<td>~a</td>'], Breakfast3),variableWednesdayBreakfast(RecipeID3),recipeName(RecipeID3, Name3), applyTemplate(Breakfast3, Name3, Breakfast33)); atomic_list_concat(['<td> </td>'], Breakfast33)),
+	((atomic_list_concat(['<td>~a</td>'], Breakfast4),variableThursdayBreakfast(RecipeID4), recipeName(RecipeID4, Name4), applyTemplate(Breakfast4, Name4, Breakfast44)); atomic_list_concat(['<td> </td>'], Breakfast44)),
+	((atomic_list_concat(['<td>~a</td>'], Breakfast5),variableFridayBreakfast(RecipeID5), recipeName(RecipeID5, Name5), applyTemplate(Breakfast5, Name5, Breakfast55)); atomic_list_concat(['<td> </td>'], Breakfast55)),
+	((atomic_list_concat(['<td>~a</td>'], Breakfast6),variableSaturdayBreakfast(RecipeID6), recipeName(RecipeID6, Name6),applyTemplate(Breakfast6, Name6, Breakfast66)); atomic_list_concat(['<td> </td>'], Breakfast66)),
+	((atomic_list_concat(['<td>~a</td></tr>'], Breakfast7),variableSundayBreakfast(RecipeID7), recipeName(RecipeID7, Name7), applyTemplate(Breakfast7, Name7, Breakfast77)); atomic_list_concat(['<td> </td></tr>'], Breakfast77)),
 	atomic_list_concat(['<tr bgcolor="white" height="100" align="center"><td>Lunch</td>'], Lunch),
-	((atomic_list_concat(['<td>~a</td>'], Lunch1),variableMondayLunch(RecipeID8), applyTemplate(Lunch1,RecipeID8, Lunch11)); atomic_list_concat(['<td> </td>'], Lunch11)),
-	((atomic_list_concat(['<td>~a</td>'], Lunch2),variableTuesdayLunch(RecipeID9), applyTemplate(Lunch2,RecipeID9, Lunch22)); atomic_list_concat(['<td> </td>'], Lunch22)),
-	((atomic_list_concat(['<td>~a</td>'], Lunch3),variableWednesdayLunch(RecipeID10), applyTemplate(Lunch3,RecipeID10, Lunch33)); atomic_list_concat(['<td> </td>'], Lunch33)),
-	((atomic_list_concat(['<td>~a</td>'], Lunch4), variableThursdayLunch(RecipeID11), applyTemplate(Lunch4,RecipeID11, Lunch44)); atomic_list_concat(['<td> </td>'], Lunch44)),
-	((atomic_list_concat(['<td>~a</td>'], Lunch5), variableFridayLunch(RecipeID12), applyTemplate(Lunch5,RecipeID12, Lunch55)); atomic_list_concat(['<td> </td>'], Lunch55)),
-	((atomic_list_concat(['<td>~a</td>'], Lunch6), variableSaturdayLunch(RecipeID13), applyTemplate(Lunch6,RecipeID13, Lunch66)); atomic_list_concat(['<td> </td>'], Lunch66)),
-	((atomic_list_concat(['<td>~a</td></tr>'], Lunch7),variableSundayLunch(RecipeID14), applyTemplate(Lunch7,RecipeID14, Lunch77)); atomic_list_concat(['<td> </td></tr>'], Lunch77)),
+	((atomic_list_concat(['<td>~a</td>'], Lunch1),variableMondayLunch(RecipeID8), recipeName(RecipeID8, Name8),applyTemplate(Lunch1,Name8, Lunch11)); atomic_list_concat(['<td> </td>'], Lunch11)),
+	((atomic_list_concat(['<td>~a</td>'], Lunch2),variableTuesdayLunch(RecipeID9),recipeName(RecipeID9, Name9), applyTemplate(Lunch2,Name9, Lunch22)); atomic_list_concat(['<td> </td>'], Lunch22)),
+	((atomic_list_concat(['<td>~a</td>'], Lunch3),variableWednesdayLunch(RecipeID10),recipeName(RecipeID10, Name10), applyTemplate(Lunch3,Name10, Lunch33)); atomic_list_concat(['<td> </td>'], Lunch33)),
+	((atomic_list_concat(['<td>~a</td>'], Lunch4), variableThursdayLunch(RecipeID11),recipeName(RecipeID11, Name11), applyTemplate(Lunch4,Name11, Lunch44)); atomic_list_concat(['<td> </td>'], Lunch44)),
+	((atomic_list_concat(['<td>~a</td>'], Lunch5), variableFridayLunch(RecipeID12),recipeName(RecipeID12, Name12), applyTemplate(Lunch5,Name12, Lunch55)); atomic_list_concat(['<td> </td>'], Lunch55)),
+	((atomic_list_concat(['<td>~a</td>'], Lunch6), variableSaturdayLunch(RecipeID13),recipeName(RecipeID13, Name13), applyTemplate(Lunch6,Name13, Lunch66)); atomic_list_concat(['<td> </td>'], Lunch66)),
+	((atomic_list_concat(['<td>~a</td></tr>'], Lunch7),variableSundayLunch(RecipeID14),recipeName(RecipeID14, Name14), applyTemplate(Lunch7,Name14, Lunch77)); atomic_list_concat(['<td> </td></tr>'], Lunch77)),
 	atomic_list_concat(['<tr bgcolor="white" height="100" align="center"><td>Dinner</td>'], Dinner),
-	((atomic_list_concat(['<td>~a</td>'], Dinner1), variableMondayDinner(RecipeID15), applyTemplate(Dinner1, RecipeID15, Dinner11)); atomic_list_concat(['<td> </td>'], Dinner11)),
-	((atomic_list_concat(['<td>~a</td>'], Dinner2), variableTuesdayDinner(RecipeID16), applyTemplate(Dinner2, RecipeID16, Dinner22)); atomic_list_concat(['<td> </td>'], Dinner22)),
-	((atomic_list_concat(['<td>~a</td>'], Dinner3), variableWednesdayDinner(RecipeID17), applyTemplate(Dinner3, RecipeID17, Dinner33)); atomic_list_concat(['<td> </td>'], Dinner33)),
-	((atomic_list_concat(['<td>~a</td>'], Dinner4), variableThursdayDinner(RecipeID18), applyTemplate(Dinner4, RecipeID18, Dinner44)); atomic_list_concat(['<td> </td>'], Dinner44)),
-	((atomic_list_concat(['<td>~a</td>'], Dinner5), variableFridayDinner(RecipeID19), applyTemplate(Dinner5, RecipeID19, Dinner55)); atomic_list_concat(['<td> </td>'], Dinner55)),
-	((atomic_list_concat(['<td>~a</td>'], Dinner6), variableSaturdayDinner(RecipeID20), applyTemplate(Dinner6, RecipeID20, Dinner66)); atomic_list_concat(['<td> </td>'], Dinner66)),
-	((atomic_list_concat(['<td>~a</td></tr></table>'], Dinner7),variableSundayDinner(RecipeID21), applyTemplate(Dinner7, RecipeID21, Dinner77)); atomic_list_concat(['<td> </td></tr></table>'], Dinner77)),	
-	atomic_list_concat([FirstRow, SecondRow, ThirdRow, FourthRow, TableRow1, Breakfast, Breakfast11, Breakfast22, Breakfast33, Breakfast44, Breakfast55, Breakfast66, Breakfast77, Lunch, Lunch11, Lunch22, Lunch33, Lunch44, Lunch55, Lunch66, Lunch77, Dinner, Dinner11, Dinner22, Dinner33, Dinner44, Dinner55, Dinner66, Dinner77], Body),
+	((atomic_list_concat(['<td>~a</td>'], Dinner1), variableMondayDinner(RecipeID15),recipeName(RecipeID15, Name15), applyTemplate(Dinner1, Name15, Dinner11)); atomic_list_concat(['<td> </td>'], Dinner11)),
+	((atomic_list_concat(['<td>~a</td>'], Dinner2), variableTuesdayDinner(RecipeID16),recipeName(RecipeID16, Name16), applyTemplate(Dinner2, Name16, Dinner22)); atomic_list_concat(['<td> </td>'], Dinner22)),
+	((atomic_list_concat(['<td>~a</td>'], Dinner3), variableWednesdayDinner(RecipeID17),recipeName(RecipeID17, Name17), applyTemplate(Dinner3, Name17, Dinner33)); atomic_list_concat(['<td> </td>'], Dinner33)),
+	((atomic_list_concat(['<td>~a</td>'], Dinner4), variableThursdayDinner(RecipeID18),recipeName(RecipeID18, Name18), applyTemplate(Dinner4, Name18, Dinner44)); atomic_list_concat(['<td> </td>'], Dinner44)),
+	((atomic_list_concat(['<td>~a</td>'], Dinner5), variableFridayDinner(RecipeID19),recipeName(RecipeID19, Name19), applyTemplate(Dinner5, Name19, Dinner55)); atomic_list_concat(['<td> </td>'], Dinner55)),
+	((atomic_list_concat(['<td>~a</td>'], Dinner6), variableSaturdayDinner(RecipeID20),recipeName(RecipeID20, Name20), applyTemplate(Dinner6, Name20, Dinner66)); atomic_list_concat(['<td> </td>'], Dinner66)),
+	((atomic_list_concat(['<td>~a</td></tr></table>'], Dinner7),variableSundayDinner(RecipeID21),recipeName(RecipeID21, Name21), applyTemplate(Dinner7, Name21, Dinner77)); atomic_list_concat(['<td> </td></tr></table></div>'], Dinner77)),	
+	atomic_list_concat([FirstRow, FourthRow, TableRow1, Breakfast, Breakfast11, Breakfast22, Breakfast33, Breakfast44, Breakfast55, Breakfast66, Breakfast77, Lunch, Lunch11, Lunch22, Lunch33, Lunch44, Lunch55, Lunch66, Lunch77, Dinner, Dinner11, Dinner22, Dinner33, Dinner44, Dinner55, Dinner66, Dinner77], Body),
 	% Create the HTML page
 	html(Body, Html).
 
 
 
 
-variableMondayLunch(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = 'Monday', Day),recipeDataMeal(RecipeID, Meal), member(mealType = 'lunch', Meal). % recipeDataMeal(RecipeID,[mealType = 'lunch']).
-variableTuesdayLunch(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = 'Tuesday', Day),recipeDataMeal(RecipeID, Meal), member(mealType = 'lunch', Meal). % recipeDataMeal(RecipeID,[mealType = 'lunch']).
-variableWednesdayLunch(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = 'Wednesday', Day),recipeDataMeal(RecipeID, Meal), member(mealType = 'lunch', Meal). % recipeDataMeal(RecipeID,[mealType = 'lunch']).
-variableThursdayLunch(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = 'Thursday', Day),recipeDataMeal(RecipeID, Meal), member(mealType = 'lunch', Meal). % recipeDataMeal(RecipeID,[mealType = 'lunch']).
-variableFridayLunch(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = ' Friday', Day),recipeDataMeal(RecipeID, Meal), member(mealType = 'lunch', Meal). % recipeDataMeal(RecipeID,[mealType = 'lunch']).
-variableSaturdayLunch(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = 'Saturday', Day),recipeDataMeal(RecipeID, Meal), member(mealType = 'lunch', Meal). % recipeDataMeal(RecipeID,[mealType = 'lunch']).
-variableSundayLunch(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = 'Sunday', Day),recipeDataMeal(RecipeID, Meal), member(mealType = 'lunch', Meal). % recipeDataMeal(RecipeID,[mealType = 'lunch']).
+variableMondayLunch(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = A, Day),recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal), A = 'Monday', B = 'lunch'.
+variableTuesdayLunch(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = A, Day),recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal), A = 'Tuesday', B = 'lunch'. 
+variableWednesdayLunch(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = A, Day),recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal), A = 'Wednesday', B = 'lunch'. 
+variableThursdayLunch(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = A, Day),recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal), A = 'Thursday', B = 'lunch'.
+variableFridayLunch(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = A, Day),recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal), A = 'Friday', B = 'lunch'. 
+variableSaturdayLunch(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = A, Day),recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal), A = 'Saturday', B = 'lunch'. 
+variableSundayLunch(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = A, Day),recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal), A = 'Sunday', B = 'lunch'.
 
 
 
-variableMondayDinner(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = ' Monday', Day),recipeDataMeal(RecipeID, Meal), member(mealType = 'dinner', Meal). % recipeDataMeal(RecipeID,[mealType = 'lunch']).
-variableTuesdayDinner(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = ' Tuesday', Day),recipeDataMeal(RecipeID, Meal), member(mealType = 'dinner', Meal). % recipeDataMeal(RecipeID,[mealType = 'lunch']).
-variableWednesdayDinner(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = ' Wednesday', Day),recipeDataMeal(RecipeID, Meal), member(mealType = 'dinner', Meal). % recipeDataMeal(RecipeID,[mealType = 'lunch']).
-variableThursdayDinner(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = ' Thursday', Day),recipeDataMeal(RecipeID, Meal), member(mealType = 'dinner', Meal). % recipeDataMeal(RecipeID,[mealType = 'lunch']).
-variableFridayDinner(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = ' Friday', Day),recipeDataMeal(RecipeID, Meal), member(mealType = 'dinner', Meal). % recipeDataMeal(RecipeID,[mealType = 'lunch']).
-variableSaturdayDinner(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = 'Saturday', Day),recipeDataMeal(RecipeID, Meal), member(mealType = 'dinner', Meal). % recipeDataMeal(RecipeID,[mealType = 'lunch']).
-variableSundayDinner(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = 'Sunday', Day),recipeDataMeal(RecipeID, Meal), member(mealType = 'dinner', Meal). % recipeDataMeal(RecipeID,[mealType = 'lunch']).
+variableMondayDinner(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = A, Day),recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal), A = 'Monday', B = 'dinner'. 
+variableTuesdayDinner(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = A, Day),recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal), A = 'Tuesday', B = 'dinner'.
+variableWednesdayDinner(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = A, Day),recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal), A = 'Wednesday', B = 'dinner'. 
+variableThursdayDinner(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = A, Day),recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal), A = 'Thursday', B = 'dinner'. 
+variableFridayDinner(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = A, Day),recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal), A = 'Friday', B = 'dinner'. 
+variableSaturdayDinner(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = A, Day),recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal), A = 'Saturday', B = 'dinner'. 
+variableSundayDinner(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = A, Day),recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal), A = 'Sunday', B = 'dinner'. 
 
 
-variableMondayBreakfast(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = 'Monday', Day),recipeDataMeal(RecipeID, Meal), member(mealType = 'Breakfast', Meal).
-variableTuesdayBreakfast(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = 'Tuesday', Day),recipeDataMeal(RecipeID, Meal), member(mealType = 'Breakfast', Meal).
-variableWednesdayBreakfast(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = 'Wednesday', Day),recipeDataMeal(RecipeID, Meal), member(mealType = 'Breakfast', Meal).
-variableThursdayBreakfast(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = 'Thursday', Day),recipeDataMeal(RecipeID, Meal), member(mealType = 'Breakfast', Meal).
-variableFridayBreakfast(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = 'Friday', Day),recipeDataMeal(RecipeID, Meal), member(mealType = 'Breakfast', Meal).
-variableSaturdayBreakfast(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = 'Saturday', Day),recipeDataMeal(RecipeID, Meal), member(mealType = 'Breakfast', Meal).
-variableSundayBreakfast(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = 'Sunday', Day),recipeDataMeal(RecipeID, Meal), member(mealType = 'Breakfast', Meal). 
+variableMondayBreakfast(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = A, Day),recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal), A = 'Monday', B = 'breakfast'.
+variableTuesdayBreakfast(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = A, Day),recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal), A = 'Tuesday', B = 'breakfast'.
+variableWednesdayBreakfast(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = A, Day),recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal), A = 'Wednesday', B = 'breakfast'.
+variableThursdayBreakfast(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = A, Day),recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal), A = 'Thursday', B = 'breakfast'.
+variableFridayBreakfast(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = A, Day),recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal), A = 'Friday', B = 'breakfast'.
+variableSaturdayBreakfast(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = A, Day),recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal), A = 'Saturday', B = 'breakfast'.
+variableSundayBreakfast(RecipeID):- recipeDataDay(RecipeID,Day), member(weekdays = A, Day),recipeDataMeal(RecipeID, Meal), member(mealType = B, Meal), A = 'Sunday', B = 'breakfast'. 
 
 
 
@@ -245,20 +245,7 @@ page(e4, _, Html) :-
 page(f1, _, Html) :-
     currentTopLevel(f1), 
     groceryList(ListOfIngredients),
-    % Constructing the HTML page
-    % First row: Instructions
-    atomic_list_concat([
-    "<center><h1> Grocery List </h1></center></br>",
-    "<center><p> List of ingredients: </p></center>"
-    ], Txt),
-    applyTemplate('<div class="row justify-content-center"><div class="alert alert-dark">~a</div></div>', Txt, FirstRow), 
-    % Second row: Grocery list
-    atomic_list_concat(ListOfIngredients, ", ", Ingredients),
-    atomic_list_concat(["<center><p>", Ingredients, "</p></center>"], List),
-    applyTemplate('<div class="row justify-content-center">~a</div>', List, SecondRow), 
-    % Putting everything together
-    atomic_list_concat([FirstRow, SecondRow], Body), 
-    % Create the HTML page
+    bulletList(ListOfIngredients, Body),
     html(Body, Html).
 
 
