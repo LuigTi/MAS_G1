@@ -305,13 +305,9 @@ pattern([e1, [agent, questionCalendar], [user, disconfirmation],[agent, insert(c
 
 pattern([e1, [agent, questionCalendar], [user, confirmation],[agent, questionDay], [agent, insert(e12)]]).
 
-pattern([e12,[user, addFilter], [agent, insertDay(Params)], [agent, insert(e2)]]):- getParamsPatternInitiatingIntent(user, addFilter, Params).
+pattern([e12,[user, addFilter], [agent, insertDay(Params)],[agent, questionMeal], [agent, insert(e2)]]):- getParamsPatternInitiatingIntent(user, addFilter, Params).
 
-
-
-pattern([e2, [agent, questionMeal], [agent, insert(e22)]]).
-
-pattern([e22,[user, addFilter], [agent, insertMeal(Params)], [agent, insert(e3)]]):- getParamsPatternInitiatingIntent(user, addFilter, Params).
+pattern([e2,[user, addFilter], [agent, insertMeal(Params)], [agent, insert(e3)]]):- getParamsPatternInitiatingIntent(user, addFilter, Params).
 
 
 
