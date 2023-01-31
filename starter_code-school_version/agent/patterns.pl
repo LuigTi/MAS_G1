@@ -323,16 +323,19 @@ pattern([e13,[user, addFilter], [agent, insertMeal(Params)], [agent, insert(e3)]
 
 
 
-pattern([e3, [agent, deleteCalendar], [user, confirmation],  [agent, recipeDelete], [agent, insert(e4)]]).
+%pattern([e3, [agent, deleteCalendar], [user, confirmation],  [agent, recipeDelete], [agent, insert(e4)]]).
 
 
-pattern([e3, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, confirmation],[agent, clearMemory], [agent, insert(a50recipeSelect)]]).
-pattern([e3, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, disconfirmation],[agent, groceryQuestion],[user, confirmation], [agent, groceryList], [agent, insert(f1)]]).
-pattern([e3, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, disconfirmation],[agent, groceryQuestion],[user, disconfirmation], [agent, insert(c40)]]).
+%pattern([e3, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, confirmation],[agent, clearMemory], [agent, insert(a50recipeSelect)]]).
+%pattern([e3, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, disconfirmation],[agent, groceryQuestion],[user, confirmation], [agent, groceryList], [agent, insert(f1)]]).
+%pattern([e3, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, disconfirmation],[agent, groceryQuestion],[user, disconfirmation], [agent, insert(c40)]]).
+
+pattern([e3,[agent, addCalendar], [user, confirmation],[agent, clearMemory], [agent, insert(a50recipeSelect)]]).
+pattern([e3,[agent, addCalendar], [user, disconfirmation],[agent, groceryQuestion],[user, confirmation], [agent, groceryList], [agent, insert(f1)]]).
+pattern([e3,[agent, addCalendar], [user, disconfirmation],[agent, groceryQuestion],[user, disconfirmation], [agent, insert(c40)]]).
 
 
-
-pattern([e4,[user, recipeRequest], [agent, deleteRecipe(Params)], [agent, insert(e3)]]):- getParamsPatternInitiatingIntent(user, recipeRequest, Params).
+%pattern([e4,[user, recipeRequest], [agent, deleteRecipe(Params)], [agent, insert(e3)]]):- getParamsPatternInitiatingIntent(user, recipeRequest, Params).
 
 pattern([f1,[agent, showGrocery],[agent, questionFinal],[user, farewell], [agent, insert(c40)]]).
 
