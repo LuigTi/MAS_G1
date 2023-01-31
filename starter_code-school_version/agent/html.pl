@@ -58,7 +58,7 @@ page(c10, _, Html) :-
 	currentTopLevel(c10), 
 	% Constructing HTML page
 	%atomic_list_concat(['<div style="display: flex; flex-direction: column; align-items: center; font-family: Times, serif;"> <img src="https://www.sidechef.com/article/582ece9b0bb91725bc6cde93.jpeg" style="width: 20%; border-radius:50%;"></br><h3> Welcome to ~a&#180;s Plate</h3></div>'], Template),
-	atomic_list_concat(['<div style="display: flex; flex-direction: column; align-items: center; font-family: Times, serif;"><br><img src="https://scontent-ams2-1.xx.fbcdn.net/v/t39.30808-6/274283125_504794324336081_124044829316505881_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=f_cuqaFxgtgAX93jKze&_nc_ht=scontent-ams2-1.xx&oh=00_AfBvKrmS5jK_h_ITXqembnRDHeEzG2SjDmCtqE9JOwFSPw&oe=63DCB5D4" style=" width: 20%; border-radius:50%;"></br><h3> Welcome to ~a&#180;s Plate</h3></div>'], Template),
+	atomic_list_concat(['<div style="display: flex; flex-direction: column; align-items: center; font-family: Times, serif;"><br><img src="https://cdn.discordapp.com/attachments/1008571049039896576/1069248561625169991/Jip_fat_italian_chef_in_kitchen_introducing_himself_pixar_carto_aa6d3b4c-155d-4f17-b377-85fe5c4872c3.png" style=" width: 20%; border-radius:20%;"></br><h3> Welcome to ~a&#180;s Plate</h3></div>'], Template),
 	% Get the bot's name if it has one; other call it 'your assistant'
 	(agentName(Name) -> N = Name ; N = 'your recipe selection assistant'), applyTemplate(Template, N, FirstRow),
 	
@@ -78,7 +78,7 @@ page(e1, _, Html) :-
 	currentTopLevel(e1), 
 	% Constructing HTML page
 	atomic_list_concat([
-	"<br><center><h1> Do you want to add to calendar? </h1></center></br>"
+	'<br><center><h1> Do you want to add to calendar? </h1></center></br><img src="https://cdn.discordapp.com/attachments/997271750368833636/1069543222445097010/Jiplord1212_fat_italian_chef_reading_book_pixar_style_aa77d955-0bdb-4ac0-b511-b678e302e440.png" style=" width: 20%; border-radius:20%;">'
 	%,"<center><p> calendar1 </p></center>"
 	], Txt),
 	applyTemplate('<div class="text-center  style="font-size: 3rem;">~a</div>', Txt, FirstRow), 
@@ -92,7 +92,7 @@ page(e1, _, Html) :-
 page(e12, _, Html) :-
 	currentTopLevel(e12), 
 	% Constructing HTML page
-	atomic_list_concat(['<br><div class="text-center style="font-size: 3rem;"><center><h1> This is ~a </h1></center></br></div>'], Template),
+	atomic_list_concat(['<br><div class="text-center style="font-size: 3rem;"><center><h1> This is ~a </h1></center></br></div><center><img src="https://cdn.discordapp.com/attachments/997271750368833636/1069543707617021972/Jiplord1212_fat_italian_chef_reading_book_pixar_style_619983f5-55df-4c14-b537-22a2b7817b57.png" style=" width: 20%; border-radius:20%;"></center>'], Template),
 	N = 'Day Scheduling', applyTemplate(Template, N, Body),
 %	SecondRow = '<div class="text-center mt-5"></div>',
 %	atomic_list_concat([FirstRow, SecondRow], Body),
@@ -103,7 +103,7 @@ page(e13, _, Html) :-
 	% Condition for when to show this page
 	currentTopLevel(e13), 
 	% Constructing HTML page
-	atomic_list_concat(['<br><div class="text-center style="font-size: 3rem;"><center><h1> This is ~a </h1></center></br></div>'], Template),
+	atomic_list_concat(['<br><div class="text-center style="font-size: 3rem;"><center><h1> This is ~a </h1></center></br></div><center><img src="https://cdn.discordapp.com/attachments/997261989292282007/1069773341579284480/Jiplord1212_fat_italian_chef_eating_pixar_cartoon_style_9ad959d9-f19a-47a4-adb3-3c6878050397.png" style=" width: 20%; border-radius:20%;"></center>'], Template),
 	N = 'Meal Scheduling', applyTemplate(Template, N, Body),
 %	SecondRow = '<div class="text-center mt-5"></div>',
 %	atomic_list_concat([FirstRow, SecondRow], Body),
@@ -246,7 +246,7 @@ page(f1, _, Html) :-
     currentTopLevel(f1), 
     groceryList(ListOfIngredients),
     bulletList(ListOfIngredients, Body1),
-    Firstrow = '<br>',
+    Firstrow = '<br><center><img src="https://cdn.discordapp.com/attachments/997261989292282007/1069773494876897360/Jiplord1212_fat_italian_chef_shopping_in_supermarket_pixar_cart_7da925b6-5898-45b3-82f2-79a4fc2ec876.png" style=" width: 20%; border-radius:20%;"></center><br>',
     atomic_list_concat([Firstrow, Body1], Body),
     html(Body, Html).
 
@@ -293,7 +293,7 @@ page(a50recipeSelect, _, Html) :-
 		atomic_list_concat(['There are ', N, ' recipes that match your preferences.'], RecipesLeftStr) ;
 		atomic_list_concat(['I have ', N, ' recipes in my database!'], RecipesLeftStr)
 	),
-	applyTemplate('</br></br><div style="display: flex; justify-content: center; "></br></br></br></br><center><h1 style="font-size: 3rem;">~a</h1></center></br></br></br></br></br></div><h1 style="font-size: 2.5rem; display: flex; justify-content: center;">Add/remove filters to narrow the search</h1></br></br>', RecipesLeftStr, FirstRow),
+	applyTemplate('</br></br><div style="display: flex; justify-content: center;"><img src="https://cdn.discordapp.com/attachments/1008571195345608704/1069272225477300345/Jip_fat_italian_chef_in_rome_waving_pixar_cartoon_style_8f09bed1-171c-4ee9-8fcb-9c35020405f2.png" style=" width: 20%; border-radius:20%;"></div><center><h1 style="font-size: 3rem;">~a</h1></center></br></div><h1 style="font-size: 2.5rem; display: flex; justify-content: center;">Add/remove filters to narrow the search</h1><br>', RecipesLeftStr, FirstRow),
 	% Second row: display the filters stored in memory and show them as list on screen.
 	filters_to_strings(FilterStrings),
 	itemsList(FilterStrings, TR),
@@ -328,7 +328,7 @@ page(a50recipeSelect, _, Html) :-
 	% First row: Either you have found recipes or no recipe statement
 	(N > 0 ->
 		ThirdRow = "<center><h3>Here are some of my suggestions:</h3></center>" ;
-		ThirdRow = "<center><h3>There are no recipes that can match your preferences :(</h3></center>"
+		ThirdRow = '<center><h3>There are no recipes that can match your preferences :(</h3></center><br><center><img src="https://cdn.discordapp.com/attachments/1008571195345608704/1069301347557572658/Jip_sad_fat_italian_chef_pixar_style_3c7c51d9-419f-4ee4-9e24-a20191f85667.png" style=" width: 20%; border-radius:20%;"></center>'
 	),
 	% Second row: display the filters stored in memory and show them as list on screen.
 	filters_to_strings(FilterStrings),
@@ -486,7 +486,7 @@ page(c40, _, Html) :-
 	currentTopLevel(c40), 
 	% Constructing the HTML page
 	% First row: Instructions
-	atomic_list_concat(['<br><div class="text-center" style="font-size: 3rem;">See you next time!</div>'], Body), 
+	atomic_list_concat(['<br><div class="text-center" style="font-size: 3rem;">See you next time!</div><br><center><img src="https://cdn.discordapp.com/attachments/1008571195345608704/1069272362517803158/Jip_fat_italian_chef_in_rome_waving_pixar_cartoon_style_b7ea60ff-7ed1-4ef4-92f9-3c89e9b68665.png" style=" width: 20%; border-radius:20%;"></center>'], Body), 
 	% Putting everything together
 	% Create the HTML page
 	html(Body, Html).
