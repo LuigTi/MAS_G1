@@ -63,7 +63,7 @@ page(c10, _, Html) :-
 	(agentName(Name) -> N = Name ; N = 'your recipe selection assistant'), applyTemplate(Template, N, FirstRow),
 	
 	
-	SecondRow = '<div class="text-center mt-5" style="font-size: 3rem;">You betta choose an Italiano Recipe Bimbo</div>',
+	SecondRow = '<div class="text-center mt-5" style="font-size: 3rem;"> I am here to help you find a recipe. </div>',
 
 	
 	
