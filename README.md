@@ -1,6 +1,6 @@
 # VINCENZO, planning and searching cooking assistant
 
-The idea followed by the team was to implement a rule-based cooking assistant and implement query and visual features to add planning capabilities; that is, the assistant had the extended capability of planning the weekly diet of the user and its grocery list. The calendar and the list can be modified dynamically through conversation. Once the planned calendar and the grocery list are satisfied, the user can print the information. Furthermore, a user study was carried out to make an informed decision about the design of the prototype and its conversation patterns. The final visuals are consistent with the idea of personification of the agent in an Italian Chef:
+The idea followed by the team was to implement a rule-based cooking assistant and implement query and visual features to add planning capabilities; that is, the assistant had the extended capability of planning the weekly diet of the user and its grocery list. The calendar and the list can be modified dynamically through conversation. Once the planned calendar and the grocery list are satisfied, the user can print the information. Furthermore, a user study was carried out to make an informed decision about the design of the prototype and its conversation patterns. 
 
 
 
