@@ -1,9 +1,10 @@
-# Implementing Rule Based Agent for VU course PMAS
+# VINCENZO, a planning and searching cooking assistant
 
-The idea followed by the team was to implement a rule based cooking assistant and implement query and visual feature to adding planning capabilities; that is, the assistant had the extended capability of planning the weekly diet of the user and its grocery list. The calendar and the list can be modified dynamically through conversation. Once the planned calendar and the grocery list are satisfied, the user can print the information.
+The idea followed by the team was to implement a rule based cooking assistant and implement query and visual feature to adding planning capabilities; that is, the assistant had the extended capability of planning the weekly diet of the user and its grocery list. The calendar and the list can be modified dynamically through conversation. Once the planned calendar and the grocery list are satisfied, the user can print the information. Furthermore, a user study was carried out to make informed decision about the design of the prototype and its conversation patterns. The final visual are consistent with the idea of personificating the agent in an Italian Chef:
 
 
-### Description of the task of the course
+
+### Implementing Rule Based Agent for VU course PMAS (Description of the task of the course=
 
 In this project, you will be developing a conversational recipe recommendation agent that uses speech to interact and is able to conduct a conversation for selecting a recipe to cook.  Your agent should be able to assist a user in selecting a recipe using a variety of filters. The agent does not need to be able to assist a user  with the instruction steps of the recipe itself, which is out of scope of the Project MAS course. We chose to focus on the recipe selection activity since it already poses several challenges for building an effective and robust conversational agent. First, there are many different ways in which this conversation may be conducted, and many different ways in which a user can phrase what it wants from the agent. A user can specify different aspects of a recipe that the recipe it will finally select should satisfy (e.g., type of ingredients, cooking duration, type of course, etc.). Second, the recipe recommendation domain already is a broad knowledge space that the agent needs to be able to handle to understand what the user is looking for. The agent will have to reason over its database of recipes to filter for recipes that fit the user’s preferences.
 
