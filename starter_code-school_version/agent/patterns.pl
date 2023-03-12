@@ -33,7 +33,6 @@ pattern([slotFill(X), [agent, repeat(X)]]).
 % Dummy slotFill fact added because at least one such fact needs to be defined.
 slotFill(dummyP, dummyI).
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Pattern: a21featureRequest								%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -251,9 +250,7 @@ pattern([c30, [user, checkCapability], [agent, describeCapability]]).
 pattern([c40, [agent, sessionCloser], [user, farewell]]).
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% for today sunday29/1 : add the shitty ingredient list thingy.                  %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 pattern([e1, [agent, questionCalendar], [user, disconfirmation],[agent, insert(c40)]]).
 
 pattern([e1, [agent, questionCalendar], [user, confirmation],[agent, questionDay], [agent, insert(e12)]]).
@@ -282,9 +279,11 @@ pattern([e3,[agent, addCalendar], [user, disconfirmation],[agent, groceryQuestio
 pattern([f1,[agent, showGrocery],[agent, questionFinal],[user, farewell], [agent, insert(c40)]]).
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Special Patterns used to only handle button-based interaction			%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 pattern([start, [user, button]]) :- 
 	getParamsPatternInitiatingIntent(user, button, [button='Start']).
+	

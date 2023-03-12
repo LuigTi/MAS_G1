@@ -61,9 +61,11 @@ text(a50recipeConfirm, contextMismatch, "this is an yes no question.").
 text(a50recipeConfirm, contextMismatch, "please answer with yes or no.").
 text(c40, contextMismatch, "you should farewell me.").
 text(c40, contextMismatch, "please say goodbye.").
+
 text(e1, contextMismatch, "this is a yes or no question").
 text(e12, contextMismatch, "please specify the day.").
 text(e13, contextMismatch, "please specify the meal.").
+
 
 
 
@@ -214,10 +216,33 @@ text(groceryQuestion, "Would you like to see your grocery list?").
 
 text(showGrocery, "This is your grocery list.").
 
+
 text(questionFinal, "It's been a pleasure to help you out, when you are done with the grocery list, you can just say Bye Bye.").
 
 
+text(insertMeal(_), "got it!").
 
+text(seeCalendar, "Do you want to access the calendar?").
+
+text(showCalendar, "this is your current calendar").
+
+text(addCalendar, "would you like to add something to your calendar?.").
+
+text(deleteCalendar, "would you like to delete a recipe from the calendar?").
+
+text(recipeDelete, "Choose the recipe you want to delete from the calendar.").
+
+text(deleteRecipe(_), "Recipe deleted").
+
+text(clearMemory, "removing all previous filters").
+
+text(groceryList, "I am hereby making your grocery list").
+
+text(groceryQuestion, "Would you like to see your grocery list?").
+
+text(showGrocery, "This is your grocery list.").
+
+text(questionFinal, "It's been a pleasure to help you out, when you are done with the grocery list, you can just say Bye Bye.").
 
 
 

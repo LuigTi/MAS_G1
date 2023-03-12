@@ -275,7 +275,7 @@ module dialog_update {
 			+ delete(memory(OldMemory)) + insert(memory(NewMemory)) + log(Info).
 		
 		%%% Actions for managing the agenda
-		% Handle instruction 'restart' (which reinitializes the agent's agenda and clears
+		% Handle instruction '' (which reinitializes the agent's agenda and clears
 		% the agent's memory).
 		if Intent = restart,
 			agenda(Agenda), initialAgenda(InitAgenda), memory(Params),
@@ -299,6 +299,7 @@ module dialog_update {
 		then delete(randomRep(RecipeID)) + insert(randomRep(NewRecipeID)).
 		% MOD END
 		
+
 		if Intent = insertDay(Params),(currentRecipe(RecipeID); randomRep(RecipeID))
 		then insert(recipeDataDay(RecipeID, Params)) .
 		
@@ -317,7 +318,7 @@ module dialog_update {
 
         if Intent = groceryList, findall(Ingredient,(recipeDataDay(RecipeID,_), ingredientAndQuantity(RecipeID,Ingredient)),ListOfIngredient)
         then insert(groceryList(ListOfIngredient)).
-				
+		
 		% Handle instruction 'terminate' (which clears the agent's agenda)
 		if Intent = terminate, randomRecipe(NewRecipeID), randomRep(RecipeID),
 			agenda(Agenda), memory(Params)

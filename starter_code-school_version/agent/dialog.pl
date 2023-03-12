@@ -32,8 +32,9 @@
 	randomRep/1,
 	% bot is talking
 	talking/0,
+
 	recipeDataDay/2, 
-	recipeDataMeal/2,
+
 	deleteRecipe/1,
 	groceryList/1.
 	
