@@ -387,15 +387,13 @@ mealType('6', 'dinner').
 mealType('6', 'dinnerparty'). 
 mealType('6', 'lunch'). 
 step('6', 1, 'peel the garlic cloves.'). 
-step('6', 2, 'you want to keep them whole so dont smash them!
-peel the lemon rinds into long strips and halve and deseed the red chillies.'). 
+step('6', 2, 'you want to keep them whole so dont smash them! peel the lemon rinds into long strips and halve and deseed the red chillies.').
 step('6', 3, 'pop the garlic cloves, lemon rind and deseeded chillies in a small saucepan and cover with 750ml olive oil, or enough to cover.'). 
 step('6', 4, 'heat the saucepan over low heat and cook gently for 30 mins or until the garlic is soft.'). 
 step('6', 5, 'you want the oil to barely be simmering.'). 
 step('6', 6, 'if it starts to bubble, remove the pan from the heat to cool a little then pop it back onto the stove to continue cooking.'). 
 step('6', 7, 'strain the oil into a bowl.'). 
-step('6', 8, 'this oil is liquid gold - store it in a jar and use it on/in everything!
-cook the orzo in plenty of boiling salted water until al dente, reserving some of the cooking water for later.'). 
+step('6', 8, 'this oil is liquid gold - store it in a jar and use it on/in everything! cook the orzo in plenty of boiling salted water until al dente, reserving some of the cooking water for later.').
 step('6', 9, 'meanwhile, thinly slice the chillies and grate the parmesan.'). 
 step('6', 10, 'place both in a bowl with the garlic and season well with salt and pepper.'). 
 step('6', 11, 'mash into a paste.'). 
@@ -1215,8 +1213,7 @@ step('21', 15, 'while the sauce is cooking, put the pasta on to boil in plenty o
 step('21', 16, 'once the pasta is al dente, drain and combine with the ragu.'). 
 step('21', 17, 'finely chop the parsley, add and mix well.'). 
 step('21', 18, 'add 75ml of olive oil to a small pan and place over a medium heat.'). 
-step('21', 19, 'pick and add the sage leaves and fry for a couple of mins until crisp
-plate up the pasta, top with a few crunchy sage leaves and a drizzle of the oil they cooked.'). 
+step('21', 19, 'pick and add the sage leaves and fry for a couple of mins until crisp plate up the pasta, top with a few crunchy sage leaves and a drizzle of the oil they cooked.').
 step('21', 20, 'add a sprinkle of chilli, if you like.'). 
 ingredient('21', 'mushrooms'). 
 ingredient('21', 'onion'). 
@@ -4569,8 +4566,7 @@ step('86', 3, 'place in a roasting pan, drizzle generously with olive oil and sa
 step('86', 4, 'meanwhile, heat a splash of olive oil in a large pan over a high heat, add the kale and stir fry for a few mins until charred and crispy.'). 
 step('86', 5, 'set aside.'). 
 step('86', 6, 'add the lentils to a bowl along with the juice and zest of half a lemon, a drizzle of olive oil and a pinch of salt.'). 
-step('86', 7, 'mix well
-in a small bowl mix the tahini with the juice of a lemon, a glug of olive oil and a splash of water.'). 
+step('86', 7, 'mix well in a small bowl mix the tahini with the juice of a lemon, a glug of olive oil and a splash of water.').
 step('86', 8, 'it should be creamy and emulsified but not too thick, the consistency of double cream.'). 
 step('86', 9, 'once cooled, add the broccoli, kale, and lentils to a bowl, pour in the dressing and toss well.'). 
 step('86', 10, 'plate up and top with a generous sprinkle of chopped mint and a big spoon of pomegranate seeds.'). 
@@ -4937,8 +4933,7 @@ step('92', 6, 'remove from the pan onto a plate lined with kitchen paper and spr
 step('92', 7, 'set side.'). 
 step('92', 8, 'wipe the pan clean.'). 
 step('92', 9, 'drain and quarter the artichokes (they might come quartered already).'). 
-step('92', 10, 'heat a glug of olive oil in the pan over a medium-high heat and fry the artichokes cut side down until golden brown,
-remove from the pan and set aside.'). 
+step('92', 10, 'heat a glug of olive oil in the pan over a medium-high heat and fry the artichokes cut side down until golden brown, remove from the pan and set aside.'). 
 step('92', 11, 'toast the pine nuts along with a splash of olive oil in the same pan until golden brown.'). 
 step('92', 12, 'add the remaining sumac and chilli and take off the heat.'). 
 step('92', 13, 'mix the yoghurt with the juice of the lemon, the tahini, 4 tbsp of cold water and a pinch of salt.'). 
@@ -14269,8 +14264,7 @@ mealType('258', 'lunch').
 step('258', 1, 'add pine nuts to a pan with a small pinch of salt and pepper.'). 
 step('258', 2, 'toast these until browned.'). 
 step('258', 3, 'into a bowl, add the freshly toasted pine nuts, roasted peppers, capers, red chillies, red wine vinegar and 7 tbsp of olive oil.'). 
-step('258', 4, 'then season generously with salt and pepper
-take your coriander seeds and roughly grind them in a mortar and pestle.'). 
+step('258', 4, 'then season generously with salt and pepper take your coriander seeds and roughly grind them in a mortar and pestle.'). 
 step('258', 5, 'then add to your red pepper salsa and mix.'). 
 step('258', 6, 'once mixed together, set in the fridge.'). 
 step('258', 7, 'you want it to be nice and cool before serving.'). 
@@ -14734,8 +14728,7 @@ tag('266', 'sandwich').
 step('266', 1, 'score the pork bellys skin about 1/2 cm deep, making sure you dont reach the flesh as that will prevent you from getting a lovely crisp crackling.'). 
 step('266', 2, 'generously salt the skin and place the belly on a tray in the fridge uncovered for 12-24 hours for the skin to dry.'). 
 step('266', 3, 'preheat oven to 200c/392f.'). 
-step('266', 4, 'place the prepared pork belly on the lowest rack of the oven and roast for 45-50 mins
-when pork belly is fully cooked, put the grill on high and grill it for an additional 10-15 mins.'). 
+step('266', 4, 'place the prepared pork belly on the lowest rack of the oven and roast for 45-50 mins when pork belly is fully cooked, put the grill on high and grill it for an additional 10-15 mins.'). 
 step('266', 5, 'chop up the carrot into matchsticks and combine in a bowl with the apple cider vinegar, sugar, and 1 tsp salt.'). 
 step('266', 6, 'blitz up the garlic, shallot, lemongrass, 2 red chillis, honey, soy sauce, brown sugar, fish sauce and msg in a food processor.'). 
 step('266', 7, 'pour out into a hot pan with 1 tbsp olive oil and 100ml of water and cook for 5 mins until thick and sticky.'). 
@@ -15429,8 +15422,7 @@ step('277', 10, 'pop it back in the bowl and add the rest of your yoghurt, chopp
 step('277', 11, 'give it a mix.'). 
 step('277', 12, 'add your tomato to a bowl along with your red chilli, red onion and remaining lemon juice.'). 
 step('277', 13, 'add your chopped coriander and give it a good mix.'). 
-step('277', 14, 'season to taste with salt and pepper
-heat your weber barbecue to a medium-high heat.'). 
+step('277', 14, 'season to taste with salt and pepper heat your weber barbecue to a medium-high heat.'). 
 step('277', 15, 'add your chicken thighs and cook for about 7 mins until charred.'). 
 step('277', 16, 'flip and cook for about another 7 mins.'). 
 step('277', 17, 'remove your chicken thighs from the barbecue and place on a plate to rest.'). 
@@ -15778,8 +15770,7 @@ step('283', 8, 'finely chop your jalapenos and cook them in the butter in a smal
 step('283', 9, 'whisk in the flour and cook for 1 min.'). 
 step('283', 10, 'slowly pour in the milk, whisking constantly, and bring to a boil.'). 
 step('283', 11, 'once the sauce starts to thicken, add in your red leicester cheese and american cheese slices.'). 
-step('283', 12, 'whisk the sauce until the cheese has melted and season generously with salt and pepper
-cook the sausages in a large frying pan for 10 mins until cooked through and crispy.'). 
+step('283', 12, 'whisk the sauce until the cheese has melted and season generously with salt and pepper cook the sausages in a large frying pan for 10 mins until cooked through and crispy.'). 
 step('283', 13, 'finely chop the chives.'). 
 step('283', 14, 'pop the sausages in the hot dog bun, smother with the cheese sauce, top with caramelised onions, crispy bacon and crispy garlic.'). 
 step('283', 15, 'finish with the chives and serve immediately.'). 
@@ -16734,8 +16725,7 @@ step('299', 3, 'mix well and allow it to marinate for 30 mins.').
 step('299', 4, 'meanwhile, thinly slice the remaining half of your lemon, and mince the onion, garlic and ginger.'). 
 step('299', 5, 'following that, zest and juice two additional lemons into a bowl.'). 
 step('299', 6, 'combine the chicken stock, 3 tbsp soy sauce, 1 tbsp sugar and 1/2 tsp white pepper powder in a jug.'). 
-step('299', 7, 'heat up a pan with 5cm of vegetable oil to deep fry the chicken
-pour 200g of plain flour into a bowl and tip in your chicken along with its marinating liquid.'). 
+step('299', 7, 'heat up a pan with 5cm of vegetable oil to deep fry the chicken pour 200g of plain flour into a bowl and tip in your chicken along with its marinating liquid.'). 
 step('299', 8, 'mix it well with your hands, scrunching up the chicken so that there are lots of craggy bits.'). 
 step('299', 9, 'in a small cup, combine the cornflour with 1 tbsp water.'). 
 step('299', 10, 'deep fry each piece of chicken in batches for 3-4 mins until golden brown, set aside to drain on a paper towel.'). 
@@ -16743,8 +16733,7 @@ step('299', 11, 'heat up a large wok until smoking and pour a large glug of oil 
 step('299', 12, 'stir fry the onion, ginger and garlic for 1 min until golden brown.'). 
 step('299', 13, 'pour in the chicken stock mixture and bring the sauce to a bubble.'). 
 step('299', 14, 'add the cornflour mix and whisk to combine.'). 
-step('299', 15, 'simmer the sauce for 2 mins until it is thick and glossy
-toss in the chicken and lemon juice and mix well.'). 
+step('299', 15, 'simmer the sauce for 2 mins until it is thick and glossy toss in the chicken and lemon juice and mix well.'). 
 step('299', 16, 'cook for 30 secs and serve on a bed of steamed rice.'). 
 step('299', 17, 'top with toasted sesame seeds, lemon slices and enjoy.'). 
 ingredient('299', 'chicken thighs'). 

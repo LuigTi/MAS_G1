@@ -54,23 +54,30 @@ text(ingredientCheck, "Do you have all the ingredients").
 text(lastTopicCheck, "Would you like to select a different recipe?").
 
 % Intent: context mismatch
-text(c10, contextMismatch, "not sure what that means in this context."). % we don't care exactly what user said. we got some response.
-text(a50recipeSelect, contextMismatch, "could you specify an ingredient?").
-text(a50recipeSelect, contextMismatch, "could you specify an ingredient type?").
+text(c10, contextMismatch, "I am not sure what that means in this context."). % we don't care exactly what user said. we got some response.
+text(a50recipeSelect, contextMismatch, "could you specify some filters to apply?").
+text(a50recipeSelect, contextMismatch, "could you specify some criteria for the recipe selection?").
 text(a50recipeConfirm, contextMismatch, "this is an yes no question.").
-text(a50recipeConfirm, contextMismatch, "please say yes or no.").
+text(a50recipeConfirm, contextMismatch, "please answer with yes or no.").
 text(c40, contextMismatch, "you should farewell me.").
 text(c40, contextMismatch, "please say goodbye.").
-text(e1, contextMismatch, "want to put it on the calendar or not?").
-text(e12, contextMismatch, "siuuuuuu").
+
+text(e1, contextMismatch, "this is a yes or no question").
+text(e12, contextMismatch, "please specify the day.").
+text(e13, contextMismatch, "please specify the meal.").
+
+
+
+
+
 % Intent: describeCapability
-text(describeCapability, "I'm an Artificial Intelligence that will help you select a recipe").
+text(describeCapability, "I can query a database to find a recipe you like, I can also add recipes you choose to a weekly calendar and then print out your grocery list based on your planned recipes!").
 	
 % Intent: farewell
 text(farewell, "Bye bye").
 
 % Intent: greeting
-text(greeting, "Hola"). 
+text(greeting, "Hello"). 
 
 
 % Intent: negative welfare receipt
@@ -81,9 +88,12 @@ text(c10, paraphraseRequest, "I did not understand."). % we don't care exactly w
 text(a50recipeSelect, paraphraseRequest, "what do you mean?").			%%%%%%%%%%%TODO
 text(a50recipeConfirm, paraphraseRequest, "Is this right?").
 text(c40, paraphraseRequest, "I did not understand."). % we don't care exactly what user said. we got some response.
+text(e1, paraphraseRequest, "COuld you answer with yes or no?").
+text(e2, paraphraseRequest, "I did not understand").
+text(e3, paraphraseRequest, "I did not understand").
 
 % Intent: positive receipt
-text(positiveReceipt, "ok").
+text(positiveReceipt, "ok!").
 	
 
 % Intent: self identification
@@ -93,7 +103,7 @@ text(selfIdentification, Txt) :- agentName(Bot_name), string_concat("I am", Bot_
 text(specifyGoal, "I'll help you find a recipe.").
 
 % Intent: session closer
-text(sessionCloser, "session closer sentence").
+text(sessionCloser, "See you again.").
 
 % Intent: sequence closer
 text(sequenceCloser, "sequence closer sentence").
@@ -126,11 +136,11 @@ text(ackFilter, Txt) :-
 text(confirmRequest, "Confirming request").
 
 % Intent: feature inquiry
-text(featureInquiry, "featureInquiry, no filters applied") :-recipesFiltered(Recipes), length(Recipes, L), L > 890.
+text(featureInquiry, "You have not applied any filters") :-recipesFiltered(Recipes), length(Recipes, L), L > 890.
 	
-text(featureInquiry, "featureInquiry, too many recipes to show") :-recipesFiltered(Recipes), length(Recipes, L), L < 891, L > 15,not(memoryKeyValue('show', 'true')).
+text(featureInquiry, "There are too many recipes to show") :-recipesFiltered(Recipes), length(Recipes, L), L < 891, L > 15,not(memoryKeyValue('show', 'true')).
 		
-text(featureInquiry, "featureInquiry, I'll show you the recipes") :-recipesFiltered(Recipes), length(Recipes, L),( L<16 ; memoryKeyValue('show', 'true') ).
+text(featureInquiry, "I'll show you the recipes") :-recipesFiltered(Recipes), length(Recipes, L),( L<16 ; memoryKeyValue('show', 'true') ).
 
 
 
@@ -141,10 +151,10 @@ text(featureRemovalRequest, "Could you remove some of the filters?").
 
 % This intent is used for answering the user intent pictureRequest.
 % Intent: grantPicture
-text(grantPicture, "Picture granted, I'll show you the recipes")  :- recipesFiltered(Recipes), length(Recipes, L), L <100.
+text(grantPicture, "I'll show you the recipes")  :- recipesFiltered(Recipes), length(Recipes, L), L <100.
 % Intent: pictureNotGranted
 % request user to provide more preferences.
-text(pictureNotGranted, "Picture not granted, there are too many recipes" ):- recipesFiltered(Recipes), length(Recipes, L), L >99.
+text(pictureNotGranted, "There are still too many recipes" ):- recipesFiltered(Recipes), length(Recipes, L), L >99.
 
 % Intent: no recipes left
 text(noRecipesLeft, Txt) :-
@@ -163,7 +173,7 @@ text(recipeCheck, "Look at the recipe, is it fine?").
 	
 % Intent: recipe inquiry
 
-text(recipeInquiry, "recipeInquiry. What would you like to cook.").
+text(recipeInquiry, "What would you like to cook?").
 
 % used in a21removeKeyFromMemory for handling deleteParameter.
 text(removedSpecificFilter(DelFilter), Txt) :-
@@ -180,10 +190,35 @@ text(questionMeal, "would you like to cook this recipe as breakfast, lunch, or d
 
 text(followUp, "Would you like to visualize the calendar or look for another recipe?").
 
-text(nextMove, "would you like to add a new recipe or delete a recipe?").
+%text(nextMove, "would you like to add a new recipe or delete a recipe?").
+
+text(insertDay(_), "Day added.").
+
+text(addCalendar, "would you like to add something to your calendar").
+
+text(insertMeal(_), "Meal added.").
+
+%text(questionIngredient, "Do you want to look at the ingredient again?").
+
+%text(insertIngredient, "Here is the ingredient.").
+
+%text(deleteCalendar, "would you like to delete a recipe from the calendar?").
+
+%text(recipeDelete, "Choose the recipe you want to delete from the calendar.").
+
+%text(deleteRecipe(_), "Recipe deleted").
+
+text(clearMemory, "removing all previous filters").
+
+text(groceryList, "I am hereby making your grocery list").
+
+text(groceryQuestion, "Would you like to see your grocery list?").
+
+text(showGrocery, "This is your grocery list.").
 
 
-text(insertDay(_), "Ok, aded for that day").
+text(questionFinal, "It's been a pleasure to help you out, when you are done with the grocery list, you can just say Bye Bye.").
+
 
 text(insertMeal(_), "got it!").
 

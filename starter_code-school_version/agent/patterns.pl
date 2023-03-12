@@ -33,54 +33,6 @@ pattern([slotFill(X), [agent, repeat(X)]]).
 % Dummy slotFill fact added because at least one such fact needs to be defined.
 slotFill(dummyP, dummyI).
 
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Pattern: e1 DEFINED BY TLP NEW NEW NEW CHECK IT
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% at the end of the normal cycle, (after a50recipeConfirm) 
-
-%----> e1 new pattern to request intention to add recipe to calendar
-
-%Confirmation
-%pattern([e1, [agent, questionDay],[user, confirmation],[agent, questionDay],[user, dayAnswer], [agent, insertDay(Params)],[agent, insert(e2)]]) :- 
-	%getParamsPatternInitiatingIntent(user, addFilter, Params).
-
-%Disconfirmation
-%pattern([e1, [agent, questionCalendar], [user, disconfirmation], [agent, insert(c40)]]). 
-
-
-%pattern([e2, [agent, questionMeal],[user, mealAnswer], [agent, insertMeal(Params)]]) :-
-%	getParamsPatternInitiatingIntent(user, addFilter, Params).
-
-
-%----> e2 new patter to request intention to look for another recipe or just visualize the calendar
-
-%Confirmation, (new recipes)
-% pattern([e2, [agent, followUp], [user, addNewRecipes], [agent, insert(a50recipeSelect)]]).
-
-%Disconfirmation, (look at calendar)
-% pattern([e2, [agent, followUp], [user, lookCalendar], [agent, insert(e3)]]).
-
-
-%----> e3 new patter to for calendar page %user can do: 1) be done 2) add new recipes 3) remove some recipes
-
-%1)
-% pattern([e3, [agent, nextMove], [user,disconfirmation]]).
-
-%2)
-% pattern([e3, [agent, nextMove], [user, addNewRecipes], [agent, insert(a50recipeSelect)]]).
-
-%3)-----------------------------> TODO: deleteRecipe = "I want to delete a recipe" OR "I want to delete ...(recipe)"
-% pattern([e3, [agent, nextMove], [user, deleteRecipe],[agent, delete_from_memory(recipe)], [agent, insert(e3)]]).
-%
-
-
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Pattern: a21featureRequest								%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -205,9 +157,9 @@ pattern([a21removeKeyFromMemory,
 % Example:
 %	A: Can you confirm that this is the recipe? 
 %	U: Yes
-pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation], [agent, ingredientCheck], [user, confirmation], [agent, lastTopicCheck], [user, disconfirmation], [agent, insert(e1)]]).
+pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation], [agent, lastTopicCheck], [user, disconfirmation], [agent, insert(e1)]]).
 
-pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation], [agent, ingredientCheck], [user, confirmation], [agent, lastTopicCheck], [user, confirmation], [agent, terminate], [agent, insert(a50recipeSelect)]]).
+pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation], [agent, lastTopicCheck], [user, confirmation], [agent, terminate], [agent, insert(a50recipeSelect)]]).
 %Confirmation
 %pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation]]). %TODO check
 
@@ -217,7 +169,6 @@ pattern([a50recipeConfirm, [agent, recipeCheck], [user, appreciation], [agent, a
 %Disconfirmation
 pattern([a50recipeConfirm, [agent, recipeCheck], [user, disconfirmation],[agent,insert(a50recipeSelect)]]). 
 
-pattern([a50recipeConfirm, [agent, recipeCheck], [user, confirmation], [agent, ingredientCheck], [user, disconfirmation], [agent, insert(c40)]]).
 
 
 
@@ -299,44 +250,33 @@ pattern([c30, [user, checkCapability], [agent, describeCapability]]).
 pattern([c40, [agent, sessionCloser], [user, farewell]]).
 
 
-%%% E1, E2, setting calendar.
 
 pattern([e1, [agent, questionCalendar], [user, disconfirmation],[agent, insert(c40)]]).
 
 pattern([e1, [agent, questionCalendar], [user, confirmation],[agent, questionDay], [agent, insert(e12)]]).
 
-pattern([e12,[user, addFilter], [agent, insertDay(Params)], [agent, insert(e2)]]):- getParamsPatternInitiatingIntent(user, addFilter, Params).
+pattern([e12,[user, addFilter], [agent, insertDay(Params)], [agent, questionMeal], [agent, insert(e13)]]):- getParamsPatternInitiatingIntent(user, addFilter, Params).
+
+pattern([e13,[user, addFilter], [agent, insertMeal(Params)], [agent, insert(e3)]]):- getParamsPatternInitiatingIntent(user, addFilter, Params).
 
 
 
-pattern([e2, [agent, questionMeal], [agent, insert(e22)]]).
 
-pattern([e22,[user, addFilter], [agent, insertMeal(Params)], [agent, insert(e3)]]):- getParamsPatternInitiatingIntent(user, addFilter, Params).
-
+%pattern([e3, [agent, deleteCalendar], [user, confirmation],  [agent, recipeDelete], [agent, insert(e4)]]).
 
 
-pattern([e3, [agent, seeCalendar], [user, confirmation], [agent, insert(e3showCalendar)]]).
+%pattern([e3, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, confirmation],[agent, clearMemory], [agent, insert(a50recipeSelect)]]).
+%pattern([e3, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, disconfirmation],[agent, groceryQuestion],[user, confirmation], [agent, groceryList], [agent, insert(f1)]]).
+%pattern([e3, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, disconfirmation],[agent, groceryQuestion],[user, disconfirmation], [agent, insert(c40)]]).
 
-pattern([e3, [agent, seeCalendar], [user, disconfirmation], [agent, insert(c40)]]).
-
-pattern([e3showCalendar, [agent, deleteCalendar], [user, confirmation],  [agent, recipeDelete], [agent, insert(e4)]]).
-
-
-pattern([e3showCalendar, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, confirmation],[agent, clearMemory], [agent, insert(a50recipeSelect)]]).
-pattern([e3showCalendar, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, disconfirmation],[agent, groceryQuestion],[user, confirmation], [agent, groceryList], [agent, insert(f1)]]).
-pattern([e3showCalendar, [agent, deleteCalendar], [user, disconfirmation], [agent, addCalendar], [user, disconfirmation],[agent, groceryQuestion],[user, disconfirmation], [agent, insert(c40)]]).
+pattern([e3,[agent, addCalendar], [user, confirmation],[agent, clearMemory], [agent, insert(a50recipeSelect)]]).
+pattern([e3,[agent, addCalendar], [user, disconfirmation],[agent, groceryQuestion],[user, confirmation], [agent, groceryList], [agent, insert(f1)]]).
+pattern([e3,[agent, addCalendar], [user, disconfirmation],[agent, groceryQuestion],[user, disconfirmation], [agent, insert(c40)]]).
 
 
+%pattern([e4,[user, recipeRequest], [agent, deleteRecipe(Params)], [agent, insert(e3)]]):- getParamsPatternInitiatingIntent(user, recipeRequest, Params).
 
-pattern([e4,[user, recipeRequest], [agent, deleteRecipe(Params)], [agent, insert(e3showCalendar)]]):- getParamsPatternInitiatingIntent(user, recipeRequest, Params).
-
-
-
-%% from here grocery list
-
-pattern([f1,[agent, showGrocery],[agent, questionFinal],[user, farewell], [agent, insert(c40)]]). 
-
-
+pattern([f1,[agent, showGrocery],[agent, questionFinal],[user, farewell], [agent, insert(c40)]]).
 
 
 
